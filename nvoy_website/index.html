@@ -51,9 +51,6 @@
           </div>
           <p class="hero-note" id="hero-note">Accor, Marriott, Hyatt, IHG, Hilton, Four Seasons, Anantara and more. Replies within a day, usually faster.</p>
         </div>
-        <div class="hero-card" id="featured-slot" aria-live="polite">
-          <!-- featured postcard is rendered here -->
-        </div>
       </div>
       <div class="hero-horizon" aria-hidden="true"></div>
     </section>
@@ -62,11 +59,35 @@
       <div class="wrap">
         <div class="section-head">
           <h2>Deals on the board right now</h2>
-          <p class="section-sub">Partner rates I'm watching this month. Each one includes the perks on the stamp. Dates and prices change, so ask early.</p>
+          <p class="section-sub">Offers from Fora HQ and our hotel partners whose booking windows are still open. Each one includes the perks on the stamp. Windows close without warning, so ask early.</p>
         </div>
         <p class="sample-notice" id="sample-notice" hidden>Some of these are sample deals. Edit <code>deals.json</code> to replace them with yours.</p>
-        <div class="filters" id="filters" role="group" aria-label="Filter deals"></div>
-        <div class="deal-grid" id="deal-grid"></div>
+        <div class="filter-bar">
+          <div class="filters" id="filters" role="group" aria-label="Filter deals by region"></div>
+          <div class="filter-right">
+            <label class="city-pick"><span>City</span><select id="city-filter" aria-label="Filter deals by city"><option value="">All cities</option></select></label>
+            <div class="view-toggle" role="group" aria-label="Layout">
+              <button type="button" class="view-btn" data-view="row" aria-pressed="true" title="Scroll sideways through the deals">
+                <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><rect x="1" y="4" width="8" height="12" rx="1.5" fill="currentColor"/><rect x="11" y="4" width="8" height="12" rx="1.5" fill="currentColor" opacity=".45"/></svg>
+                <span>Scroll</span>
+              </button>
+              <button type="button" class="view-btn" data-view="grid" aria-pressed="false" title="Show every deal in a grid">
+                <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="currentColor"/></svg>
+                <span>Grid</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="deal-strip is-row" id="deal-strip">
+          <button type="button" class="strip-arrow strip-prev" id="strip-prev" aria-label="Previous deals">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="deal-grid" id="deal-grid" tabindex="0" aria-label="Deals"></div>
+          <button type="button" class="strip-arrow strip-next" id="strip-next" aria-label="Next deals">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="strip-hint" id="strip-hint">Swipe or use the arrows to see more. Switch to Grid to see them all at once.</p>
         <p class="deals-empty" id="deals-empty" hidden>Nothing on the board for that filter right now. Tell me what you're after and I'll find it.</p>
         <noscript><p class="deals-empty">The deal board needs JavaScript to load. Message me on WhatsApp and I'll send the current list.</p></noscript>
       </div>
@@ -80,21 +101,103 @@
         </div>
         <ul class="perk-list" id="perk-list"></ul>
 
-        <div class="math" id="travel-math" hidden>
-          <div class="math-head">
-            <h3>The travel math, on a real booking</h3>
-            <p id="math-sub"></p>
+        <div class="programs" id="programs" hidden>
+          <div class="programs-head">
+            <h3>The partner programmes behind the perks</h3>
+            <p>Each hotel group runs an invitation-only programme for a small set of luxury advisors. Nvoy books through Fora, which belongs to all of these. Perks vary by hotel and rate; I confirm the exact list before you pay.</p>
           </div>
-          <div class="math-cols">
-            <div class="math-col">
-              <p class="math-label" id="math-direct-label"></p>
-              <p class="math-price" id="math-direct-price"></p>
-              <ul id="math-direct-items"></ul>
+          <ul class="program-list" id="program-list"></ul>
+        </div>
+
+        <div class="explore" id="explore" hidden>
+          <div class="explore-head">
+            <h3>Explore the perks at a specific hotel</h3>
+            <p>Pick a hotel to see every programme it belongs to, the perks you'd get through Nvoy, and the terms that usually apply.</p>
+          </div>
+          <label class="field field-dark explore-pick"><span>Hotel</span>
+            <select id="hotel-select"><option value="">Choose a hotel</option></select>
+          </label>
+          <p class="explore-missing">Your hotel isn't listed? Try the travel math below with any hotel name, or <a data-whatsapp href="#">ask me on WhatsApp</a>.</p>
+          <article class="hotel-card" id="hotel-card" hidden>
+            <div class="hotel-card-head">
+              <div>
+                <h4 id="hc-name"></h4>
+                <p class="hotel-place" id="hc-place"></p>
+              </div>
+              <ul class="hotel-programs" id="hc-programs"></ul>
             </div>
-            <div class="math-col math-col-nvoy">
-              <p class="math-label" id="math-nvoy-label"></p>
-              <p class="math-price" id="math-nvoy-price"></p>
-              <ul id="math-nvoy-items"></ul>
+            <p class="hotel-note" id="hc-note" hidden></p>
+            <p class="hotel-deal" id="hc-deal" hidden></p>
+            <div class="hotel-cols">
+              <div>
+                <p class="hotel-label">Perks when booked through Nvoy</p>
+                <ul class="hotel-perks" id="hc-perks"></ul>
+              </div>
+              <div>
+                <p class="hotel-label">Terms that usually apply</p>
+                <ul class="hotel-terms" id="hc-terms"></ul>
+              </div>
+            </div>
+            <div class="hotel-actions">
+              <button type="button" class="btn btn-primary btn-small" id="hc-ask">Ask about this hotel</button>
+              <button type="button" class="btn btn-ghost-navy btn-small" id="hc-math">Run the travel math for it</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="math" id="travel-math">
+          <div class="math-head">
+            <h3>Run the travel math on your own trip</h3>
+            <p>Name a hotel and your dates. I'll tell you which programme it falls under and what you'd get on top of the hotel's own price.</p>
+          </div>
+          <form class="math-form" id="math-form" novalidate>
+            <label class="field field-dark math-hotel"><span>Hotel</span><input id="m-hotel" type="text" placeholder="Park Hyatt Maldives, Fairmont Dubai, The Ritz-Carlton Tokyo…" autocomplete="off" required></label>
+            <label class="field field-dark"><span>Check-in</span><input id="m-in" type="date"></label>
+            <label class="field field-dark"><span>Check-out</span><input id="m-out" type="date"></label>
+            <button class="btn btn-primary math-go" type="submit">Show my perks</button>
+          </form>
+          <div class="math-result" id="math-result" hidden>
+            <div class="math-cols">
+              <div class="math-col">
+                <p class="math-label">Booking direct or on a booking site</p>
+                <p class="math-price" id="mr-direct-price">The hotel's own rate</p>
+                <ul id="mr-direct-items">
+                  <li>Room only, unless the rate says otherwise</li>
+                  <li>No VIP status or special treatment</li>
+                </ul>
+                <a class="btn btn-ghost btn-small" id="mr-google" href="#" target="_blank" rel="noopener">Check the rate on Google</a>
+                <label class="field field-dark math-rate"><span>Rate you found, per night (optional)</span>
+                  <span class="rate-row">
+                    <select id="m-cur" aria-label="Currency"><option>INR</option><option>USD</option><option>EUR</option><option>GBP</option><option>AED</option><option>SGD</option><option>THB</option><option>JPY</option></select>
+                    <input id="m-rate" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 18000">
+                  </span>
+                </label>
+              </div>
+              <div class="math-col math-col-nvoy">
+                <p class="math-label" id="mr-program-label">Booked with Nvoy</p>
+                <p class="math-price" id="mr-nvoy-price">Same rate</p>
+                <p class="math-program" id="mr-program"></p>
+                <ul id="mr-nvoy-items"></ul>
+                <p class="math-total" id="mr-total" hidden></p>
+                <p class="math-fine" id="mr-fine"></p>
+                <button type="button" class="btn btn-primary btn-small" id="mr-ask">Ask me to confirm these perks</button>
+              </div>
+            </div>
+          </div>
+          <div class="math-example" id="math-example" hidden>
+            <p class="math-example-label">A real one from last month</p>
+            <p id="math-sub"></p>
+            <div class="math-cols math-cols-compact">
+              <div class="math-col">
+                <p class="math-label" id="math-direct-label"></p>
+                <p class="math-price" id="math-direct-price"></p>
+                <ul id="math-direct-items"></ul>
+              </div>
+              <div class="math-col math-col-nvoy">
+                <p class="math-label" id="math-nvoy-label"></p>
+                <p class="math-price" id="math-nvoy-price"></p>
+                <ul id="math-nvoy-items"></ul>
+              </div>
             </div>
           </div>
         </div>

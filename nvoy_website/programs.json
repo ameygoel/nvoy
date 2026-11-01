@@ -1,0 +1,556 @@
+{
+  "_help": [
+    "Partner programmes Nvoy can book through Fora. Shown in the Why Nvoy section and used by the travel-math tool to recognise a hotel's brand.",
+    "Each programme: id, name, group (the hotel company), brands (list of brand names or hotel names that identify it; matching is case-insensitive), perks (list), credit (typical credit wording), note (optional).",
+    "Perks vary by property and rate, so keep the wording to 'typically' and let Ankita confirm per booking.",
+    "Add or remove programmes freely. Set show to false to hide one from the list but keep it for brand recognition.",
+    "commonTerms apply to every programme; a programme's own terms list adds to them. hotels.json can add hotel-specific terms on top."
+  ],
+  "typicalPerks": [
+    "Breakfast for two, daily",
+    "Hotel credit, usually $100 per stay",
+    "Room upgrade on arrival, when available",
+    "Early check-in and late check-out, when available",
+    "Welcome amenity and VIP recognition"
+  ],
+  "programs": [
+    {
+      "id": "marriott-stars",
+      "name": "Marriott STARS",
+      "group": "Marriott International",
+      "brands": [
+        "The Ritz-Carlton",
+        "Ritz-Carlton",
+        "Ritz Carlton",
+        "St. Regis",
+        "St Regis",
+        "The Luxury Collection",
+        "Luxury Collection",
+        "EDITION",
+        "Bvlgari",
+        "Bulgari"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Marriott Bonvoy points and elite nights still earn, because the booking is recognised as direct.",
+        "STARS perks apply on STARS-eligible rates only; some suites and prepaid packages are excluded."
+      ]
+    },
+    {
+      "id": "marriott-luminous",
+      "name": "Marriott Luminous",
+      "group": "Marriott International",
+      "brands": [
+        "W Hotels",
+        "W Hotel",
+        "W",
+        "JW Marriott",
+        "Autograph Collection",
+        "Westin",
+        "Le Méridien",
+        "Le Meridien",
+        "Renaissance",
+        "Tribute Portfolio",
+        "Sheraton",
+        "Delta Hotels",
+        "Gaylord",
+        "Marriott"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "note": "W, JW Marriott and Autograph Collection, plus a curated set of Westin, Marriott, Le Méridien, Renaissance, Tribute, Sheraton, Delta and Gaylord hotels.",
+      "terms": [
+        "Marriott Bonvoy points and elite nights still earn.",
+        "Luminous perks apply on Luminous-eligible rates only; the curated-brand hotels (Westin, Marriott, Sheraton and others) are a limited list."
+      ]
+    },
+    {
+      "id": "hyatt-prive",
+      "name": "Hyatt Privé",
+      "group": "Hyatt",
+      "brands": [
+        "Park Hyatt",
+        "Grand Hyatt",
+        "Andaz",
+        "Alila",
+        "Thompson",
+        "Miraval",
+        "Unbound Collection",
+        "Destination by Hyatt",
+        "Hyatt Regency",
+        "Hyatt Centric",
+        "JdV by Hyatt",
+        "Dream Hotel",
+        "Impression by Secrets",
+        "Hyatt"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "World of Hyatt points and tier nights still earn.",
+        "Privé rates sometimes carry extra offers such as a third or fourth night free; these are per hotel and per season."
+      ]
+    },
+    {
+      "id": "hilton-impresario",
+      "name": "Hilton Impresario",
+      "group": "Hilton",
+      "brands": [
+        "Waldorf Astoria",
+        "Conrad",
+        "LXR",
+        "Signia",
+        "Curio Collection",
+        "Hilton"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "note": "Waldorf Astoria, Conrad and LXR, plus selected Signia, Curio and Hilton hotels.",
+      "terms": [
+        "Hilton Honors points and nights still earn.",
+        "Impresario rates are flexible rates; the credit can't be combined with other Hilton promotional credits."
+      ]
+    },
+    {
+      "id": "ihg-destined",
+      "name": "IHG Destined",
+      "group": "IHG Hotels & Resorts",
+      "brands": [
+        "Six Senses",
+        "InterContinental",
+        "Regent",
+        "Kimpton",
+        "Vignette Collection",
+        "Hotel Indigo",
+        "voco"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "IHG One Rewards points and nights still earn.",
+        "Participating hotels are invited individually, so not every InterContinental or Kimpton is in the programme; I check before quoting."
+      ]
+    },
+    {
+      "id": "accor-preferred",
+      "name": "Accor Preferred by HERA",
+      "group": "Accor",
+      "brands": [
+        "Fairmont",
+        "Raffles",
+        "Sofitel",
+        "Orient Express",
+        "Banyan Tree",
+        "MGallery",
+        "Mondrian",
+        "Delano",
+        "SLS",
+        "Rixos",
+        "Emblems",
+        "Faena",
+        "Swissôtel",
+        "Swissotel",
+        "Mövenpick",
+        "Movenpick",
+        "Pullman"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "ALL (Accor Live Limitless) points still earn.",
+        "Participation varies by hotel within each Accor brand."
+      ]
+    },
+    {
+      "id": "four-seasons",
+      "name": "Four Seasons Preferred Partner",
+      "group": "Four Seasons",
+      "brands": [
+        "Four Seasons"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Four Seasons has no points programme; perks are the whole benefit.",
+        "Preferred Partner rates match the hotel's own flexible rate for the same room."
+      ]
+    },
+    {
+      "id": "rosewood-elite",
+      "name": "Rosewood Elite",
+      "group": "Rosewood Hotels & Resorts",
+      "brands": [
+        "Rosewood"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Rosewood Elite benefits are confirmed per booking by the hotel's reservations team."
+      ]
+    },
+    {
+      "id": "mandarin-oriental",
+      "name": "Mandarin Oriental Fan Club",
+      "group": "Mandarin Oriental",
+      "brands": [
+        "Mandarin Oriental"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Fan Club benefits are on flexible rates; Fans of M.O. member perks can stack where the hotel allows."
+      ]
+    },
+    {
+      "id": "belmond-bellini",
+      "name": "Belmond Bellini Club",
+      "group": "Belmond",
+      "brands": [
+        "Belmond",
+        "Cipriani",
+        "Copacabana Palace",
+        "Splendido",
+        "Caruso",
+        "Hotel das Cataratas",
+        "La Residencia",
+        "Villa San Michele",
+        "Castello di Casole",
+        "Mount Nelson",
+        "Eastern & Oriental Express",
+        "Venice Simplon-Orient-Express"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit, typically $100 per stay",
+        "Priority room upgrade, when available",
+        "Welcome gift"
+      ],
+      "credit": "$100",
+      "note": "Belmond hotels and trains worldwide.",
+      "terms": [
+        "Credit amounts vary by property; some Belmond trains and safaris offer a welcome gift instead of a credit."
+      ]
+    },
+    {
+      "id": "peninsula-penclub",
+      "name": "Peninsula PenClub",
+      "group": "The Peninsula Hotels",
+      "brands": [
+        "Peninsula"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "PenClub benefits apply on flexible rates; not combinable with Peninsula's own packages."
+      ]
+    },
+    {
+      "id": "dorchester-diamond",
+      "name": "Dorchester Collection Diamond Club",
+      "group": "Dorchester Collection",
+      "brands": [
+        "Dorchester",
+        "The Beverly Hills Hotel",
+        "Beverly Hills Hotel",
+        "Hotel Bel-Air",
+        "Le Meurice",
+        "Plaza Athénée",
+        "Plaza Athenee",
+        "Principe di Savoia",
+        "Hotel Eden",
+        "Coworth Park",
+        "45 Park Lane",
+        "The Lana"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Diamond Club benefits apply on flexible rates and are confirmed per hotel."
+      ]
+    },
+    {
+      "id": "shangri-la-luxury-circle",
+      "name": "Shangri-La Luxury Circle",
+      "group": "Shangri-La Group",
+      "brands": [
+        "Shangri-La",
+        "Kerry Hotel"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Shangri-La Circle points still earn.",
+        "Luxury Circle benefits are available at Shangri-La and Kerry hotels, not at Hotel Jen."
+      ]
+    },
+    {
+      "id": "langham-couture",
+      "name": "Langham Couture",
+      "group": "Langham Hospitality Group",
+      "brands": [
+        "Langham",
+        "Cordis"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Brilliant by Langham benefits can stack where the hotel allows."
+      ]
+    },
+    {
+      "id": "oetker-pearl",
+      "name": "Oetker Collection Pearl Partners",
+      "group": "Oetker Collection",
+      "brands": [
+        "Oetker",
+        "Le Bristol",
+        "Brenners",
+        "Eden Rock",
+        "Hôtel du Cap",
+        "Hotel du Cap",
+        "The Lanesborough",
+        "Lanesborough",
+        "Jumby Bay",
+        "Palácio Tangará",
+        "Château Saint-Martin",
+        "The Woodward"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit, typically €100 per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity"
+      ],
+      "credit": "€100",
+      "terms": [
+        "Credit is typically €100 or local equivalent and varies by property."
+      ]
+    },
+    {
+      "id": "auberge",
+      "name": "Auberge Resorts Collection",
+      "group": "Auberge",
+      "brands": [
+        "Auberge"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "$100 hotel credit per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Benefits are confirmed per resort; some resorts substitute the credit for a resort activity."
+      ]
+    },
+    {
+      "id": "aman",
+      "name": "Aman",
+      "group": "Aman (Fora Reserve partner)",
+      "brands": [
+        "Aman",
+        "Amanpuri",
+        "Amankila",
+        "Amangiri",
+        "Amanjiwo",
+        "Aman-i-Khás",
+        "Amanbagh",
+        "Janu"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit, typically $100 per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Aman perks are agreed per booking through Fora Reserve; inclusions differ by property and season."
+      ]
+    },
+    {
+      "id": "minor-anantara",
+      "name": "Anantara and Minor Hotels",
+      "group": "Minor Hotels (Fora Reserve partner)",
+      "brands": [
+        "Anantara",
+        "Avani",
+        "Tivoli",
+        "NH Collection",
+        "Elewana"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit, typically $100 per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Minor DISCOVERY points still earn where applicable.",
+        "Perks differ by brand; Avani and Tivoli hotels may offer fewer inclusions."
+      ]
+    },
+    {
+      "id": "slh-within",
+      "name": "Small Luxury Hotels withIN",
+      "group": "Small Luxury Hotels of the World",
+      "brands": [
+        "Small Luxury Hotels",
+        "SLH"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available",
+        "Welcome amenity",
+        "Hotel credit at selected properties"
+      ],
+      "credit": "varies",
+      "terms": [
+        "Credit is offered at selected hotels only; the standard withIN perks are breakfast, upgrade and flexible check-in/out."
+      ]
+    },
+    {
+      "id": "preferred-platinum",
+      "name": "Preferred Hotels & Resorts Platinum",
+      "group": "Preferred Hotels & Resorts",
+      "brands": [
+        "Preferred Hotels"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit, typically $100 per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "terms": [
+        "Platinum Partner hotels are a subset of Preferred Hotels & Resorts; I Prefer points still earn."
+      ]
+    },
+    {
+      "id": "relais-chateaux",
+      "name": "Relais & Châteaux Preferred Partner",
+      "group": "Relais & Châteaux",
+      "brands": [
+        "Relais & Châteaux",
+        "Relais & Chateaux",
+        "Relais and Chateaux"
+      ],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit at selected properties",
+        "Room upgrade on arrival, when available",
+        "Welcome amenity"
+      ],
+      "credit": "varies",
+      "terms": [
+        "Benefits differ widely between properties; many offer a welcome amenity in place of a credit."
+      ]
+    },
+    {
+      "id": "fora-reserve",
+      "name": "Fora Reserve partner perks",
+      "group": "Fora Travel",
+      "brands": [],
+      "perks": [
+        "Breakfast for two, daily",
+        "Hotel credit, typically $100 per stay",
+        "Room upgrade on arrival, when available",
+        "Early check-in and late check-out, when available"
+      ],
+      "credit": "$100",
+      "note": "Fora's own partner relationships with 5,000+ hotels, including many independents and boutique properties that have no chain programme.",
+      "terms": [
+        "Inclusions are agreed hotel by hotel; I confirm the exact list for your dates before booking."
+      ]
+    }
+  ],
+  "commonTerms": [
+    "Perks apply to bookings made through Nvoy on eligible rates, usually the hotel's flexible or best available rate. Prepaid promotional rates, points redemptions and bookings on third-party sites don't qualify.",
+    "Room upgrades, early check-in and late check-out depend on availability on the day. The hotel decides at check-in; upgrades are usually to the next room category.",
+    "The hotel credit is per room, per stay (not per night), to spend at the hotel. It can't be exchanged for cash, doesn't cover taxes or gratuities, and anything unused is forfeited at check-out.",
+    "Breakfast is for the two registered adults in the room, at the hotel's main restaurant unless the hotel says otherwise.",
+    "One set of perks per room per stay. Blackout dates and minimum-stay rules may apply on some rates.",
+    "Hotels can change or withdraw programme benefits. I confirm the exact inclusions in writing before you pay."
+  ]
+}

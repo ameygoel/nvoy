@@ -131,64 +131,94 @@
   }
 
   /* ---------- rendering ---------- */
+  function placeLine(deal) {
+    const d = deal.destination || deal.city || "";
+    return deal.country && !d.toLowerCase().includes(deal.country.toLowerCase()) ? `${d}, ${deal.country}` : d;
+  }
   function postcard(deal, featured) {
     const img = deal.image
       ? `<img src="${esc(deal.image)}" alt="${esc(deal.hotel)}, ${esc(deal.destination)}" loading="${featured ? "eager" : "lazy"}" width="400" height="300" data-art="${esc(deal.art || "island")}" data-id="${esc(deal.id)}">`
       : art(deal.art, deal.id);
-    const details = (deal.details || []).map((d) => `<li>${esc(d)}</li>`).join("");
+    const perks = (deal.perks && deal.perks.length ? deal.perks : deal.details || []).map((d) => `<li>${esc(d)}</li>`).join("");
+    const terms = (deal.terms || []).map((d) => `<li>${esc(d)}</li>`).join("");
     return `<article class="postcard${featured ? " postcard-featured" : ""}" data-id="${esc(deal.id)}">
       <div class="postcard-photo">
-        ${featured ? `<span class="featured-tag">Featured this month</span>` : deal.sample ? `<span class="featured-tag sample-tag">Sample</span>` : ""}
+        ${deal.sample ? `<span class="featured-tag sample-tag">Sample</span>` : ""}
         ${img}
         <span class="stamp">${esc(deal.perk)}</span>
       </div>
       <div class="postcard-body">
-        <p class="postcard-place">${esc(deal.destination)}${deal.country ? ", " + esc(deal.country) : ""}</p>
+        <p class="postcard-place">${esc(placeLine(deal))}</p>
         <h3 class="postcard-hotel">${esc(deal.hotel)}</h3>
         ${deal.note ? `<p class="postcard-note">${esc(deal.note)}</p>` : ""}
-        ${details ? `<ul class="postcard-details">${details}</ul>` : ""}
+        ${perks ? `<div class="postcard-block"><p class="postcard-label">Perks</p><ul class="postcard-details">${perks}</ul></div>` : ""}
+        ${terms ? `<div class="postcard-block postcard-terms"><p class="postcard-label">Terms</p><ul>${terms}</ul></div>` : ""}
         <div class="postcard-meta">
           <p class="postcard-dates">${esc(datesLine(deal))}</p>
           ${deal.priceFrom ? `<p class="postcard-price">from<strong>${esc(money(deal))}<span class="postcard-per"> a night</span></strong>${deal.priceNote ? `<span class="postcard-pricenote">${esc(deal.priceNote)}</span>` : ""}</p>` : ""}
         </div>
         <div class="postcard-cta">
           <button type="button" class="btn btn-ghost-navy btn-small" data-ask="${esc(deal.id)}">Ask about this stay</button>
+          <span class="postcard-links">
+            ${deal.website ? `<a href="${esc(deal.website)}" target="_blank" rel="noopener">Hotel website</a>` : ""}
+            ${deal.reviews ? `<a class="rating-link" data-rating-for="${esc(deal.id)}" href="${esc(deal.reviews)}" target="_blank" rel="noopener">Reviews on Google</a>` : ""}
+          </span>
         </div>
       </div>
     </article>`;
   }
 
-  function renderFeatured(deals) {
-    const slot = $("#featured-slot");
-    const pick = deals.find((d) => d.featured) || deals[0];
-    if (!pick) { slot.hidden = true; return; }
-    slot.innerHTML = postcard(pick, true);
-    hookImages(slot);
-  }
-
-  let activeTag = "All";
+  let activeTag = "All", activeCity = "";
+  const REGION_ORDER = ["North America", "Central America & Caribbean", "South America", "Europe", "Middle East", "Africa", "Asia", "Australia & Pacific"];
+  const byRegion = (a, b) => {
+    const ia = REGION_ORDER.indexOf(a), ib = REGION_ORDER.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+  };
   function renderFilters(deals) {
-    const tags = new Set();
-    deals.forEach((d) => (d.tags || []).forEach((t) => tags.add(t)));
-    const list = ["All", ...Array.from(tags).sort()];
+    const counts = {};
+    deals.forEach((d) => { if (d.region) counts[d.region] = (counts[d.region] || 0) + 1; });
+    const extra = Object.keys(counts).filter((r) => !REGION_ORDER.includes(r)).sort();
+    const list = [...REGION_ORDER, ...extra];
     const box = $("#filters");
-    if (list.length <= 2) { box.hidden = true; return; }
-    box.innerHTML = list.map((t) => `<button type="button" class="chip" aria-pressed="${t === activeTag}" data-tag="${esc(t)}">${esc(t)}</button>`).join("");
+    box.innerHTML = `<button type="button" class="chip" aria-pressed="${activeTag === "All"}" data-tag="All">All regions</button>` +
+      list.map((r) => {
+        const n = counts[r] || 0;
+        return `<button type="button" class="chip" aria-pressed="${r === activeTag}" data-tag="${esc(r)}"${n ? "" : ' disabled title="No open offers right now"'}>${esc(r)}${n ? ` <span class="chip-count">${n}</span>` : ""}</button>`;
+      }).join("");
     box.addEventListener("click", (e) => {
       const b = e.target.closest(".chip");
-      if (!b) return;
+      if (!b || b.disabled) return;
       activeTag = b.dataset.tag;
+      activeCity = "";
       $$(".chip", box).forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+      renderCityOptions(deals);
       renderGrid(deals);
     });
+    renderCityOptions(deals);
+    $("#city-filter").addEventListener("change", (e) => {
+      activeCity = e.target.value;
+      renderGrid(deals);
+    });
+  }
+  /* city dropdown lists the cities inside the active region */
+  function renderCityOptions(deals) {
+    const sel = $("#city-filter");
+    const pool = deals.filter((d) => activeTag === "All" || d.region === activeTag);
+    const cities = Array.from(new Set(pool.map((d) => d.city).filter(Boolean))).sort((a, b) => a.localeCompare(b));
+    sel.innerHTML = `<option value="">${activeTag === "All" ? "All cities" : "All cities in " + esc(activeTag)}</option>` +
+      cities.map((c) => `<option value="${esc(c)}"${c === activeCity ? " selected" : ""}>${esc(c)}</option>`).join("");
+    sel.parentElement.hidden = cities.length < 2;
   }
 
   function renderGrid(deals) {
     const grid = $("#deal-grid");
-    const shown = deals.filter((d) => activeTag === "All" || (d.tags || []).includes(activeTag));
+    const shown = deals.filter((d) => (activeTag === "All" || d.region === activeTag) && (!activeCity || d.city === activeCity));
     grid.innerHTML = shown.map((d) => postcard(d, false)).join("");
     $("#deals-empty").hidden = shown.length > 0;
     hookImages(grid);
+    decorateRatings(grid);
+    grid.scrollLeft = 0;
+    requestAnimationFrame(updateArrows);
   }
 
   function hookImages(root) {
@@ -215,9 +245,218 @@
     }, { once: true });
   }
 
+  /* ---------- partner programmes ---------- */
+  let PROGRAMS = [];
+  function renderPrograms() {
+    const box = $("#programs");
+    const shown = PROGRAMS.filter((p) => p.show !== false);
+    if (!shown.length) { box.hidden = true; return; }
+    box.hidden = false;
+    $("#program-list").innerHTML = shown.map((p) => `
+      <li class="program">
+        <div class="program-name"><h4>${esc(p.name)}</h4><p>${esc(p.group || "")}</p></div>
+        <div class="program-body">
+          ${brandsLine(p) ? `<p class="program-brands">${esc(brandsLine(p))}</p>` : ""}
+          <p class="program-perks">${esc(perksLine(p))}</p>
+        </div>
+      </li>`).join("");
+  }
+  /* brand names for display: drop spelling variants kept only for matching */
+  function brandsLine(p) {
+    if (p.note) return p.note;
+    const seen = new Set(), out = [];
+    (p.brands || []).forEach((b) => {
+      const key = b.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/^the\s+/, "").replace(/[^a-z]/g, "").replace("bvlgari", "bulgari");
+      if (key.length < 3 || seen.has(key)) return;
+      seen.add(key); out.push(b.replace(/^The\s+/, ""));
+    });
+    if (out.length === 1 && p.name.toLowerCase().includes(out[0].toLowerCase())) return "";
+    return out.slice(0, 8).join(", ") + (out.length > 8 ? " and more" : "");
+  }
+  /* one short line of perks per programme */
+  function perksLine(p) {
+    return (p.perks || []).map((x) => {
+      const t = x.toLowerCase();
+      if (t.includes("breakfast")) return "Breakfast for two";
+      if (t.includes("credit")) { const m = x.match(/[$€£]\s?\d[\d,]*/); return m ? `${m[0]} credit` : "Credit at selected hotels"; }
+      if (t.includes("upgrade")) return "Upgrade when available";
+      if (t.includes("check")) return "Early check-in, late check-out";
+      if (t.includes("welcome")) return t.includes("gift") ? "Welcome gift" : "Welcome amenity";
+      return x;
+    }).join(", ");
+  }
+
+  /* ---------- explore perks by hotel ---------- */
+  let HOTELS = [], COMMON_TERMS = [];
+  const progById = (id) => PROGRAMS.find((p) => p.id === id);
+  function perkCategory(t) {
+    t = t.toLowerCase();
+    if (t.includes("breakfast")) return "breakfast";
+    if (t.includes("credit")) return "credit";
+    if (t.includes("upgrade")) return "upgrade";
+    if (t.includes("check")) return "checkinout";
+    if (t.includes("welcome")) return "welcome";
+    if (t.includes("vip")) return "vip";
+    return t;
+  }
+  /* union of perks across all programmes, one per category, remembering where each came from */
+  function hotelPerks(h) {
+    const progs = (h.programs || []).map(progById).filter(Boolean);
+    if (h.perks && h.perks.length) return h.perks.map((text) => ({ text, via: "" }));
+    const out = [], seen = new Map();
+    progs.forEach((p) => (p.perks || []).forEach((text) => {
+      const cat = perkCategory(text);
+      if (seen.has(cat)) { seen.get(cat).via.push(p.name); return; }
+      const item = { text, via: [p.name] }; seen.set(cat, item); out.push(item);
+    }));
+    (h.extraPerks || []).forEach((text) => out.push({ text, via: ["This hotel"] }));
+    return out.map((i) => ({ text: i.text, via: progs.length > 1 ? i.via.join(", ") : "" }));
+  }
+  const norm = (s) => String(s || "").toLowerCase().replace(/,.*$/, "").replace(/[^a-z]/g, "");
+  function renderExplore() {
+    const box = $("#explore");
+    if (!HOTELS.length) { box.hidden = true; return; }
+    box.hidden = false;
+    const sel = $("#hotel-select");
+    const groups = {};
+    HOTELS.forEach((h) => { (groups[h.region || "Other"] = groups[h.region || "Other"] || []).push(h); });
+    const order = Object.keys(groups).sort((a, b) => {
+      const ia = REGION_ORDER.indexOf(a), ib = REGION_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+    });
+    sel.innerHTML = `<option value="">Choose a hotel</option>` + order.map((r) =>
+      `<optgroup label="${esc(r)}">${groups[r].slice().sort((a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name)).map((h) => `<option value="${esc(h.id)}">${esc(h.name)}, ${esc(h.city)}</option>`).join("")}</optgroup>`
+    ).join("");
+    sel.addEventListener("change", () => showHotel(sel.value));
+  }
+  let exploreState = null;
+  function showHotel(id) {
+    const h = HOTELS.find((x) => x.id === id);
+    const card = $("#hotel-card");
+    if (!h) { card.hidden = true; exploreState = null; return; }
+    exploreState = h;
+    const progs = (h.programs || []).map(progById).filter(Boolean);
+    $("#hc-name").textContent = h.name;
+    $("#hc-place").textContent = `${h.city}, ${h.country}`;
+    $("#hc-programs").innerHTML = progs.length
+      ? progs.map((p) => `<li>${esc(p.name)}</li>`).join("")
+      : `<li>No chain programme; perks arranged through Fora Reserve</li>`;
+    const note = $("#hc-note"); note.hidden = !h.note; note.textContent = h.note || "";
+    const deal = DEALS.find((d) => { const a = norm(d.hotel), b = norm(h.name); return a && b && (a.includes(b) || b.includes(a)); });
+    const dealEl = $("#hc-deal");
+    if (deal) { dealEl.hidden = false; dealEl.innerHTML = `On the deal board right now: <strong>${esc(deal.perk)}</strong>. <a href="#deals">See the deal</a>`; }
+    else dealEl.hidden = true;
+    $("#hc-perks").innerHTML = hotelPerks(h).map((p) => `<li>${esc(p.text)}${p.via ? `<span class="via">${esc(p.via)}</span>` : ""}</li>`).join("");
+    const terms = [].concat(h.terms || [], ...progs.map((p) => p.terms || []), COMMON_TERMS);
+    $("#hc-terms").innerHTML = terms.map((t) => `<li>${esc(t)}</li>`).join("");
+    card.hidden = false;
+    card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  $("#hc-ask").addEventListener("click", () => {
+    const h = exploreState; if (!h) return;
+    const progs = (h.programs || []).map(progById).filter(Boolean);
+    setAsking({ hotel: h.name, perk: progs.length ? progs.map((p) => p.name).join(" and ") + " perks" : "partner perks", destination: h.city, country: h.country });
+    $("[name=destination]", $("#enquiry")).value = `${h.name}, ${h.city}`;
+    $("#sent").hidden = true; $("#enquiry").hidden = false;
+    $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => $("[name=name]").focus({ preventScroll: true }), 500);
+  });
+  $("#hc-math").addEventListener("click", () => {
+    const h = exploreState; if (!h) return;
+    $("#m-hotel").value = h.name;
+    $("#travel-math").scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => $("#m-in").focus({ preventScroll: true }), 500);
+  });
+
+  /* Which programme does a hotel name fall under? Longest brand match wins. */
+  function matchProgram(name) {
+    const n = ` ${String(name || "").toLowerCase().replace(/[’']/g, "'")} `;
+    let best = null, bestLen = 0;
+    PROGRAMS.forEach((p) => (p.brands || []).forEach((b) => {
+      const bl = b.toLowerCase();
+      const re = new RegExp(`(^|[^a-z])${bl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^a-z]|$)`, "i");
+      if (re.test(n) && bl.length > bestLen) { best = p; bestLen = bl.length; }
+    }));
+    return best;
+  }
+
+  function nightsBetween(a, b) {
+    const d1 = parseDate(a), d2 = parseDate(b);
+    if (!d1 || !d2) return 0;
+    return Math.max(0, Math.round((d2 - d1) / 86400000));
+  }
+  const CREDIT_IN = { INR: 8400, USD: 100, EUR: 92, GBP: 78, AED: 367, SGD: 134, THB: 3400, JPY: 15000 };
+  const BREAKFAST_IN = { INR: 4500, USD: 55, EUR: 50, GBP: 45, AED: 200, SGD: 75, THB: 1900, JPY: 8000 };
+  function fmtMoney(n, cur) {
+    const sym = { USD: "$", EUR: "€", GBP: "£", INR: "₹", THB: "฿", JPY: "¥" }[cur];
+    const s = Math.round(n).toLocaleString("en-IN");
+    return sym ? `${sym}${s}` : `${cur} ${s}`;
+  }
+
+  let mathState = null;
+  function runMath() {
+    const hotel = $("#m-hotel").value.trim();
+    const cin = $("#m-in").value, cout = $("#m-out").value;
+    const res = $("#math-result");
+    if (!hotel) { $("#m-hotel").focus(); return; }
+    const prog = matchProgram(hotel);
+    const nights = nightsBetween(cin, cout);
+    mathState = { hotel, cin, cout, nights, prog };
+
+    // Google price check for these dates
+    const q = `${hotel}${cin && cout ? ` ${cin} to ${cout}` : ""}`;
+    const g = new URL("https://www.google.com/travel/search");
+    g.searchParams.set("q", q);
+    if (cin && cout) { g.searchParams.set("checkin", cin); g.searchParams.set("checkout", cout); }
+    $("#mr-google").href = g.toString();
+
+    const perks = prog ? prog.perks : (CONFIG.typicalPerks || []);
+    $("#mr-program").innerHTML = prog
+      ? `${esc(hotel)} falls under <strong>${esc(prog.name)}</strong>${prog.group ? ` (${esc(prog.group)})` : ""}. When you book it through Nvoy you typically get:`
+      : `I don't recognise this brand from the name, but many independent hotels are Fora Reserve partners with the same kind of perks. Typical extras:`;
+    $("#mr-nvoy-items").innerHTML = perks.map((x) => `<li>${esc(x)}</li>`).join("");
+    $("#mr-fine").textContent = nights
+      ? `${nights} night${nights === 1 ? "" : "s"}, ${fmt(parseDate(cin), false)} to ${fmt(parseDate(cout), true)}. Perks depend on the exact rate and the hotel's availability; I confirm before you pay.`
+      : "Perks depend on the exact rate and the hotel's availability; I confirm before you pay.";
+    res.hidden = false;
+    updateMathTotal();
+    res.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  function updateMathTotal() {
+    const t = $("#mr-total");
+    const rate = parseFloat($("#m-rate").value), cur = $("#m-cur").value;
+    if (!mathState || !(rate > 0)) { t.hidden = true; $("#mr-direct-price").textContent = "The hotel's own rate"; $("#mr-nvoy-price").textContent = "Same rate"; return; }
+    const n = mathState.nights || 1;
+    const total = rate * n;
+    const hasCredit = (mathState.prog ? mathState.prog.perks : CONFIG.typicalPerks || []).some((p) => /credit/i.test(p));
+    const hasBreakfast = (mathState.prog ? mathState.prog.perks : CONFIG.typicalPerks || []).some((p) => /breakfast/i.test(p));
+    const extras = (hasCredit ? (CREDIT_IN[cur] || 0) : 0) + (hasBreakfast ? (BREAKFAST_IN[cur] || 0) * n : 0);
+    $("#mr-direct-price").textContent = `${fmtMoney(total, cur)} for ${n} night${n === 1 ? "" : "s"}`;
+    $("#mr-nvoy-price").textContent = `${fmtMoney(total, cur)}, same price`;
+    t.hidden = false;
+    t.textContent = extras
+      ? `Plus roughly ${fmtMoney(extras, cur)} of extras included (breakfast for two each day and the hotel credit, at typical values), before any upgrade.`
+      : "Same price, with the perks above included.";
+  }
+  $("#math-form").addEventListener("submit", (e) => { e.preventDefault(); runMath(); });
+  $("#m-rate").addEventListener("input", updateMathTotal);
+  $("#m-cur").addEventListener("change", updateMathTotal);
+  $("#mr-ask").addEventListener("click", () => {
+    if (!mathState) return;
+    const s = mathState;
+    setAsking({ hotel: s.hotel, perk: s.prog ? s.prog.name + " perks" : "partner perks", destination: s.hotel, country: "" });
+    const ef = $("#enquiry");
+    if (s.cin) $("[name=checkin]", ef).value = s.cin;
+    if (s.cout) $("[name=checkout]", ef).value = s.cout;
+    $("[name=destination]", ef).value = s.hotel;
+    $("#sent").hidden = true; $("#enquiry").hidden = false;
+    $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => $("[name=name]").focus({ preventScroll: true }), 500);
+  });
+
   function renderMath() {
     const m = CONFIG.travelMath;
-    const box = $("#travel-math");
+    const box = $("#math-example");
     if (!m || !m.hotel) { box.hidden = true; return; }
     box.hidden = false;
     $("#math-sub").textContent = `${m.room ? m.room + " at " : ""}${m.hotel}.`;
@@ -270,6 +509,87 @@
     if (CONFIG.advisorFullName) $("#foot-line").textContent = `Nvoy Travels is an independent travel advisory. ${CONFIG.advisorFullName} is an advisor with Fora Travel.`;
     $("#year").textContent = new Date().getFullYear();
   }
+
+  /* ---------- live Google ratings (only when an API key is configured) ----------
+     Google's terms allow showing the rating when it is fetched live and attributed; they don't allow
+     storing it in the site, so nothing is cached beyond this page view. */
+  const RATINGS = {};
+  async function fetchRating(deal) {
+    const key = CONFIG.googlePlacesApiKey;
+    if (!key) return null;
+    if (RATINGS[deal.id] !== undefined) return RATINGS[deal.id];
+    try {
+      let res;
+      if (deal.placeId) {
+        res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(deal.placeId)}`, {
+          headers: { "X-Goog-Api-Key": key, "X-Goog-FieldMask": "rating,userRatingCount,googleMapsUri" }
+        });
+        if (!res.ok) throw new Error(res.status);
+        RATINGS[deal.id] = await res.json();
+      } else {
+        res = await fetch("https://places.googleapis.com/v1/places:searchText", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Goog-Api-Key": key, "X-Goog-FieldMask": "places.rating,places.userRatingCount,places.googleMapsUri" },
+          body: JSON.stringify({ textQuery: `${deal.hotel} ${deal.city || ""}`, maxResultCount: 1 })
+        });
+        if (!res.ok) throw new Error(res.status);
+        const j = await res.json();
+        RATINGS[deal.id] = (j.places && j.places[0]) || null;
+      }
+    } catch (e) { RATINGS[deal.id] = null; }
+    return RATINGS[deal.id];
+  }
+  function decorateRatings(root) {
+    if (!CONFIG.googlePlacesApiKey) return;
+    $$("[data-rating-for]", root).forEach(async (a) => {
+      const deal = DEALS.find((d) => d.id === a.dataset.ratingFor);
+      if (!deal) return;
+      const r = await fetchRating(deal);
+      if (!r || !r.rating) return;
+      if (r.googleMapsUri) a.href = r.googleMapsUri;
+      a.innerHTML = `<span class="rating-star" aria-hidden="true">★</span> ${esc(r.rating.toFixed(1))}${r.userRatingCount ? ` <span class="rating-count">(${esc(r.userRatingCount.toLocaleString("en-IN"))})</span>` : ""} <span class="rating-src">on Google</span>`;
+      a.setAttribute("aria-label", `Rated ${r.rating.toFixed(1)} out of 5 on Google${r.userRatingCount ? ` from ${r.userRatingCount} reviews` : ""}`);
+    });
+  }
+
+  /* ---------- deal board layout: one scrolling row (default) or a full grid ---------- */
+  const strip = $("#deal-strip"), grid = $("#deal-grid");
+  function setView(view, remember) {
+    const row = view !== "grid";
+    strip.classList.toggle("is-row", row);
+    strip.classList.toggle("is-grid", !row);
+    $("#strip-hint").hidden = !row;
+    $$(".view-btn").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.view === "grid") !== row)));
+    if (remember) { try { localStorage.setItem("nvoy-deal-view", row ? "row" : "grid"); } catch (e) { /* storage unavailable */ } }
+    updateArrows();
+  }
+  function updateArrows() {
+    if (!strip.classList.contains("is-row")) return;
+    const max = grid.scrollWidth - grid.clientWidth - 2;
+    $("#strip-prev").disabled = grid.scrollLeft <= 2;
+    $("#strip-next").disabled = grid.scrollLeft >= max;
+    strip.classList.toggle("no-overflow", max <= 0);
+  }
+  function scrollByCard(dir) {
+    const card = grid.querySelector(".postcard");
+    const step = card ? card.getBoundingClientRect().width + 24 : grid.clientWidth * 0.8;
+    grid.scrollBy({ left: dir * step * (window.innerWidth > 1000 ? 2 : 1), behavior: "smooth" });
+  }
+  $$(".view-btn").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view, true)));
+  $("#strip-prev").addEventListener("click", () => scrollByCard(-1));
+  $("#strip-next").addEventListener("click", () => scrollByCard(1));
+  grid.addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
+  grid.addEventListener("keydown", (e) => {
+    if (!strip.classList.contains("is-row")) return;
+    if (e.key === "ArrowRight") { scrollByCard(1); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { scrollByCard(-1); e.preventDefault(); }
+  });
+  (function initView() {
+    let saved = null;
+    try { saved = localStorage.getItem("nvoy-deal-view"); } catch (e) { /* storage unavailable */ }
+    setView(saved === "grid" ? "grid" : "row", false);
+  })();
 
   /* ---------- deal → form hand-off ---------- */
   function setAsking(deal) {
@@ -381,16 +701,21 @@
   }
   (async () => {
     try {
-      const [cfg, data] = await Promise.all([load("config.json"), load("deals.json")]);
+      const [cfg, data, progs, hotels] = await Promise.all([load("config.json"), load("deals.json"), load("programs.json").catch(() => ({})), load("hotels.json").catch(() => ({}))]);
       CONFIG = cfg || {};
+      PROGRAMS = Array.isArray(progs.programs) ? progs.programs : [];
+      COMMON_TERMS = Array.isArray(progs.commonTerms) ? progs.commonTerms : [];
+      HOTELS = Array.isArray(hotels.hotels) ? hotels.hotels : [];
+      if (progs.typicalPerks) CONFIG.typicalPerks = progs.typicalPerks;
       const all = Array.isArray(data.deals) ? data.deals : [];
       DEALS = all.filter(isLive);
       $("#sample-notice").hidden = !(data.sample || DEALS.some((d) => d.sample));
       renderContact();
-      renderFeatured(DEALS);
       renderFilters(DEALS);
       renderGrid(DEALS);
       renderPerks();
+      renderPrograms();
+      renderExplore();
       renderMath();
       renderRecent();
       renderAbout();

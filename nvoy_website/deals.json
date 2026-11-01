@@ -1,93 +1,496 @@
 {
   "_help": [
     "This file is the deal board. Add, edit or delete objects in the 'deals' list and the site updates on its own.",
-    "Required: id (unique, letters-numbers-dashes), hotel, destination, country, perk.",
-    "Optional: details (list of short lines), bookBy and travelFrom/travelTo (YYYY-MM-DD), priceFrom (text), currency, priceNote, image (path or URL), tags (list), featured (true for the hero postcard), art (beach | island | city | mountain | desert | jungle | coast, used when there is no image), note (one line), sample (true marks a placeholder deal).",
+    "Required: id (unique, letters-numbers-dashes), hotel, city, country, region, perk.",
+    "region feeds the chips; all regions are always shown and ones with no open deal are greyed out. Use exactly: North America, Central America & Caribbean, South America, Europe, Middle East, Africa, Asia, Australia & Pacific.",
+    "city feeds the city dropdown (only cities inside the chosen region are listed). destination is optional display text shown on the card instead of the city.",
+    "perks: what the guest gets (list). terms: the conditions (minimum nights, booking lead time, prepayment, blackout dates, travel window). They are shown as two separate blocks on the card.",
+    "Optional: bookBy and travelFrom/travelTo (YYYY-MM-DD), priceFrom (text), currency, priceNote, image (path or URL), art (beach | island | city | mountain | desert | jungle | coast, used when there is no image), note (one line), source (where the offer came from; not shown).",
+    "website: the hotel's official page (shown as a link on the card). reviews: a link to the hotel on Google Maps for ratings and reviews; Google's terms don't allow copying the rating itself onto the site, so we link instead.",
+    "placeId (optional): the hotel's Google Place ID. With a Places API key in config.json the card fetches the live rating; the Place ID makes the lookup exact and cheaper. Find it at https://developers.google.com/maps/documentation/places/web-service/place-id",
     "Deals with a bookBy date in the past are hidden automatically, so you can leave them in the file until you tidy up.",
-    "Delete the deals marked sample: true once you have enough real ones. The 'sample deals' notice disappears on its own."
+    "Images: a path in assets/img/deals/ or a full https:// URL. The current URLs point at the hotels' own websites; swap them for files from the brand partner image libraries when you have time."
   ],
   "deals": [
     {
-      "id": "evren-goa",
-      "hotel": "The Evren, Goa",
-      "destination": "Goa",
-      "country": "India",
-      "perk": "Save 25%",
-      "details": ["Complimentary breakfast for two", "$50 hotel credit", "Room upgrade, upon availability", "VIP status"],
-      "bookBy": "2026-12-31",
-      "priceFrom": "8,000",
-      "currency": "INR",
-      "priceNote": "plus taxes, minimum 2 nights",
-      "image": "assets/img/deals/evren-goa.jpg",
-      "art": "beach",
-      "tags": ["Beach", "India"],
-      "featured": true,
-      "note": "Offer valid till 31 December 2026 on stays of two nights or more."
-    },
-    {
-      "id": "rihga-royal-osaka",
-      "hotel": "Vignette Collection RIHGA Royal Hotel Osaka",
-      "destination": "Osaka",
-      "country": "Japan",
-      "perk": "3rd night free",
-      "details": ["Free breakfast", "$100 hotel credit", "Room upgrade, upon availability", "Early check-in and late check-out"],
-      "bookBy": "2026-12-31",
-      "image": "assets/img/deals/rihga-royal-osaka.jpg",
-      "art": "city",
-      "tags": ["City", "Japan"],
-      "featured": false,
-      "note": "IHG Destined perks included. Ask me for dates; I'll confirm the free night applies."
-    },
-    {
-      "id": "sample-six-senses-laamu",
-      "sample": true,
-      "hotel": "Six Senses Laamu",
-      "destination": "Laamu Atoll",
-      "country": "Maldives",
+      "id": "westin-maui",
+      "hotel": "The Westin Maui Resort & Spa, Kaanapali",
+      "city": "Maui",
+      "destination": "Kaanapali Beach, Maui",
+      "country": "USA",
+      "region": "North America",
       "perk": "4th night free",
-      "details": ["Daily breakfast for two", "$100 resort credit", "Upgrade on arrival when available"],
-      "bookBy": "2026-12-15",
-      "travelFrom": "2027-01-10",
-      "travelTo": "2027-04-30",
-      "priceFrom": "1,150",
-      "currency": "USD",
+      "perks": [
+        "4th night free",
+        "$400 resort credit",
+        "Breakfast for two, daily",
+        "$100 hotel credit and room upgrade when available, through Marriott Luminous"
+      ],
+      "terms": [
+        "Minimum 4 nights",
+        "Book and travel by 31 March 2027",
+        "Upgrade and late check-out depend on availability at check-in"
+      ],
+      "bookBy": "2027-03-31",
+      "travelTo": "2027-03-31",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/hnmwi-northstar-7493:Wide-Hor?wid=1336&fit=constrain",
       "art": "island",
-      "tags": ["Beach", "Honeymoon"],
-      "note": "Sample deal. Replace with a real one in deals.json."
+      "note": "Oceanfront on Kaanapali Beach, with the strongest credit on the board right now.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.marriott.com/en-us/hotels/hnmwi-the-westin-maui-resort-and-spa-kaanapali/overview/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Westin+Maui+Resort+%26+Spa%2C+Kaanapali+Maui"
     },
     {
-      "id": "sample-caruso-ravello",
-      "sample": true,
-      "hotel": "Caruso, A Belmond Hotel",
-      "destination": "Ravello, Amalfi Coast",
-      "country": "Italy",
-      "perk": "€100 spa credit",
-      "details": ["Breakfast for two", "Early check-in and late check-out", "Upgrade when available"],
-      "bookBy": "2026-11-30",
-      "travelFrom": "2027-04-01",
-      "travelTo": "2027-06-15",
-      "priceFrom": "1,400",
-      "currency": "EUR",
+      "id": "sls-beverly-hills",
+      "hotel": "SLS Hotel, a Luxury Collection Hotel, Beverly Hills",
+      "city": "Los Angeles",
+      "destination": "Beverly Hills, Los Angeles",
+      "country": "USA",
+      "region": "North America",
+      "perk": "4th night free",
+      "perks": [
+        "4th night complimentary",
+        "Breakfast for two, daily",
+        "$100 hotel credit",
+        "Room upgrade and late check-out, when available (Marriott STARS)"
+      ],
+      "terms": [
+        "Stay 3 consecutive nights to receive the 4th free",
+        "Book by 27 December 2026",
+        "Travel until 31 December 2026"
+      ],
+      "bookBy": "2026-12-27",
+      "travelTo": "2026-12-31",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/lc-laxls-ladida-bar-13707:Wide-Hor?wid=1336&fit=constrain",
+      "art": "city",
+      "note": "Philippe Starck interiors a short walk from Rodeo Drive.",
+      "source": "Fora HQ Deals & Promos, 1 Sep 2026",
+      "website": "https://www.marriott.com/en-us/hotels/laxls-sls-hotel-a-luxury-collection-hotel-beverly-hills/overview/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=SLS+Hotel%2C+a+Luxury+Collection+Hotel%2C+Beverly+Hills+Los+Angeles"
+    },
+    {
+      "id": "sheraton-maui",
+      "hotel": "Sheraton Maui Resort & Spa",
+      "city": "Maui",
+      "destination": "Kaanapali, Maui",
+      "country": "USA",
+      "region": "North America",
+      "perk": "Save 25%",
+      "perks": [
+        "25% off the nightly rate",
+        "$100 dining credit",
+        "10% off spa treatments",
+        "Breakfast for two and upgrade when available, through Marriott Luminous"
+      ],
+      "terms": [
+        "Minimum 4 nights",
+        "Book and travel by 18 December 2026"
+      ],
+      "bookBy": "2026-12-18",
+      "travelTo": "2026-12-18",
+      "image": "https://cache.marriott.com/content/dam/marriott-renditions/dm-static-renditions/si/us-canada/hws/h/hnmsi/en_us/photo/unlimited/assets/si-hnmsi-resort-aerial18755-28839-wide-hor.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*",
+      "art": "island",
+      "note": "Black Rock sunset cliff dive is right in front of the resort.",
+      "source": "Fora HQ Deals & Promos, 1 Sep 2026",
+      "website": "https://www.marriott.com/en-us/hotels/hnmsi-sheraton-maui-resort-and-spa/overview/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Sheraton+Maui+Resort+%26+Spa+Maui"
+    },
+    {
+      "id": "ranch-laguna-beach",
+      "hotel": "The Ranch at Laguna Beach",
+      "city": "Laguna Beach",
+      "destination": "Laguna Beach, California",
+      "country": "USA",
+      "region": "North America",
+      "perk": "Up to $300 resort credit",
+      "perks": [
+        "Up to $300 resort credit for dining, golf or retail",
+        "Partner perks arranged through Fora Reserve"
+      ],
+      "terms": [
+        "Minimum 3 nights",
+        "Select stays through 31 December 2026",
+        "Book by 30 December 2026"
+      ],
+      "bookBy": "2026-12-30",
+      "travelTo": "2026-12-31",
+      "image": "https://www.theranchlb.com/images/layout/bg/home-brand.jpg",
       "art": "coast",
-      "tags": ["Coast", "Honeymoon"],
-      "note": "Sample deal. Replace with a real one in deals.json."
+      "note": "A canyon-side hideaway two minutes from the sand.",
+      "source": "Fora HQ Deals & Promos, 1 Sep 2026",
+      "website": "https://www.theranchlb.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Ranch+at+Laguna+Beach+Laguna+Beach"
     },
     {
-      "id": "sample-anantara-jabal-akhdar",
-      "sample": true,
-      "hotel": "Anantara Al Jabal Al Akhdar",
-      "destination": "Jabal Akhdar",
-      "country": "Oman",
-      "perk": "Half board included",
-      "details": ["Breakfast and dinner for two", "Upgrade when available", "$100 spa credit"],
-      "bookBy": "2027-01-15",
-      "travelFrom": "2027-02-01",
-      "travelTo": "2027-04-15",
-      "priceFrom": "540",
-      "currency": "USD",
+      "id": "jw-marriott-orlando",
+      "hotel": "JW Marriott Orlando Grande Lakes",
+      "city": "Orlando",
+      "destination": "Orlando, Florida",
+      "country": "USA",
+      "region": "North America",
+      "perk": "Save up to 30%",
+      "perks": [
+        "15 to 30% off per night",
+        "Breakfast for two, daily",
+        "$100 hotel credit",
+        "Room upgrade when available, through Marriott Luminous"
+      ],
+      "terms": [
+        "Minimum 3 nights",
+        "Book and travel by 31 December 2026"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2026-12-31",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/jw-mcojw-jw-exterior-dusk-30849:Wide-Hor?wid=1336&fit=constrain",
+      "art": "jungle",
+      "note": "The lazy river and the Ritz-Carlton next door make this the easy Orlando pick for families.",
+      "source": "Fora HQ Deals & Promos, 1 Sep 2026",
+      "website": "https://www.marriott.com/en-us/hotels/mcojw-jw-marriott-orlando-grande-lakes/overview/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=JW+Marriott+Orlando+Grande+Lakes+Orlando"
+    },
+    {
+      "id": "w-fort-lauderdale",
+      "hotel": "W Fort Lauderdale",
+      "city": "Fort Lauderdale",
+      "destination": "Fort Lauderdale, Florida",
+      "country": "USA",
+      "region": "North America",
+      "perk": "Save up to 30%",
+      "perks": [
+        "Up to 30% off",
+        "Breakfast for two, daily",
+        "$100 hotel credit and welcome amenity",
+        "Early check-in, late check-out and upgrade, when available (Marriott Luminous)"
+      ],
+      "terms": [
+        "Stay 3 to 5+ nights; the longer the stay, the bigger the saving",
+        "Book and travel by 30 April 2027"
+      ],
+      "bookBy": "2027-04-30",
+      "travelTo": "2027-04-30",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/wh-fllwh-sunset-pool-27228:Wide-Hor?wid=1336&fit=constrain",
+      "art": "beach",
+      "note": "Beachfront, with the better pool of the two towers.",
+      "source": "Fora HQ Deals & Promos, 15 Jul 2026",
+      "website": "https://www.marriott.com/en-us/hotels/fllwh-w-fort-lauderdale/overview/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=W+Fort+Lauderdale+Fort+Lauderdale"
+    },
+    {
+      "id": "waldorf-astoria-chicago",
+      "hotel": "Waldorf Astoria Chicago",
+      "city": "Chicago",
+      "country": "USA",
+      "region": "North America",
+      "perk": "25% off luxury rates",
+      "perks": [
+        "25% off the hotel's luxury rates",
+        "Breakfast for two, daily",
+        "$100 hotel credit",
+        "Upgrade and late check-out when available, through Hilton Impresario"
+      ],
+      "terms": [
+        "Book and travel by 31 March 2027",
+        "Luxury (flexible) rates only"
+      ],
+      "bookBy": "2027-03-31",
+      "travelTo": "2027-03-31",
+      "image": "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,h_800,q_80,f_auto,g_auto/Imagery/Property%20Photography/Waldorf%20Astoria/C/CHIWAWA/2509_5.jpg",
+      "art": "city",
+      "note": "Gold Coast address, Parisian courtyard, big suites.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.hilton.com/en/hotels/chiwawa-waldorf-astoria-chicago/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Waldorf+Astoria+Chicago+Chicago"
+    },
+    {
+      "id": "hilton-aruba-westerly",
+      "hotel": "The Westerly at Hilton Aruba Caribbean Resort",
+      "city": "Aruba",
+      "destination": "Palm Beach, Aruba",
+      "country": "Aruba",
+      "region": "Central America & Caribbean",
+      "perk": "Up to 20% off",
+      "perks": [
+        "Up to 20% off the nightly rate"
+      ],
+      "terms": [
+        "Minimum 7 nights",
+        "Book at least 60 days before arrival",
+        "Book by 1 December 2026, travel until 20 December 2026",
+        "New reservations only; blackout dates apply"
+      ],
+      "bookBy": "2026-12-01",
+      "travelTo": "2026-12-20",
+      "art": "beach",
+      "note": "The adults-only wing of the Hilton Aruba, on Palm Beach.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.hilton.com/en/hotels/auahihh-hilton-aruba-caribbean-resort-and-spa/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Westerly+at+Hilton+Aruba+Caribbean+Resort+Aruba"
+    },
+    {
+      "id": "retreat-costa-rica",
+      "hotel": "The Retreat Costa Rica",
+      "city": "Atenas",
+      "destination": "Atenas, Costa Rica",
+      "country": "Costa Rica",
+      "region": "Central America & Caribbean",
+      "perk": "10% off, 25% off wellness",
+      "perks": [
+        "10% off Breakfast Included and Retreat Experience rates",
+        "25% off wellness programmes"
+      ],
+      "terms": [
+        "Book early",
+        "Book and travel by 30 November 2026"
+      ],
+      "bookBy": "2026-11-30",
+      "travelTo": "2026-11-30",
+      "image": "https://image-tc.galaxy.tf/wijpeg-3wp94drizuxkt322q5qg95wrn/principal.jpg?width=1200",
+      "art": "jungle",
+      "note": "A hilltop wellness retreat with a Michelin key and views to the Pacific.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.theretreatcostarica.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Retreat+Costa+Rica+Atenas"
+    },
+    {
+      "id": "barcelona-edition",
+      "hotel": "The Barcelona EDITION",
+      "city": "Barcelona",
+      "country": "Spain",
+      "region": "Europe",
+      "perk": "4th night free",
+      "perks": [
+        "Equivalent of the 4th night free (25% off each night)",
+        "Breakfast for two, daily",
+        "$100 hotel credit",
+        "Upgrade and late check-out when available, through Marriott STARS"
+      ],
+      "terms": [
+        "Minimum 4 consecutive nights",
+        "Book and travel by 31 December 2026"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2026-12-31",
+      "image": "https://cache.marriott.com/content/dam/marriott-renditions/BCNEB/bcneb-bar-1987-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*",
+      "art": "city",
+      "note": "Next to Santa Caterina market; the rooftop pool is the reason to go in autumn.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.marriott.com/en-us/hotels/bcneb-the-barcelona-edition/overview/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Barcelona+EDITION+Barcelona"
+    },
+    {
+      "id": "hotel-hermitage-monte-carlo",
+      "hotel": "Hôtel Hermitage Monte-Carlo",
+      "city": "Monaco",
+      "country": "Monaco",
+      "region": "Europe",
+      "perk": "Save 20%",
+      "perks": [
+        "20% off with the Early Purchase offer",
+        "Access to Thermes Marins Monte-Carlo"
+      ],
+      "terms": [
+        "Book at least 45 days before arrival",
+        "Book by 14 February 2027",
+        "Travel until 31 March 2027"
+      ],
+      "bookBy": "2027-02-14",
+      "travelTo": "2027-03-31",
+      "image": "https://asset.montecarlosbm.com/styles/hero_image_desktop/s3/media/orphea/hotel-hermitage-monaco-palace-5-etoiles-daily_facade_2019_0003_1_3.jpg.jpeg?VersionId=P8FhAWTXNhkskGY2enXhO6ul.bVXcmwv&h=07048217&itok=alptb63U",
+      "art": "coast",
+      "note": "Belle Époque palace above the harbour.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.montecarlosbm.com/en/hotel-monaco/hotel-hermitage-monte-carlo",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=H%C3%B4tel+Hermitage+Monte-Carlo+Monaco"
+    },
+    {
+      "id": "singer-palace-rome",
+      "hotel": "Singer Palace Hotel Roma",
+      "city": "Rome",
+      "country": "Italy",
+      "region": "Europe",
+      "perk": "Dinner for two included",
+      "perks": [
+        "Three-course dinner for two at Le Terrazze, with a glass of wine each",
+        "Daily à la carte breakfast",
+        "Welcome Prosecco and chocolate truffles",
+        "Personal in-room check-in",
+        "Farewell gift"
+      ],
+      "terms": [
+        "Minimum 2 nights",
+        "Book and travel by 28 February 2027",
+        "Blackout 21 December 2026 to 7 January 2027"
+      ],
+      "bookBy": "2027-02-28",
+      "travelTo": "2027-02-28",
+      "image": "https://singerpalacehotel.com/wp-content/uploads/2026/10/hero-home-piazza-di-spagna-1536x864.jpg",
+      "art": "city",
+      "note": "Rooftop terrace over Via del Corso, five minutes from the Trevi Fountain.",
+      "source": "Fora HQ Deals & Promos, 15 Jul 2026",
+      "website": "https://www.singerpalacehotel.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Singer+Palace+Hotel+Roma+Rome"
+    },
+    {
+      "id": "terre-blanche",
+      "hotel": "Terre Blanche Hôtel Spa Golf Resort",
+      "city": "Provence",
+      "destination": "Tourrettes, Provence",
+      "country": "France",
+      "region": "Europe",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free",
+        "Two golf courses and a 3,200 m² spa on site"
+      ],
+      "terms": [
+        "Premier Suites and Villas only, 3-night minimum",
+        "50% prepayment; free cancellation up to 14 days before arrival",
+        "Book and travel by 10 November 2026"
+      ],
+      "bookBy": "2026-11-10",
+      "travelTo": "2026-11-10",
+      "image": "https://www.terre-blanche.com/images/90/terre-blanche-hotel-spa-golf-resort-luxewebp-fe.webp?w=1200&mode=max&format=webp&webp.lossless=false&webp.quality=80",
       "art": "mountain",
-      "tags": ["Mountains"],
-      "note": "Sample deal. Replace with a real one in deals.json."
+      "note": "Last call: this closes on 10 November.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.terre-blanche.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Terre+Blanche+H%C3%B4tel+Spa+Golf+Resort+Provence"
+    },
+    {
+      "id": "mayrlife-altaussee",
+      "hotel": "MAYRLIFE Medical Health Resort Altaussee",
+      "city": "Altaussee",
+      "destination": "Altaussee, Styria",
+      "country": "Austria",
+      "region": "Europe",
+      "perk": "Save 25%",
+      "perks": [
+        "25% off accommodation with the autumn special"
+      ],
+      "terms": [
+        "Full, non-refundable prepayment at booking",
+        "Book by 7 November 2026",
+        "Travel until 13 December 2026"
+      ],
+      "bookBy": "2026-11-07",
+      "travelTo": "2026-12-13",
+      "image": "https://www.mayrlife.com/sites/default/files/styles/paragraph_2_images_text_hoch/public/2023-04/image%2061.jpg?h=bc78512a&itok=MHLyuiFD",
+      "art": "mountain",
+      "note": "Last call: book by 7 November. Lakeside Mayr cure in the Salzkammergut.",
+      "source": "Fora HQ Deals & Promos, 1 Aug 2026",
+      "website": "https://www.mayrlife.com/en/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=MAYRLIFE+Medical+Health+Resort+Altaussee+Altaussee"
+    },
+    {
+      "id": "jumeirah-carlton-tower",
+      "hotel": "Jumeirah Carlton Tower",
+      "city": "London",
+      "destination": "Knightsbridge, London",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "perk": "Connecting room at half price",
+      "perks": [
+        "Connecting room at 50% off the nightly rate when you book a suite",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Suite booking required",
+        "Stays 1 September 2026 to 31 May 2027",
+        "Book by 31 May 2027"
+      ],
+      "bookBy": "2027-05-31",
+      "travelFrom": "2026-11-01",
+      "travelTo": "2027-05-31",
+      "image": "https://cdn.jumeirah.com/api/public/content/49168047210c4c7696cf13993ec8c185",
+      "art": "city",
+      "note": "Steps from Harrods and Sloane Street, with one of London's best hotel pools.",
+      "source": "Fora HQ Deals & Promos, 1 Sep 2026",
+      "website": "https://www.jumeirah.com/en/stay/london/jumeirah-carlton-tower",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Jumeirah+Carlton+Tower+London"
+    },
+    {
+      "id": "la-maison-champs-elysees",
+      "hotel": "La Maison Champs Élysées",
+      "city": "Paris",
+      "country": "France",
+      "region": "Europe",
+      "perk": "15% off, breakfast included",
+      "perks": [
+        "15% off the flexible rate",
+        "Breakfast included",
+        "Access to the new Unlimited Club: pool, sauna, gym and Codage treatments"
+      ],
+      "terms": [
+        "Winter Offer rate",
+        "Book by 30 March 2027",
+        "Stays 1 November 2026 to 31 March 2027"
+      ],
+      "bookBy": "2027-03-30",
+      "travelFrom": "2026-11-01",
+      "travelTo": "2027-03-31",
+      "art": "city",
+      "note": "A Maison Martin Margiela-designed boutique hotel off the Champs-Élysées. Design Hotels member.",
+      "source": "Design Hotels partner mailing, 29 Sep 2026",
+      "website": "https://www.lamaisonchampselysees.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=La+Maison+Champs+%C3%89lys%C3%A9es+Paris"
+    },
+    {
+      "id": "shangri-la-rasa-sentosa",
+      "hotel": "Shangri-La Rasa Sentosa, Singapore",
+      "city": "Singapore",
+      "destination": "Sentosa, Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free",
+        "S$50 voucher for The Palawan @ Sentosa dining and attractions",
+        "Breakfast for two including in-room dining",
+        "US$100 hotel credit per stay",
+        "Room upgrade to the next category and early check-in or late check-out, when available (Luxury Circle)"
+      ],
+      "terms": [
+        "Minimum 3 nights",
+        "Book by 14 December 2026",
+        "Stays 10 August to 17 December 2026",
+        "Voucher has a minimum spend"
+      ],
+      "bookBy": "2026-12-14",
+      "travelTo": "2026-12-17",
+      "art": "island",
+      "note": "Singapore's only beachfront resort, next to The Palawan @ Sentosa.",
+      "source": "Shangri-La Singapore luxury newsletter, 14 Jul 2026",
+      "website": "https://www.shangri-la.com/singapore/rasasentosaresort/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Shangri-La+Rasa+Sentosa%2C+Singapore+Singapore"
+    },
+    {
+      "id": "shangri-la-singapore-sweet-voyages",
+      "hotel": "Shangri-La Singapore, Valley Wing",
+      "city": "Singapore",
+      "destination": "Orchard, Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "perk": "US$150 credit + transfer",
+      "perks": [
+        "US$150 hotel credit",
+        "Complimentary one-way transfer to or from the cruise centre",
+        "Combinable with Stay 3, Pay 2",
+        "Breakfast for two, room upgrade and early check-in or late check-out when available (Luxury Circle)"
+      ],
+      "terms": [
+        "Valley Wing rooms and suites; excludes the Singapore Suite and the Shangri-La Suite",
+        "Pre- or post-cruise stays",
+        "Book by 31 December 2026, stays until 30 April 2027",
+        "Blackout dates apply"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2027-04-30",
+      "image": "https://sitecore-cd-imgr.shangri-la.com/MediaFiles/3/B/4/{3B498D18-7391-4B48-B1E6-75FBF503D595}20220607_SLS_About_Your_Shangri-La_Story.jpg?w=1200&h=900&mode=crop&scale=both",
+      "art": "jungle",
+      "note": "Fifteen acres of gardens a short walk from Orchard Road; the Valley Wing is the quiet, butler-served part.",
+      "source": "Shangri-La Singapore luxury newsletter, 14 Jul 2026",
+      "website": "https://www.shangri-la.com/singapore/shangrila/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Shangri-La+Singapore%2C+Valley+Wing+Singapore"
     }
   ]
 }
