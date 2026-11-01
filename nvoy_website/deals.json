@@ -1,0 +1,93 @@
+{
+  "_help": [
+    "This file is the deal board. Add, edit or delete objects in the 'deals' list and the site updates on its own.",
+    "Required: id (unique, letters-numbers-dashes), hotel, destination, country, perk.",
+    "Optional: details (list of short lines), bookBy and travelFrom/travelTo (YYYY-MM-DD), priceFrom (text), currency, priceNote, image (path or URL), tags (list), featured (true for the hero postcard), art (beach | island | city | mountain | desert | jungle | coast, used when there is no image), note (one line), sample (true marks a placeholder deal).",
+    "Deals with a bookBy date in the past are hidden automatically, so you can leave them in the file until you tidy up.",
+    "Delete the deals marked sample: true once you have enough real ones. The 'sample deals' notice disappears on its own."
+  ],
+  "deals": [
+    {
+      "id": "evren-goa",
+      "hotel": "The Evren, Goa",
+      "destination": "Goa",
+      "country": "India",
+      "perk": "Save 25%",
+      "details": ["Complimentary breakfast for two", "$50 hotel credit", "Room upgrade, upon availability", "VIP status"],
+      "bookBy": "2026-12-31",
+      "priceFrom": "8,000",
+      "currency": "INR",
+      "priceNote": "plus taxes, minimum 2 nights",
+      "image": "assets/img/deals/evren-goa.jpg",
+      "art": "beach",
+      "tags": ["Beach", "India"],
+      "featured": true,
+      "note": "Offer valid till 31 December 2026 on stays of two nights or more."
+    },
+    {
+      "id": "rihga-royal-osaka",
+      "hotel": "Vignette Collection RIHGA Royal Hotel Osaka",
+      "destination": "Osaka",
+      "country": "Japan",
+      "perk": "3rd night free",
+      "details": ["Free breakfast", "$100 hotel credit", "Room upgrade, upon availability", "Early check-in and late check-out"],
+      "bookBy": "2026-12-31",
+      "image": "assets/img/deals/rihga-royal-osaka.jpg",
+      "art": "city",
+      "tags": ["City", "Japan"],
+      "featured": false,
+      "note": "IHG Destined perks included. Ask me for dates; I'll confirm the free night applies."
+    },
+    {
+      "id": "sample-six-senses-laamu",
+      "sample": true,
+      "hotel": "Six Senses Laamu",
+      "destination": "Laamu Atoll",
+      "country": "Maldives",
+      "perk": "4th night free",
+      "details": ["Daily breakfast for two", "$100 resort credit", "Upgrade on arrival when available"],
+      "bookBy": "2026-12-15",
+      "travelFrom": "2027-01-10",
+      "travelTo": "2027-04-30",
+      "priceFrom": "1,150",
+      "currency": "USD",
+      "art": "island",
+      "tags": ["Beach", "Honeymoon"],
+      "note": "Sample deal. Replace with a real one in deals.json."
+    },
+    {
+      "id": "sample-caruso-ravello",
+      "sample": true,
+      "hotel": "Caruso, A Belmond Hotel",
+      "destination": "Ravello, Amalfi Coast",
+      "country": "Italy",
+      "perk": "€100 spa credit",
+      "details": ["Breakfast for two", "Early check-in and late check-out", "Upgrade when available"],
+      "bookBy": "2026-11-30",
+      "travelFrom": "2027-04-01",
+      "travelTo": "2027-06-15",
+      "priceFrom": "1,400",
+      "currency": "EUR",
+      "art": "coast",
+      "tags": ["Coast", "Honeymoon"],
+      "note": "Sample deal. Replace with a real one in deals.json."
+    },
+    {
+      "id": "sample-anantara-jabal-akhdar",
+      "sample": true,
+      "hotel": "Anantara Al Jabal Al Akhdar",
+      "destination": "Jabal Akhdar",
+      "country": "Oman",
+      "perk": "Half board included",
+      "details": ["Breakfast and dinner for two", "Upgrade when available", "$100 spa credit"],
+      "bookBy": "2027-01-15",
+      "travelFrom": "2027-02-01",
+      "travelTo": "2027-04-15",
+      "priceFrom": "540",
+      "currency": "USD",
+      "art": "mountain",
+      "tags": ["Mountains"],
+      "note": "Sample deal. Replace with a real one in deals.json."
+    }
+  ]
+}
