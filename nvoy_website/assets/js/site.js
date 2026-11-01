@@ -694,8 +694,9 @@
   });
 
   /* ---------- boot ---------- */
+  const SITE_VERSION = (document.querySelector('script[src*="site.js"]') || {}).src?.split("v=")[1] || String(Date.now());
   async function load(path) {
-    const res = await fetch(path, { cache: "no-cache" });
+    const res = await fetch(`${path}?v=${encodeURIComponent(SITE_VERSION)}`, { cache: "no-cache" });
     if (!res.ok) throw new Error(`${path}: ${res.status}`);
     return res.json();
   }

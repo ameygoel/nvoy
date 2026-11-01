@@ -49,7 +49,7 @@ Open `deals.json` (on GitHub: click the file, then the pencil icon). Each deal l
 - `source` is a private note on where the offer came from (a Fora HQ post, a partner mailing). It is not shown on the site.
 - Deals marked `"sample": true` show a small "Sample" tag on the card; none are on the board at the moment.
 
-Commit the change and the live site updates within about a minute.
+Commit the change and the live site updates within about a minute. If your browser still shows the old version, hard-refresh (Ctrl+Shift+R, or Cmd+Shift+R on a Mac); the version number in the footer (v13, v14…) tells you which release you're looking at.
 
 If the JSON is invalid (a missing comma is the usual culprit), the board shows "The deal board couldn't load". Paste the file into https://jsonlint.com to find the line.
 
