@@ -1,6 +1,5 @@
 {
   "_help": "Site-wide settings. Edit the values, keep the keys. Lines starting with _ are notes and are ignored.",
-
   "brand": "Nvoy",
   "tagline": "Hotel stays with the good stuff included.",
   "advisorName": "Ankita",
@@ -8,16 +7,15 @@
   "advisorTitle": "Luxury travel advisor with Fora, focused on hotels",
   "basedIn": "India",
   "chains": "Accor, Marriott, Hyatt, IHG, Hilton, Four Seasons, Anantara and more",
-
   "_contact": "Where enquiries go. WhatsApp number in international format, digits only (no +, spaces or dashes).",
-  "email": "ankita.mittal@fora.travel",
+  "email": "ankitamittal@fora.travel",
   "whatsapp": "919959455358",
   "instagram": "nvoytravels",
   "foraProfile": "",
-
   "_form": "Enquiries are emailed through formsubmit.co to the address above. The first submission triggers a one-time activation email from FormSubmit; click the link in it once.",
-  "formEndpoint": "https://formsubmit.co/ajax/ankita.mittal@fora.travel",
-
+  "formEndpoint": "https://formsubmit.co/ajax/ankitamittal@fora.travel",
+  "_googleRatings": "Optional. Paste a Google Maps Platform API key (Places API (New) enabled, restricted to your website's domain) and each deal card shows the hotel's live Google rating linked to its Google page. Leave empty and cards show a 'Reviews on Google' link instead.",
+  "googlePlacesApiKey": "",
   "about": {
     "heading": "Hi, I'm Ankita.",
     "paragraphs": [
@@ -27,55 +25,129 @@
     ],
     "photo": "assets/img/advisor.jpg"
   },
-
   "perks": [
-    { "title": "Room upgrade on arrival", "text": "When the hotel has one spare, it's yours. Some properties guarantee it; ask me which." },
-    { "title": "Breakfast for two, daily", "text": "At nearly every partner hotel. The real breakfast, not the box." },
-    { "title": "Hotel credit", "text": "Typically $50 to $100 per stay for spa, dinner or the bar." },
-    { "title": "Early check-in, late check-out", "text": "Subject to availability, but you're on the hotel's VIP list before you land." },
-    { "title": "Same price as booking direct", "text": "Hotels pay me a commission. You pay what the hotel charges. No service fee, ever." },
-    { "title": "Your points still count", "text": "Bookings through Nvoy are treated as direct, so Bonvoy, World of Hyatt, IHG One and the rest keep earning." }
+    {
+      "title": "Room upgrade on arrival",
+      "text": "When the hotel has one spare, it's yours. Some properties guarantee it; ask me which."
+    },
+    {
+      "title": "Breakfast for two, daily",
+      "text": "At nearly every partner hotel. The real breakfast, not the box."
+    },
+    {
+      "title": "Hotel credit",
+      "text": "Typically $50 to $100 per stay for spa, dinner or the bar."
+    },
+    {
+      "title": "Early check-in, late check-out",
+      "text": "Subject to availability, but you're on the hotel's VIP list before you land."
+    },
+    {
+      "title": "Same price as booking direct",
+      "text": "Hotels pay me a commission. You pay what the hotel charges. No service fee, ever."
+    },
+    {
+      "title": "Your points still count",
+      "text": "Bookings through Nvoy are treated as direct, so Bonvoy, World of Hyatt, IHG One and the rest keep earning."
+    }
   ],
-
   "travelMath": {
     "_help": "A real before/after comparison shown in the Why section. Remove this block to hide it.",
     "hotel": "Admiral Hotel Manila",
     "room": "Superior Atrium room, 3 nights",
     "directLabel": "Hotel website or OTA",
     "directPrice": "INR 11,000 a night",
-    "directItems": ["No breakfast", "No VIP status or special treatment"],
+    "directItems": [
+      "No breakfast",
+      "No VIP status or special treatment"
+    ],
     "nvoyLabel": "Booked with Nvoy",
     "nvoyPrice": "INR 8,500 a night",
-    "nvoyItems": ["Breakfast for two", "$100 hotel credit", "Early check-in and late check-out, upon availability", "Room upgrade, upon availability"]
+    "nvoyItems": [
+      "Breakfast for two",
+      "$100 hotel credit",
+      "Early check-in and late check-out, upon availability",
+      "Room upgrade, upon availability"
+    ]
   },
-
   "recentBookings": [
-    { "hotel": "Fairmont Dubai", "place": "Dubai", "result": "Client saved INR 30,000" },
-    { "hotel": "Vignette Collection RIHGA Royal Hotel Osaka", "place": "Osaka", "result": "3rd night free with IHG Destined perks" },
-    { "hotel": "Admiral Hotel Manila", "place": "Manila", "result": "INR 2,500 a night less than direct, plus breakfast and credit" }
+    {
+      "hotel": "Fairmont Dubai",
+      "place": "Dubai",
+      "result": "Client saved INR 30,000"
+    },
+    {
+      "hotel": "Vignette Collection RIHGA Royal Hotel Osaka",
+      "place": "Osaka",
+      "result": "3rd night free with IHG Destined perks"
+    },
+    {
+      "hotel": "Admiral Hotel Manila",
+      "place": "Manila",
+      "result": "INR 2,500 a night less than direct, plus breakfast and credit"
+    }
   ],
-
   "faq": [
-    { "q": "How is Nvoy different from booking on Expedia or the hotel's website?", "a": "Expedia and most websites don't have access to the exclusive luxury programmes (Marriott STARS and Luminous, Hyatt Privé, Accor Heartist and others). Booking through Nvoy gets you those perks: free nights, $100 credits, room upgrades, breakfast, at the same rate the hotel publishes." },
-    { "q": "Which hotel chains do you work with, and do you charge a fee?", "a": "The world's leading chains: Marriott, Hyatt, IHG, Accor, Hilton, Anantara, Four Seasons and many more. For hotel bookings Nvoy charges no service fee. The hotel compensates me directly, so you get the VIP perks at no extra cost." },
-    { "q": "Will I still earn my hotel loyalty points?", "a": "Yes. Unlike many third-party sites, bookings made through Nvoy are considered direct by the hotels. You earn elite night credits and loyalty points exactly as if you'd booked on their app, and you get the perks on top." },
-    { "q": "How do I book?", "a": "Use the form below, or message me on WhatsApp or Instagram with your destination (and hotel, if you have one in mind), preferred dates, nightly budget and number of guests. I'll send a quote showing the exact perks available for those dates." }
+    {
+      "q": "How is Nvoy different from booking on Expedia or the hotel's website?",
+      "a": "Expedia and most websites don't have access to the exclusive luxury programmes (Marriott STARS and Luminous, Hyatt Privé, Accor Heartist and others). Booking through Nvoy gets you those perks: free nights, $100 credits, room upgrades, breakfast, at the same rate the hotel publishes."
+    },
+    {
+      "q": "Which hotel chains do you work with, and do you charge a fee?",
+      "a": "The world's leading chains: Marriott, Hyatt, IHG, Accor, Hilton, Anantara, Four Seasons and many more. For hotel bookings Nvoy charges no service fee. The hotel compensates me directly, so you get the VIP perks at no extra cost."
+    },
+    {
+      "q": "Will I still earn my hotel loyalty points?",
+      "a": "Yes. Unlike many third-party sites, bookings made through Nvoy are considered direct by the hotels. You earn elite night credits and loyalty points exactly as if you'd booked on their app, and you get the perks on top."
+    },
+    {
+      "q": "How do I book?",
+      "a": "Use the form below, or message me on WhatsApp or Instagram with your destination (and hotel, if you have one in mind), preferred dates, nightly budget and number of guests. I'll send a quote showing the exact perks available for those dates."
+    }
   ],
-
   "testimonials": [
-    { "quote": "We got upgraded to a pool villa and had breakfast on the deck every morning. We paid exactly what the hotel website said. Still don't understand how, but we're not complaining.", "name": "Priya and Rohan", "trip": "Honeymoon, Maldives" },
-    { "quote": "Ankita found a hotel I'd never have found on my own, two streets from everything, and the late check-out meant we weren't dragging bags around on our last day.", "name": "Meera S.", "trip": "Long weekend, Rome" },
-    { "quote": "One WhatsApp message with our dates and a budget, and the next morning we had three options with the perks spelled out. Booked the second one. Zero stress.", "name": "Daniel K.", "trip": "Family trip, Bali" }
+    {
+      "quote": "We got upgraded to a pool villa and had breakfast on the deck every morning. We paid exactly what the hotel website said. Still don't understand how, but we're not complaining.",
+      "name": "Priya and Rohan",
+      "trip": "Honeymoon, Maldives"
+    },
+    {
+      "quote": "Ankita found a hotel I'd never have found on my own, two streets from everything, and the late check-out meant we weren't dragging bags around on our last day.",
+      "name": "Meera S.",
+      "trip": "Long weekend, Rome"
+    },
+    {
+      "quote": "One WhatsApp message with our dates and a budget, and the next morning we had three options with the perks spelled out. Booked the second one. Zero stress.",
+      "name": "Daniel K.",
+      "trip": "Family trip, Bali"
+    }
   ],
   "_testimonials": "These three quotes are placeholders. Replace with real client words (with permission) or delete them to hide the section.",
-
   "instagramTiles": [
-    { "image": "assets/img/ig/1.jpg", "alt": "Escape to luxury: villa pool from above" },
-    { "image": "assets/img/ig/2.jpg", "alt": "The Evren, Goa deal" },
-    { "image": "assets/img/ig/3.jpg", "alt": "Just booked: RIHGA Royal Hotel Osaka" },
-    { "image": "assets/img/ig/4.jpg", "alt": "2026 plan? Beach swing" },
-    { "image": "assets/img/ig/5.jpg", "alt": "Went out for a walk and ended up here" },
-    { "image": "assets/img/ig/6.jpg", "alt": "Let's do the travel math" }
+    {
+      "image": "assets/img/ig/1.jpg",
+      "alt": "Escape to luxury: villa pool from above"
+    },
+    {
+      "image": "assets/img/ig/2.jpg",
+      "alt": "The Evren, Goa deal"
+    },
+    {
+      "image": "assets/img/ig/3.jpg",
+      "alt": "Just booked: RIHGA Royal Hotel Osaka"
+    },
+    {
+      "image": "assets/img/ig/4.jpg",
+      "alt": "2026 plan? Beach swing"
+    },
+    {
+      "image": "assets/img/ig/5.jpg",
+      "alt": "Went out for a walk and ended up here"
+    },
+    {
+      "image": "assets/img/ig/6.jpg",
+      "alt": "Let's do the travel math"
+    }
   ],
   "_instagramTiles": "Replace assets/img/ig/1.jpg to 6.jpg with your own photos (square works best)."
 }

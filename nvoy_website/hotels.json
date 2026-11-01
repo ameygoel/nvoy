@@ -1,0 +1,642 @@
+{
+  "_help": [
+    "Hotels shown in the 'Explore perks by hotel' dropdown. Add any hotel you book often.",
+    "Required: id (unique), name, city, country, region (one of: North America, Central America & Caribbean, South America, Europe, Middle East, Africa, Asia, Australia & Pacific), programs (list of programme ids from programs.json; a hotel can be in several).",
+    "Optional: perks (replaces the programme perks with a hotel-specific list), extraPerks (added on top of programme perks), terms (hotel-specific terms, added to the common ones), note (one line shown under the name).",
+    "A hotel that also appears in deals.json (same hotel name) gets a link to its deal automatically."
+  ],
+  "hotels": [
+    {
+      "id": "evren-goa",
+      "name": "The Evren, Goa",
+      "city": "Vagator, Goa",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "hilton-impresario",
+        "slh-within"
+      ],
+      "perks": [
+        "Complimentary breakfast for two",
+        "$50 hotel credit per stay",
+        "Room upgrade, upon availability",
+        "VIP status on arrival"
+      ],
+      "terms": [
+        "Current offer needs a minimum two-night stay and is valid for bookings till 31 December 2026."
+      ],
+      "note": "An LXR Hotels & Resorts property that is also a Small Luxury Hotels member, so two programmes apply."
+    },
+    {
+      "id": "grand-hyatt-goa",
+      "name": "Grand Hyatt Goa",
+      "city": "Bambolim, Goa",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "hyatt-prive"
+      ]
+    },
+    {
+      "id": "ritz-carlton-bangalore",
+      "name": "The Ritz-Carlton, Bangalore",
+      "city": "Bengaluru",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "st-regis-mumbai",
+      "name": "The St. Regis Mumbai",
+      "city": "Mumbai",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "raffles-udaipur",
+      "name": "Raffles Udaipur",
+      "city": "Udaipur",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "accor-preferred"
+      ]
+    },
+    {
+      "id": "six-senses-fort-barwara",
+      "name": "Six Senses Fort Barwara",
+      "city": "Rajasthan",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "ihg-destined"
+      ]
+    },
+    {
+      "id": "four-seasons-mumbai",
+      "name": "Four Seasons Hotel Mumbai",
+      "city": "Mumbai",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "four-seasons"
+      ]
+    },
+    {
+      "id": "anantara-jaipur",
+      "name": "Anantara Jewel Bagh Jaipur",
+      "city": "Jaipur",
+      "country": "India",
+      "region": "Asia",
+      "programs": [
+        "minor-anantara"
+      ]
+    },
+    {
+      "id": "park-hyatt-maldives",
+      "name": "Park Hyatt Maldives Hadahaa",
+      "city": "Gaafu Alifu Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "hyatt-prive"
+      ]
+    },
+    {
+      "id": "st-regis-maldives",
+      "name": "The St. Regis Maldives Vommuli Resort",
+      "city": "Dhaalu Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "waldorf-astoria-maldives",
+      "name": "Waldorf Astoria Maldives Ithaafushi",
+      "city": "South Malé Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "hilton-impresario"
+      ]
+    },
+    {
+      "id": "conrad-maldives",
+      "name": "Conrad Maldives Rangali Island",
+      "city": "Alifu Dhaalu Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "hilton-impresario"
+      ]
+    },
+    {
+      "id": "six-senses-laamu",
+      "name": "Six Senses Laamu",
+      "city": "Laamu Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "ihg-destined"
+      ]
+    },
+    {
+      "id": "four-seasons-landaa",
+      "name": "Four Seasons Resort Maldives at Landaa Giraavaru",
+      "city": "Baa Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "four-seasons"
+      ]
+    },
+    {
+      "id": "anantara-kihavah",
+      "name": "Anantara Kihavah Maldives Villas",
+      "city": "Baa Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "programs": [
+        "minor-anantara"
+      ]
+    },
+    {
+      "id": "four-seasons-sayan",
+      "name": "Four Seasons Resort Bali at Sayan",
+      "city": "Ubud, Bali",
+      "country": "Indonesia",
+      "region": "Asia",
+      "programs": [
+        "four-seasons"
+      ]
+    },
+    {
+      "id": "andaz-bali",
+      "name": "Andaz Bali",
+      "city": "Sanur, Bali",
+      "country": "Indonesia",
+      "region": "Asia",
+      "programs": [
+        "hyatt-prive"
+      ]
+    },
+    {
+      "id": "w-bali",
+      "name": "W Bali, Seminyak",
+      "city": "Seminyak, Bali",
+      "country": "Indonesia",
+      "region": "Asia",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "mandarin-oriental-bangkok",
+      "name": "Mandarin Oriental, Bangkok",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "region": "Asia",
+      "programs": [
+        "mandarin-oriental"
+      ]
+    },
+    {
+      "id": "kimpton-maa-lai",
+      "name": "Kimpton Maa-Lai Bangkok",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "region": "Asia",
+      "programs": [
+        "ihg-destined"
+      ]
+    },
+    {
+      "id": "jw-marriott-phuket",
+      "name": "JW Marriott Phuket Resort & Spa",
+      "city": "Phuket",
+      "country": "Thailand",
+      "region": "Asia",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "raffles-singapore",
+      "name": "Raffles Singapore",
+      "city": "Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "programs": [
+        "accor-preferred"
+      ]
+    },
+    {
+      "id": "shangri-la-singapore",
+      "name": "Shangri-La Singapore",
+      "city": "Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "programs": [
+        "shangri-la-luxury-circle"
+      ]
+    },
+    {
+      "id": "amanpuri",
+      "name": "Amanpuri",
+      "city": "Phuket",
+      "country": "Thailand",
+      "region": "Asia",
+      "programs": [
+        "aman"
+      ]
+    },
+    {
+      "id": "rihga-royal-osaka",
+      "name": "Vignette Collection RIHGA Royal Hotel Osaka",
+      "city": "Osaka",
+      "country": "Japan",
+      "region": "Asia",
+      "programs": [
+        "ihg-destined"
+      ]
+    },
+    {
+      "id": "ritz-carlton-tokyo",
+      "name": "The Ritz-Carlton, Tokyo",
+      "city": "Tokyo",
+      "country": "Japan",
+      "region": "Asia",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "park-hyatt-tokyo",
+      "name": "Park Hyatt Tokyo",
+      "city": "Tokyo",
+      "country": "Japan",
+      "region": "Asia",
+      "programs": [
+        "hyatt-prive"
+      ]
+    },
+    {
+      "id": "rosewood-hong-kong",
+      "name": "Rosewood Hong Kong",
+      "city": "Hong Kong",
+      "country": "Hong Kong",
+      "region": "Asia",
+      "programs": [
+        "rosewood-elite"
+      ]
+    },
+    {
+      "id": "peninsula-hong-kong",
+      "name": "The Peninsula Hong Kong",
+      "city": "Hong Kong",
+      "country": "Hong Kong",
+      "region": "Asia",
+      "programs": [
+        "peninsula-penclub"
+      ]
+    },
+    {
+      "id": "admiral-manila",
+      "name": "Admiral Hotel Manila, MGallery",
+      "city": "Manila",
+      "country": "Philippines",
+      "region": "Asia",
+      "programs": [
+        "accor-preferred"
+      ]
+    },
+    {
+      "id": "fairmont-dubai",
+      "name": "Fairmont Dubai",
+      "city": "Dubai",
+      "country": "UAE",
+      "region": "Middle East",
+      "programs": [
+        "accor-preferred"
+      ]
+    },
+    {
+      "id": "sofitel-dubai-palm",
+      "name": "Sofitel Dubai The Palm",
+      "city": "Dubai",
+      "country": "UAE",
+      "region": "Middle East",
+      "programs": [
+        "accor-preferred"
+      ]
+    },
+    {
+      "id": "the-lana-dubai",
+      "name": "The Lana, Dorchester Collection",
+      "city": "Dubai",
+      "country": "UAE",
+      "region": "Middle East",
+      "programs": [
+        "dorchester-diamond"
+      ]
+    },
+    {
+      "id": "anantara-jabal-akhdar",
+      "name": "Anantara Al Jabal Al Akhdar Resort",
+      "city": "Jabal Akhdar",
+      "country": "Oman",
+      "region": "Middle East",
+      "programs": [
+        "minor-anantara"
+      ]
+    },
+    {
+      "id": "waldorf-astoria-ras-al-khaimah",
+      "name": "Waldorf Astoria Ras Al Khaimah",
+      "city": "Ras Al Khaimah",
+      "country": "UAE",
+      "region": "Middle East",
+      "programs": [
+        "hilton-impresario"
+      ]
+    },
+    {
+      "id": "caruso-ravello",
+      "name": "Caruso, A Belmond Hotel, Amalfi Coast",
+      "city": "Ravello",
+      "country": "Italy",
+      "region": "Europe",
+      "programs": [
+        "belmond-bellini"
+      ]
+    },
+    {
+      "id": "le-bristol-paris",
+      "name": "Le Bristol Paris",
+      "city": "Paris",
+      "country": "France",
+      "region": "Europe",
+      "programs": [
+        "oetker-pearl"
+      ]
+    },
+    {
+      "id": "the-lanesborough",
+      "name": "The Lanesborough",
+      "city": "London",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "programs": [
+        "oetker-pearl"
+      ]
+    },
+    {
+      "id": "hotel-eden-rome",
+      "name": "Hotel Eden, Dorchester Collection",
+      "city": "Rome",
+      "country": "Italy",
+      "region": "Europe",
+      "programs": [
+        "dorchester-diamond"
+      ]
+    },
+    {
+      "id": "four-seasons-george-v",
+      "name": "Four Seasons Hotel George V, Paris",
+      "city": "Paris",
+      "country": "France",
+      "region": "Europe",
+      "programs": [
+        "four-seasons"
+      ]
+    },
+    {
+      "id": "park-hyatt-vendome",
+      "name": "Park Hyatt Paris-Vendôme",
+      "city": "Paris",
+      "country": "France",
+      "region": "Europe",
+      "programs": [
+        "hyatt-prive"
+      ]
+    },
+    {
+      "id": "mandarin-oriental-london",
+      "name": "Mandarin Oriental Hyde Park, London",
+      "city": "London",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "programs": [
+        "mandarin-oriental"
+      ]
+    },
+    {
+      "id": "sls-beverly-hills",
+      "name": "SLS Hotel, a Luxury Collection Hotel, Beverly Hills",
+      "city": "Beverly Hills",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "sheraton-maui",
+      "name": "Sheraton Maui Resort & Spa",
+      "city": "Kaanapali, Maui",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "ranch-laguna-beach",
+      "name": "The Ranch at Laguna Beach",
+      "city": "Laguna Beach",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "jw-marriott-orlando",
+      "name": "JW Marriott Orlando Grande Lakes",
+      "city": "Orlando",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "ritz-carlton-bacara",
+      "name": "The Ritz-Carlton Bacara, Santa Barbara",
+      "city": "Santa Barbara",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "w-punta-cana",
+      "name": "W Punta Cana",
+      "city": "Punta Cana",
+      "country": "Dominican Republic",
+      "region": "Central America & Caribbean",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "jumeirah-carlton-tower",
+      "name": "Jumeirah Carlton Tower",
+      "city": "London",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "la-maison-champs-elysees",
+      "name": "La Maison Champs Élysées",
+      "city": "Paris",
+      "country": "France",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; perks are set per offer rather than through a chain programme."
+    },
+    {
+      "id": "san-clemente-palace",
+      "name": "San Clemente Palace Kempinski",
+      "city": "Venice",
+      "country": "Italy",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "westin-maui",
+      "name": "The Westin Maui Resort & Spa, Kaanapali",
+      "city": "Kaanapali, Maui",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "w-fort-lauderdale",
+      "name": "W Fort Lauderdale",
+      "city": "Fort Lauderdale",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "marriott-luminous"
+      ]
+    },
+    {
+      "id": "waldorf-astoria-chicago",
+      "name": "Waldorf Astoria Chicago",
+      "city": "Chicago",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "hilton-impresario"
+      ]
+    },
+    {
+      "id": "hilton-aruba",
+      "name": "Hilton Aruba Caribbean Resort & Spa",
+      "city": "Palm Beach",
+      "country": "Aruba",
+      "region": "Central America & Caribbean",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "retreat-costa-rica",
+      "name": "The Retreat Costa Rica",
+      "city": "Atenas",
+      "country": "Costa Rica",
+      "region": "Central America & Caribbean",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "barcelona-edition",
+      "name": "The Barcelona EDITION",
+      "city": "Barcelona",
+      "country": "Spain",
+      "region": "Europe",
+      "programs": [
+        "marriott-stars"
+      ]
+    },
+    {
+      "id": "hotel-hermitage-monte-carlo",
+      "name": "Hôtel Hermitage Monte-Carlo",
+      "city": "Monaco",
+      "country": "Monaco",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "singer-palace-rome",
+      "name": "Singer Palace Hotel Roma",
+      "city": "Rome",
+      "country": "Italy",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "terre-blanche",
+      "name": "Terre Blanche Hôtel Spa Golf Resort",
+      "city": "Tourrettes, Provence",
+      "country": "France",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "mayrlife-altaussee",
+      "name": "MAYRLIFE Medical Health Resort Altaussee",
+      "city": "Altaussee",
+      "country": "Austria",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ]
+    },
+    {
+      "id": "shangri-la-rasa-sentosa",
+      "name": "Shangri-La Rasa Sentosa, Singapore",
+      "city": "Sentosa, Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "programs": [
+        "shangri-la-luxury-circle"
+      ]
+    }
+  ]
+}
