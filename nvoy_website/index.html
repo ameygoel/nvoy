@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nvoy — hotel deals with the perks included</title>
-  <meta name="description" content="Nvoy is an independent Fora travel advisory. Book hotels at the same price as direct, with upgrades, breakfast and credits included. See this month's deals.">
+  <title>Nvoy — your passport to unbeatable hotel deals</title>
+  <meta name="description" content="Nvoy is a travel advisory firm that gets you insider hotel deals and perks (free nights, breakfast, hotel credit, VIP treatment) with no additional service fee, through partner programmes at Marriott, Accor, Four Seasons, IHG, Hilton and more.">
   <meta name="theme-color" content="#042C50">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <meta property="og:title" content="Nvoy — hotel deals with the perks included">
-  <meta property="og:description" content="Same price as booking direct. Upgrades, breakfast and credits on top. See the deals on the board right now.">
+  <meta property="og:title" content="Nvoy — your passport to unbeatable hotel deals">
+  <meta property="og:description" content="Insider hotel deals and perks (free nights, breakfast on the house, hotel credit, VIP treatment) with no additional service fee. Don't book it till you've checked it with Nvoy.">
   <meta property="og:image" content="assets/img/og-image.png">
   <meta property="og:type" content="website">
   <link rel="preload" href="assets/fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=13">
+  <link rel="stylesheet" href="assets/css/style.css?v=31">
 </head>
 <body>
   <a class="skip" href="#deals">Skip to deals</a>
@@ -32,7 +32,7 @@
         <a href="#why">Why Nvoy</a>
         <a href="#about">About</a>
         <a href="#faq">Questions</a>
-        <a href="#plan">Plan a trip</a>
+        <a href="#plan">Find a hotel</a>
         <a class="btn btn-ghost nav-wa" data-whatsapp href="#plan">WhatsApp me</a>
       </nav>
     </div>
@@ -43,13 +43,19 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1 class="hero-title">Hotel stays with the good stuff included.</h1>
-          <p class="hero-sub">Nvoy is an independent travel advisory with Fora. You pay what the hotel charges. I add the upgrade, the breakfast, the credit, and a shortlist you'll actually want to pick from.</p>
+          <p class="hero-kicker">Say hello to Nvoy</p>
+          <h1 class="hero-title">Your passport to unbeatable hotel deals.</h1>
+          <p class="hero-sub">Nvoy is a travel advisory firm and part of the Fora network. Through our partner programmes at Marriott, Accor, Four Seasons, IHG, Hilton and many more, we get you insider deals and perks (free nights, breakfast on the house, hotel credit, VIP treatment) with no additional service fee from Nvoy.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#deals">See this month's deals</a>
-            <a class="btn btn-ghost" href="#plan">Plan my trip</a>
+            <a class="btn btn-primary" href="#deals">Show me the deals</a>
+            <a class="btn btn-ghost" href="#plan">Find me a hotel</a>
           </div>
-          <p class="hero-note" id="hero-note">Accor, Marriott, Hyatt, IHG, Hilton, Four Seasons, Anantara and more. Replies within a day, usually faster.</p>
+          <ul class="hero-stickers" aria-label="Why people book with Nvoy">
+            <li>Zero fees on hotel bookings. Suspicious amounts of perks.</li>
+            <li>Breakfast's on us. Well, on the hotel.</li>
+            <li>Don't book it till you've checked it with Nvoy.</li>
+          </ul>
+          <p class="hero-note" id="hero-note">Nvoy specialises in hotel bookings. Complete itinerary planning, including flights, transfers and experiences, is available on request and quoted separately, based on the destination, duration and scope of the trip. Enquiries are answered within one business day.</p>
         </div>
       </div>
       <div class="hero-horizon" aria-hidden="true"></div>
@@ -59,7 +65,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2>Deals on the board right now</h2>
-          <p class="section-sub">Offers from Fora HQ and our hotel partners whose booking windows are still open. Each one includes the perks on the stamp. Windows close without warning, so ask early.</p>
+          <p class="section-sub">Offers from Nvoy's hotel partners whose booking windows are still open. Each one includes the perks on the stamp. Windows close without warning, so ask early.</p>
         </div>
         <p class="sample-notice" id="sample-notice" hidden>Some of these are sample deals. Edit <code>deals.json</code> to replace them with yours.</p>
         <div class="filter-bar">
@@ -97,16 +103,33 @@
       <div class="wrap">
         <div class="section-head on-navy">
           <h2>What booking through Nvoy gets you</h2>
-          <p class="section-sub">Fora partners with over 5,500 hotels. When you book one of them through me, the hotel treats you as a preferred guest. Here's what that usually means.</p>
+          <p class="section-sub">Nvoy has preferred access to over 5,500 hotels. Book one of them through Nvoy and the hotel treats you as a VIP. Here's what that usually means.</p>
         </div>
         <ul class="perk-list" id="perk-list"></ul>
 
         <div class="programs" id="programs" hidden>
           <div class="programs-head">
             <h3>The partner programmes behind the perks</h3>
-            <p>Each hotel group runs an invitation-only programme for a small set of luxury advisors. Nvoy books through Fora, which belongs to all of these. Perks vary by hotel and rate; I confirm the exact list before you pay.</p>
+            <p>Each hotel group runs an invitation-only programme for a small set of luxury advisors. Nvoy has access to all of these. Perks vary by hotel and rate; I confirm the exact list before you pay.</p>
           </div>
-          <ul class="program-list" id="program-list"></ul>
+          <div class="program-strip">
+            <button type="button" class="strip-arrow strip-prev" id="prog-prev" aria-label="Previous programmes">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <ul class="program-list" id="program-list" tabindex="0" aria-label="Partner programmes"></ul>
+            <button type="button" class="strip-arrow strip-next" id="prog-next" aria-label="Next programmes">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="program-detail" id="program-detail" hidden>
+            <div class="program-detail-head">
+              <h4 id="pd-name"></h4>
+              <p id="pd-group"></p>
+            </div>
+            <p class="program-detail-brands" id="pd-brands"></p>
+            <ul class="program-detail-perks" id="pd-perks"></ul>
+            <p class="program-detail-terms" id="pd-terms"></p>
+          </div>
         </div>
 
         <div class="explore" id="explore" hidden>
@@ -140,80 +163,22 @@
             </div>
             <div class="hotel-actions">
               <button type="button" class="btn btn-primary btn-small" id="hc-ask">Ask about this hotel</button>
-              <button type="button" class="btn btn-ghost-navy btn-small" id="hc-math">Run the travel math for it</button>
             </div>
           </article>
         </div>
 
-        <div class="math" id="travel-math">
-          <div class="math-head">
-            <h3>Run the travel math on your own trip</h3>
-            <p>Name a hotel and your dates. I'll tell you which programme it falls under and what you'd get on top of the hotel's own price.</p>
-          </div>
-          <form class="math-form" id="math-form" novalidate>
-            <label class="field field-dark math-hotel"><span>Hotel</span><input id="m-hotel" type="text" placeholder="Park Hyatt Maldives, Fairmont Dubai, The Ritz-Carlton Tokyo…" autocomplete="off" required></label>
-            <label class="field field-dark"><span>Check-in</span><input id="m-in" type="date"></label>
-            <label class="field field-dark"><span>Check-out</span><input id="m-out" type="date"></label>
-            <button class="btn btn-primary math-go" type="submit">Show my perks</button>
-          </form>
-          <div class="math-result" id="math-result" hidden>
-            <div class="math-cols">
-              <div class="math-col">
-                <p class="math-label">Booking direct or on a booking site</p>
-                <p class="math-price" id="mr-direct-price">The hotel's own rate</p>
-                <ul id="mr-direct-items">
-                  <li>Room only, unless the rate says otherwise</li>
-                  <li>No VIP status or special treatment</li>
-                </ul>
-                <a class="btn btn-ghost btn-small" id="mr-google" href="#" target="_blank" rel="noopener">Check the rate on Google</a>
-                <label class="field field-dark math-rate"><span>Rate you found, per night (optional)</span>
-                  <span class="rate-row">
-                    <select id="m-cur" aria-label="Currency"><option>INR</option><option>USD</option><option>EUR</option><option>GBP</option><option>AED</option><option>SGD</option><option>THB</option><option>JPY</option></select>
-                    <input id="m-rate" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 18000">
-                  </span>
-                </label>
-              </div>
-              <div class="math-col math-col-nvoy">
-                <p class="math-label" id="mr-program-label">Booked with Nvoy</p>
-                <p class="math-price" id="mr-nvoy-price">Same rate</p>
-                <p class="math-program" id="mr-program"></p>
-                <ul id="mr-nvoy-items"></ul>
-                <p class="math-total" id="mr-total" hidden></p>
-                <p class="math-fine" id="mr-fine"></p>
-                <button type="button" class="btn btn-primary btn-small" id="mr-ask">Ask me to confirm these perks</button>
-              </div>
-            </div>
-          </div>
-          <div class="math-example" id="math-example" hidden>
-            <p class="math-example-label">A real one from last month</p>
-            <p id="math-sub"></p>
-            <div class="math-cols math-cols-compact">
-              <div class="math-col">
-                <p class="math-label" id="math-direct-label"></p>
-                <p class="math-price" id="math-direct-price"></p>
-                <ul id="math-direct-items"></ul>
-              </div>
-              <div class="math-col math-col-nvoy">
-                <p class="math-label" id="math-nvoy-label"></p>
-                <p class="math-price" id="math-nvoy-price"></p>
-                <ul id="math-nvoy-items"></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="recent" id="recent" hidden>
-          <h3>Recently booked</h3>
+          <div class="recent-head">
+            <h3>Recently booked</h3>
+            <p>Real stays, booked through Nvoy, with what the client actually received.</p>
+          </div>
           <ul class="recent-list" id="recent-list"></ul>
         </div>
       </div>
     </section>
 
     <section class="about" id="about">
-      <div class="wrap about-grid">
-        <div class="about-photo">
-          <img id="about-photo" src="assets/img/advisor.jpg" alt="" width="520" height="640">
-        </div>
+      <div class="wrap">
         <div class="about-copy" id="about-copy"></div>
       </div>
     </section>
@@ -235,21 +200,34 @@
       </div>
     </section>
 
-    <section class="insta" id="instagram">
+    <section class="follow" id="follow">
       <div class="wrap">
-        <div class="insta-head">
-          <h2>Where I've been looking lately</h2>
-          <a class="btn btn-ghost-navy" id="insta-link" href="https://www.instagram.com/nvoytravels" target="_blank" rel="noopener">Follow on Instagram</a>
+        <div class="section-head">
+          <h2>Follow us on</h2>
+          <p class="section-sub">New deals go out the moment they land. Pick whichever you check more.</p>
         </div>
-        <div class="insta-strip" id="insta-strip"></div>
+        <div class="follow-grid">
+          <a class="follow-card" id="follow-insta" href="https://www.instagram.com/nvoytravels" target="_blank" rel="noopener">
+            <span class="follow-kicker">Instagram</span>
+            <span class="follow-handle" id="follow-insta-handle">@nvoytravels</span>
+            <span class="follow-text">Hotel tours, just-booked stories and the deals in pictures.</span>
+            <span class="btn btn-ghost-navy btn-small">Follow on Instagram</span>
+          </a>
+          <a class="follow-card follow-card-wa" id="follow-wa" href="#" target="_blank" rel="noopener">
+            <span class="follow-kicker">WhatsApp channel</span>
+            <span class="follow-handle">Nvoy Travels</span>
+            <span class="follow-text">Deals as they drop, straight to your phone. A broadcast channel, so no group chatter and your number stays private.</span>
+            <span class="btn btn-primary btn-small">Join the channel</span>
+          </a>
+        </div>
       </div>
     </section>
 
     <section class="plan" id="plan">
       <div class="wrap plan-grid">
         <div class="plan-copy">
-          <h2>Plan a trip</h2>
-          <p>Tell me roughly where, when and with whom. I'll reply with two or three hotels, the perks spelled out, and what they'd cost. No commitment, no fee.</p>
+          <h2>Find your hotel</h2>
+          <p>Tell me where you're headed, when and with whom. I'll come back with two or three hotels, the perks spelled out, and what they'd cost. No commitment, no fee.</p>
           <p class="plan-alt">Prefer to chat? <a data-whatsapp href="#">Message me on WhatsApp</a> and I'll take it from there.</p>
           <dl class="plan-facts">
             <div><dt>Reply time</dt><dd>Within a day</dd></div>
@@ -276,7 +254,7 @@
           </div>
           <div class="field-row">
             <label class="field"><span>WhatsApp or phone</span><input name="phone" type="tel" autocomplete="tel" placeholder="+91"></label>
-            <label class="field"><span>Where to</span><input name="destination" type="text" placeholder="Maldives, Amalfi, anywhere warm…" required></label>
+            <label class="field"><span>Where to</span><input name="destination" type="text" placeholder="Rome, Amalfi Coast, Capri…" required><small class="field-hint">List every city you want to stay in, not just the first stop.</small></label>
           </div>
           <div class="field-row">
             <label class="field"><span>Check-in</span><input name="checkin" type="date"></label>
@@ -296,10 +274,10 @@
               </select>
             </label>
           </div>
-          <label class="field"><span>What matters most</span><textarea name="notes" rows="4" placeholder="Pool, beach, walkable, quiet, great breakfast, a specific hotel you've seen…"></textarea></label>
+          <label class="field"><span>What matters most</span><textarea name="notes" rows="4" placeholder="Pool, beach, walkable, quiet, great breakfast, a specific hotel you've seen… If you know it, how many nights in each city, e.g. 3 Rome, 2 Amalfi, 2 Capri."></textarea><small class="field-hint">If you have a rough split of nights per city, add it here. Helps me pair the right hotel with each stop.</small></label>
 
           <div class="form-actions">
-            <button class="btn btn-primary" type="submit" id="submit-btn">Send my trip details</button>
+            <button class="btn btn-primary" type="submit" id="submit-btn">Get my hotel options</button>
             <p class="form-fine">I'll only use this to reply to you.</p>
           </div>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -319,23 +297,24 @@
     <div class="wrap foot-grid">
       <div>
         <img src="assets/img/logo-white.png" alt="Nvoy" width="110" height="69">
-        <p class="foot-line" id="foot-line">Nvoy Travels is an independent travel advisory. Ankita Mittal is an advisor with Fora Travel.</p>
+        <p class="foot-line" id="foot-line">Nvoy Travels is an independent travel advisory run by Ankita Mittal.</p>
       </div>
       <nav class="foot-links" aria-label="Footer">
         <a href="#deals">Deals</a>
         <a href="#why">Why Nvoy</a>
         <a href="#about">About</a>
-        <a href="#plan">Plan a trip</a>
+        <a href="#plan">Find a hotel</a>
       </nav>
       <div class="foot-contact">
         <a id="foot-email" href="#">Email</a>
         <a data-whatsapp href="#">WhatsApp</a>
         <a id="foot-insta" href="https://www.instagram.com/nvoytravels" target="_blank" rel="noopener">Instagram</a>
+        <a id="foot-channel" href="#" target="_blank" rel="noopener">WhatsApp channel</a>
       </div>
     </div>
     <div class="wrap foot-bottom">
       <p>Hotel perks vary by property and availability. Prices shown are starting rates and change with dates.</p>
-      <p>© <span id="year"></span> Nvoy <span class="foot-version">v13</span></p>
+      <p>© <span id="year"></span> Nvoy <span class="foot-version">v31</span></p>
     </div>
   </footer>
 
@@ -343,6 +322,6 @@
     <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.47 15.02L2 22l5.12-1.52A9.95 9.95 0 1 0 12.04 2m0 1.7a8.25 8.25 0 1 1-4.2 15.36l-.3-.18-3.04.9.92-2.96-.2-.31A8.25 8.25 0 0 1 12.04 3.7m-3.1 4.3c-.17 0-.45.06-.68.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.65c.13.17 1.8 2.86 4.44 3.9 2.2.86 2.64.69 3.12.65.48-.05 1.55-.64 1.77-1.25.22-.61.22-1.14.15-1.25-.06-.1-.24-.17-.5-.3l-1.76-.84c-.24-.09-.41-.13-.58.13-.17.26-.67.84-.82 1.01-.15.17-.3.19-.56.07a6.8 6.8 0 0 1-3.38-2.96c-.26-.44.25-.41.72-1.34.08-.17.04-.32-.02-.45l-.8-1.9c-.2-.5-.42-.44-.58-.45h-.5z"/></svg>
   </a>
 
-  <script src="assets/js/site.js?v=13" defer></script>
+  <script src="assets/js/site.js?v=31" defer></script>
 </body>
 </html>

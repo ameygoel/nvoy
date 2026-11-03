@@ -1,10 +1,11 @@
 {
   "_help": [
-    "Partner programmes Nvoy can book through Fora. Shown in the Why Nvoy section and used by the travel-math tool to recognise a hotel's brand.",
+    "Partner programmes Nvoy can book. Shown in the Why Nvoy section and used by the travel-math tool to recognise a hotel's brand.",
     "Each programme: id, name, group (the hotel company), brands (list of brand names or hotel names that identify it; matching is case-insensitive), perks (list), credit (typical credit wording), note (optional).",
     "Perks vary by property and rate, so keep the wording to 'typically' and let Ankita confirm per booking.",
     "Add or remove programmes freely. Set show to false to hide one from the list but keep it for brand recognition.",
-    "commonTerms apply to every programme; a programme's own terms list adds to them. hotels.json can add hotel-specific terms on top."
+    "commonTerms apply to every programme; a programme's own terms list adds to them. hotels.json can add hotel-specific terms on top.",
+    "logo (optional): path to the programme's official logo in assets/img/programs/. Without it the tile shows the programme name in the site's typeface."
   ],
   "typicalPerks": [
     "Breakfast for two, daily",
@@ -424,7 +425,7 @@
     {
       "id": "aman",
       "name": "Aman",
-      "group": "Aman (Fora Reserve partner)",
+      "group": "Aman (Nvoy partner)",
       "brands": [
         "Aman",
         "Amanpuri",
@@ -443,13 +444,13 @@
       ],
       "credit": "$100",
       "terms": [
-        "Aman perks are agreed per booking through Fora Reserve; inclusions differ by property and season."
+        "Aman perks are agreed per booking through Nvoy; inclusions differ by property and season."
       ]
     },
     {
       "id": "minor-anantara",
       "name": "Anantara and Minor Hotels",
-      "group": "Minor Hotels (Fora Reserve partner)",
+      "group": "Minor Hotels (Nvoy partner)",
       "brands": [
         "Anantara",
         "Avani",
@@ -529,8 +530,8 @@
     },
     {
       "id": "fora-reserve",
-      "name": "Fora Reserve partner perks",
-      "group": "Fora Travel",
+      "name": "Nvoy partner perks",
+      "group": "Nvoy",
       "brands": [],
       "perks": [
         "Breakfast for two, daily",
@@ -539,7 +540,7 @@
         "Early check-in and late check-out, when available"
       ],
       "credit": "$100",
-      "note": "Fora's own partner relationships with 5,000+ hotels, including many independents and boutique properties that have no chain programme.",
+      "note": "Nvoy's own partner relationships with 5,000+ hotels, including many independents and boutique properties that have no chain programme.",
       "terms": [
         "Inclusions are agreed hotel by hotel; I confirm the exact list for your dates before booking."
       ]

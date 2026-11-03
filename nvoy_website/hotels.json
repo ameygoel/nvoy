@@ -637,6 +637,160 @@
       "programs": [
         "shangri-la-luxury-circle"
       ]
+    },
+    {
+      "id": "the-dominican-brussels",
+      "name": "The Dominican",
+      "city": "Brussels",
+      "country": "Belgium",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "side-hamburg",
+      "name": "SIDE Design Hotel Hamburg",
+      "city": "Hamburg",
+      "country": "Germany",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "miss-clara-stockholm",
+      "name": "Miss Clara by Nobis",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "sense-hotel-sofia",
+      "name": "Sense Hotel Sofia",
+      "city": "Sofia",
+      "country": "Bulgaria",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "casa-de-la-flora",
+      "name": "Casa de La Flora",
+      "city": "Khao Lak, Phang Nga",
+      "country": "Thailand",
+      "region": "Asia",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "palazzo-velabro-rome",
+      "name": "Palazzo Velabro",
+      "city": "Rome",
+      "country": "Italy",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "timber-cove-resort",
+      "name": "Timber Cove Resort",
+      "city": "Jenner, Sonoma Coast",
+      "country": "USA",
+      "region": "North America",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "mira-moon-hong-kong",
+      "name": "Mira Moon",
+      "city": "Causeway Bay, Hong Kong",
+      "country": "Hong Kong",
+      "region": "Asia",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "noa-hotel-shenzhen",
+      "name": "NOA Hotel Shenzhen",
+      "city": "Shenzhen",
+      "country": "China",
+      "region": "Asia",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "la-purificadora-puebla",
+      "name": "La Purificadora",
+      "city": "Puebla",
+      "country": "Mexico",
+      "region": "Central America & Caribbean",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "seegut-zeppelin",
+      "name": "Seegut Zeppelin",
+      "city": "Friedrichshafen, Lake Constance",
+      "country": "Germany",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "gezi-hotel-bosphorus",
+      "name": "Gezi Hotel Bosphorus",
+      "city": "Istanbul",
+      "country": "Turkey",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "sir-devonshire-square",
+      "name": "Sir Devonshire Square",
+      "city": "The City, London",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
+    },
+    {
+      "id": "luma-hotel-kota-kinabalu",
+      "name": "The LUMA Hotel",
+      "city": "Kota Kinabalu, Sabah",
+      "country": "Malaysia",
+      "region": "Asia",
+      "programs": [
+        "fora-reserve"
+      ],
+      "note": "Design Hotels member; offers are set per promotion rather than through a chain programme."
     }
   ]
 }

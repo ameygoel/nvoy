@@ -131,6 +131,11 @@
   }
 
   /* ---------- rendering ---------- */
+  function ratingHtml(rating, count) {
+    if (!rating) return "Reviews on Google";
+    const n = Number(rating);
+    return `<span class="rating-star" aria-hidden="true">★</span> ${esc(n.toFixed(1))}${count ? ` <span class="rating-count">(${esc(Number(count).toLocaleString("en-IN"))})</span>` : ""} <span class="rating-src">on Google</span>`;
+  }
   function placeLine(deal) {
     const d = deal.destination || deal.city || "";
     return deal.country && !d.toLowerCase().includes(deal.country.toLowerCase()) ? `${d}, ${deal.country}` : d;
@@ -150,6 +155,10 @@
       <div class="postcard-body">
         <p class="postcard-place">${esc(placeLine(deal))}</p>
         <h3 class="postcard-hotel">${esc(deal.hotel)}</h3>
+        ${deal.website || deal.reviews ? `<p class="postcard-links">
+          ${deal.website ? `<a href="${esc(deal.website)}" target="_blank" rel="noopener">Hotel website</a>` : ""}
+          ${deal.reviews ? `<a class="rating-link" data-rating-for="${esc(deal.id)}" href="${esc(deal.reviews)}" target="_blank" rel="noopener"${deal.rating ? ` aria-label="Rated ${esc(deal.rating)} out of 5 on Google from ${esc(deal.ratingCount || "")} reviews"` : ""}>${ratingHtml(deal.rating, deal.ratingCount)}</a>` : ""}
+        </p>` : ""}
         ${deal.note ? `<p class="postcard-note">${esc(deal.note)}</p>` : ""}
         ${perks ? `<div class="postcard-block"><p class="postcard-label">Perks</p><ul class="postcard-details">${perks}</ul></div>` : ""}
         ${terms ? `<div class="postcard-block postcard-terms"><p class="postcard-label">Terms</p><ul>${terms}</ul></div>` : ""}
@@ -159,10 +168,6 @@
         </div>
         <div class="postcard-cta">
           <button type="button" class="btn btn-ghost-navy btn-small" data-ask="${esc(deal.id)}">Ask about this stay</button>
-          <span class="postcard-links">
-            ${deal.website ? `<a href="${esc(deal.website)}" target="_blank" rel="noopener">Hotel website</a>` : ""}
-            ${deal.reviews ? `<a class="rating-link" data-rating-for="${esc(deal.id)}" href="${esc(deal.reviews)}" target="_blank" rel="noopener">Reviews on Google</a>` : ""}
-          </span>
         </div>
       </div>
     </article>`;
@@ -233,16 +238,9 @@
     const a = CONFIG.about || {};
     $("#about-copy").innerHTML =
       `<h2>${esc(a.heading || "About")}</h2>` +
+      (a.intro ? `<p class="about-intro">${esc(a.intro)}</p>` : "") +
       (a.paragraphs || []).map((p) => `<p>${esc(p)}</p>`).join("") +
-      (CONFIG.foraProfile ? `<a class="btn btn-ghost-navy" href="${esc(CONFIG.foraProfile)}" target="_blank" rel="noopener">See my Fora profile</a>` : "");
-    const img = $("#about-photo");
-    if (a.photo) img.src = a.photo;
-    img.alt = `${CONFIG.advisorFullName || CONFIG.advisorName || "Your advisor"}, ${CONFIG.advisorTitle || "travel advisor"}`;
-    img.addEventListener("error", () => {
-      const wrap = document.createElement("div");
-      wrap.innerHTML = art("coast", "about");
-      img.replaceWith(wrap.firstElementChild);
-    }, { once: true });
+      (CONFIG.foraProfile ? `<a class="btn btn-ghost-navy" href="${esc(CONFIG.foraProfile)}" target="_blank" rel="noopener">See my advisor profile</a>` : "");
   }
 
   /* ---------- partner programmes ---------- */
@@ -252,14 +250,62 @@
     const shown = PROGRAMS.filter((p) => p.show !== false);
     if (!shown.length) { box.hidden = true; return; }
     box.hidden = false;
-    $("#program-list").innerHTML = shown.map((p) => `
-      <li class="program">
-        <div class="program-name"><h4>${esc(p.name)}</h4><p>${esc(p.group || "")}</p></div>
-        <div class="program-body">
-          ${brandsLine(p) ? `<p class="program-brands">${esc(brandsLine(p))}</p>` : ""}
-          <p class="program-perks">${esc(perksLine(p))}</p>
-        </div>
+    const list = $("#program-list");
+    list.innerHTML = shown.map((p) => `
+      <li>
+        <button type="button" class="program-tile${p.logo ? " has-logo" : ""}" data-program="${esc(p.id)}" aria-pressed="false" aria-label="${esc(p.name)}: show perks">
+          ${p.logo
+            ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}" loading="lazy">`
+            : `<span class="tile-name">${esc(p.name)}</span>`}
+          <span class="tile-group">${esc(p.group || "")}</span>
+        </button>
       </li>`).join("");
+    list.addEventListener("click", (e) => {
+      const b = e.target.closest(".program-tile");
+      if (!b) return;
+      const open = b.getAttribute("aria-pressed") === "true";
+      $$(".program-tile", list).forEach((t) => t.setAttribute("aria-pressed", "false"));
+      if (open) { $("#program-detail").hidden = true; return; }
+      b.setAttribute("aria-pressed", "true");
+      showProgram(b.dataset.program);
+    });
+    /* logos that fail to load fall back to the typeset tile */
+    $$(".program-tile img", list).forEach((img) => img.addEventListener("error", () => {
+      const tile = img.closest(".program-tile"); const p = progById(tile.dataset.program);
+      img.replaceWith(Object.assign(document.createElement("span"), { className: "tile-name", textContent: p ? p.name : "" }));
+      tile.classList.remove("has-logo");
+    }, { once: true }));
+    // sideways scroll controls
+    const prev = $("#prog-prev"), next = $("#prog-next");
+    const update = () => {
+      const max = list.scrollWidth - list.clientWidth - 2;
+      prev.disabled = list.scrollLeft <= 2; next.disabled = list.scrollLeft >= max;
+      list.parentElement.classList.toggle("no-overflow", max <= 0);
+    };
+    const step = () => { const t = list.querySelector(".program-tile"); return t ? (t.getBoundingClientRect().width + 16) * 2 : list.clientWidth * .8; };
+    prev.addEventListener("click", () => list.scrollBy({ left: -step(), behavior: "smooth" }));
+    next.addEventListener("click", () => list.scrollBy({ left: step(), behavior: "smooth" }));
+    list.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    list.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { list.scrollBy({ left: step(), behavior: "smooth" }); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { list.scrollBy({ left: -step(), behavior: "smooth" }); e.preventDefault(); }
+    });
+    requestAnimationFrame(update);
+  }
+  function showProgram(id) {
+    const p = progById(id); const box = $("#program-detail");
+    if (!p) { box.hidden = true; return; }
+    $("#pd-name").textContent = p.name;
+    $("#pd-group").textContent = p.group || "";
+    const brands = brandsLine(p);
+    $("#pd-brands").textContent = brands ? (p.note ? brands : `Brands: ${brands}`) : "";
+    $("#pd-brands").hidden = !brands;
+    $("#pd-perks").innerHTML = (p.perks || []).map((x) => `<li>${esc(x)}</li>`).join("");
+    const terms = (p.terms || []);
+    $("#pd-terms").textContent = terms.join(" ");
+    $("#pd-terms").hidden = !terms.length;
+    box.hidden = false;
   }
   /* brand names for display: drop spelling variants kept only for matching */
   function brandsLine(p) {
@@ -340,7 +386,7 @@
     $("#hc-place").textContent = `${h.city}, ${h.country}`;
     $("#hc-programs").innerHTML = progs.length
       ? progs.map((p) => `<li>${esc(p.name)}</li>`).join("")
-      : `<li>No chain programme; perks arranged through Fora Reserve</li>`;
+      : `<li>No chain programme; perks arranged through Nvoy's partner network</li>`;
     const note = $("#hc-note"); note.hidden = !h.note; note.textContent = h.note || "";
     const deal = DEALS.find((d) => { const a = norm(d.hotel), b = norm(h.name); return a && b && (a.includes(b) || b.includes(a)); });
     const dealEl = $("#hc-deal");
@@ -361,121 +407,20 @@
     $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => $("[name=name]").focus({ preventScroll: true }), 500);
   });
-  $("#hc-math").addEventListener("click", () => {
-    const h = exploreState; if (!h) return;
-    $("#m-hotel").value = h.name;
-    $("#travel-math").scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => $("#m-in").focus({ preventScroll: true }), 500);
-  });
-
-  /* Which programme does a hotel name fall under? Longest brand match wins. */
-  function matchProgram(name) {
-    const n = ` ${String(name || "").toLowerCase().replace(/[’']/g, "'")} `;
-    let best = null, bestLen = 0;
-    PROGRAMS.forEach((p) => (p.brands || []).forEach((b) => {
-      const bl = b.toLowerCase();
-      const re = new RegExp(`(^|[^a-z])${bl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^a-z]|$)`, "i");
-      if (re.test(n) && bl.length > bestLen) { best = p; bestLen = bl.length; }
-    }));
-    return best;
-  }
-
-  function nightsBetween(a, b) {
-    const d1 = parseDate(a), d2 = parseDate(b);
-    if (!d1 || !d2) return 0;
-    return Math.max(0, Math.round((d2 - d1) / 86400000));
-  }
-  const CREDIT_IN = { INR: 8400, USD: 100, EUR: 92, GBP: 78, AED: 367, SGD: 134, THB: 3400, JPY: 15000 };
-  const BREAKFAST_IN = { INR: 4500, USD: 55, EUR: 50, GBP: 45, AED: 200, SGD: 75, THB: 1900, JPY: 8000 };
-  function fmtMoney(n, cur) {
-    const sym = { USD: "$", EUR: "€", GBP: "£", INR: "₹", THB: "฿", JPY: "¥" }[cur];
-    const s = Math.round(n).toLocaleString("en-IN");
-    return sym ? `${sym}${s}` : `${cur} ${s}`;
-  }
-
-  let mathState = null;
-  function runMath() {
-    const hotel = $("#m-hotel").value.trim();
-    const cin = $("#m-in").value, cout = $("#m-out").value;
-    const res = $("#math-result");
-    if (!hotel) { $("#m-hotel").focus(); return; }
-    const prog = matchProgram(hotel);
-    const nights = nightsBetween(cin, cout);
-    mathState = { hotel, cin, cout, nights, prog };
-
-    // Google price check for these dates
-    const q = `${hotel}${cin && cout ? ` ${cin} to ${cout}` : ""}`;
-    const g = new URL("https://www.google.com/travel/search");
-    g.searchParams.set("q", q);
-    if (cin && cout) { g.searchParams.set("checkin", cin); g.searchParams.set("checkout", cout); }
-    $("#mr-google").href = g.toString();
-
-    const perks = prog ? prog.perks : (CONFIG.typicalPerks || []);
-    $("#mr-program").innerHTML = prog
-      ? `${esc(hotel)} falls under <strong>${esc(prog.name)}</strong>${prog.group ? ` (${esc(prog.group)})` : ""}. When you book it through Nvoy you typically get:`
-      : `I don't recognise this brand from the name, but many independent hotels are Fora Reserve partners with the same kind of perks. Typical extras:`;
-    $("#mr-nvoy-items").innerHTML = perks.map((x) => `<li>${esc(x)}</li>`).join("");
-    $("#mr-fine").textContent = nights
-      ? `${nights} night${nights === 1 ? "" : "s"}, ${fmt(parseDate(cin), false)} to ${fmt(parseDate(cout), true)}. Perks depend on the exact rate and the hotel's availability; I confirm before you pay.`
-      : "Perks depend on the exact rate and the hotel's availability; I confirm before you pay.";
-    res.hidden = false;
-    updateMathTotal();
-    res.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }
-  function updateMathTotal() {
-    const t = $("#mr-total");
-    const rate = parseFloat($("#m-rate").value), cur = $("#m-cur").value;
-    if (!mathState || !(rate > 0)) { t.hidden = true; $("#mr-direct-price").textContent = "The hotel's own rate"; $("#mr-nvoy-price").textContent = "Same rate"; return; }
-    const n = mathState.nights || 1;
-    const total = rate * n;
-    const hasCredit = (mathState.prog ? mathState.prog.perks : CONFIG.typicalPerks || []).some((p) => /credit/i.test(p));
-    const hasBreakfast = (mathState.prog ? mathState.prog.perks : CONFIG.typicalPerks || []).some((p) => /breakfast/i.test(p));
-    const extras = (hasCredit ? (CREDIT_IN[cur] || 0) : 0) + (hasBreakfast ? (BREAKFAST_IN[cur] || 0) * n : 0);
-    $("#mr-direct-price").textContent = `${fmtMoney(total, cur)} for ${n} night${n === 1 ? "" : "s"}`;
-    $("#mr-nvoy-price").textContent = `${fmtMoney(total, cur)}, same price`;
-    t.hidden = false;
-    t.textContent = extras
-      ? `Plus roughly ${fmtMoney(extras, cur)} of extras included (breakfast for two each day and the hotel credit, at typical values), before any upgrade.`
-      : "Same price, with the perks above included.";
-  }
-  $("#math-form").addEventListener("submit", (e) => { e.preventDefault(); runMath(); });
-  $("#m-rate").addEventListener("input", updateMathTotal);
-  $("#m-cur").addEventListener("change", updateMathTotal);
-  $("#mr-ask").addEventListener("click", () => {
-    if (!mathState) return;
-    const s = mathState;
-    setAsking({ hotel: s.hotel, perk: s.prog ? s.prog.name + " perks" : "partner perks", destination: s.hotel, country: "" });
-    const ef = $("#enquiry");
-    if (s.cin) $("[name=checkin]", ef).value = s.cin;
-    if (s.cout) $("[name=checkout]", ef).value = s.cout;
-    $("[name=destination]", ef).value = s.hotel;
-    $("#sent").hidden = true; $("#enquiry").hidden = false;
-    $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => $("[name=name]").focus({ preventScroll: true }), 500);
-  });
-
-  function renderMath() {
-    const m = CONFIG.travelMath;
-    const box = $("#math-example");
-    if (!m || !m.hotel) { box.hidden = true; return; }
-    box.hidden = false;
-    $("#math-sub").textContent = `${m.room ? m.room + " at " : ""}${m.hotel}.`;
-    $("#math-direct-label").textContent = m.directLabel || "Booking direct";
-    $("#math-direct-price").textContent = m.directPrice || "";
-    $("#math-direct-items").innerHTML = (m.directItems || []).map((t) => `<li>${esc(t)}</li>`).join("");
-    $("#math-nvoy-label").textContent = m.nvoyLabel || "Booked with Nvoy";
-    $("#math-nvoy-price").textContent = m.nvoyPrice || "";
-    $("#math-nvoy-items").innerHTML = (m.nvoyItems || []).map((t) => `<li>${esc(t)}</li>`).join("");
-  }
-
   function renderRecent() {
     const r = CONFIG.recentBookings || [];
     const box = $("#recent");
     if (!r.length) { box.hidden = true; return; }
     box.hidden = false;
-    $("#recent-list").innerHTML = r.map((b) => `<li><strong>${esc(b.hotel)}</strong><span>${esc(b.result || b.place || "")}</span></li>`).join("");
+    $("#recent-list").innerHTML = r.map((b) => `
+      <li class="recent-card">
+        <p class="recent-place">${esc(b.place || "")}</p>
+        <h4>${esc(b.hotel)}</h4>
+        ${b.perks && b.perks.length ? `<p class="recent-label">Perks received</p><ul class="recent-perks">${b.perks.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+        ${b.savings ? `<p class="recent-savings"><span>Saved</span>${esc(b.savings)}</p>` : ""}
+        ${b.when ? `<p class="recent-when">${esc(b.when)}</p>` : ""}
+      </li>`).join("");
   }
-
   function renderFaq() {
     const f = CONFIG.faq || [];
     const sec = $("#faq");
@@ -490,23 +435,23 @@
     $("#quote-grid").innerHTML = q.map((t) => `<blockquote class="quote"><p>“${esc(t.quote)}”</p><footer><strong>${esc(t.name)}</strong>${esc(t.trip || "")}</footer></blockquote>`).join("");
   }
 
-  function renderInsta() {
+  function renderFollow() {
     const handle = (CONFIG.instagram || "").replace(/^@/, "");
-    const url = handle ? `https://www.instagram.com/${handle}` : "#";
-    $("#insta-link").href = url;
-    $("#foot-insta").href = url;
-    const kinds = ["island", "coast", "city", "jungle", "desert", "mountain"];
-    $("#insta-strip").innerHTML = (CONFIG.instagramTiles || []).slice(0, 6).map((t, i) =>
-      `<a href="${esc(url)}" target="_blank" rel="noopener" aria-label="${esc(t.alt || "Instagram photo")}"><img src="${esc(t.image)}" alt="" width="300" height="300" data-art="${kinds[i % kinds.length]}" data-id="ig${i}"></a>`
-    ).join("");
-    hookImages($("#insta-strip"));
+    const url = handle ? `https://www.instagram.com/${handle}` : "";
+    const insta = $("#follow-insta");
+    if (url) { insta.href = url; $("#follow-insta-handle").textContent = `@${handle}`; $("#foot-insta").href = url; }
+    else { insta.hidden = true; $("#foot-insta").hidden = true; }
+    const ch = CONFIG.whatsappChannel;
+    const wa = $("#follow-wa"), fc = $("#foot-channel");
+    if (ch) { wa.href = ch; fc.href = ch; } else { wa.hidden = true; fc.hidden = true; }
+    $("#follow").hidden = !url && !ch;
   }
 
   function renderContact() {
     $$("[data-whatsapp]").forEach((a) => { a.href = waLink(); });
     if (CONFIG.email) { const e = $("#foot-email"); e.href = `mailto:${CONFIG.email}`; e.textContent = CONFIG.email; }
-    if (CONFIG.chains) $("#hero-note").textContent = `${CONFIG.chains}. Replies within a day, usually faster.`;
-    if (CONFIG.advisorFullName) $("#foot-line").textContent = `Nvoy Travels is an independent travel advisory. ${CONFIG.advisorFullName} is an advisor with Fora Travel.`;
+    if (CONFIG.heroNote) $("#hero-note").textContent = CONFIG.heroNote;
+    if (CONFIG.advisorFullName) $("#foot-line").textContent = `Nvoy Travels is an independent travel advisory run by ${CONFIG.advisorFullName}.`;
     $("#year").textContent = new Date().getFullYear();
   }
 
@@ -547,7 +492,7 @@
       const r = await fetchRating(deal);
       if (!r || !r.rating) return;
       if (r.googleMapsUri) a.href = r.googleMapsUri;
-      a.innerHTML = `<span class="rating-star" aria-hidden="true">★</span> ${esc(r.rating.toFixed(1))}${r.userRatingCount ? ` <span class="rating-count">(${esc(r.userRatingCount.toLocaleString("en-IN"))})</span>` : ""} <span class="rating-src">on Google</span>`;
+      a.innerHTML = ratingHtml(r.rating, r.userRatingCount);
       a.setAttribute("aria-label", `Rated ${r.rating.toFixed(1)} out of 5 on Google${r.userRatingCount ? ` from ${r.userRatingCount} reviews` : ""}`);
     });
   }
@@ -661,7 +606,7 @@
       const res = await fetch(CONFIG.formEndpoint, { method: "POST", headers: { Accept: "application/json" }, body: fd });
       ok = res.ok;
     } catch (err) { ok = false; }
-    btn.disabled = false; btn.textContent = "Send my trip details";
+    btn.disabled = false; btn.textContent = "Get my hotel options";
 
     const wa = $("#sent-wa");
     wa.href = waLink(text);
@@ -717,12 +662,11 @@
       renderPerks();
       renderPrograms();
       renderExplore();
-      renderMath();
       renderRecent();
       renderAbout();
       renderQuotes();
       renderFaq();
-      renderInsta();
+      renderFollow();
     } catch (err) {
       console.error(err);
       $("#deals-empty").hidden = false;
