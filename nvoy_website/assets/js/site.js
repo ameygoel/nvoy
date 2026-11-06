@@ -83,6 +83,17 @@
     const fn = ART[kind] || ART.island;
     return fn(String(id || "x").replace(/[^a-z0-9]/gi, ""));
   }
+  /* cards are one height; the middle scrolls when a deal has more to say */
+  function markScrollable(root) {
+    $$(".postcard-scroll", root).forEach((box) => {
+      const update = () => {
+        const more = box.scrollHeight > box.clientHeight + 4;
+        box.classList.toggle("can-scroll", more);
+        box.classList.toggle("at-end", !more || box.scrollTop + box.clientHeight >= box.scrollHeight - 6);
+      };
+      update(); box.addEventListener("scroll", update, { passive: true });
+    });
+  }
   /* swap an <img> for art when the file is missing */
   function attachFallback(img, kind, id) {
     img.addEventListener("error", () => {
@@ -103,6 +114,7 @@
     return d ? `${d.getDate()} ${MONTHS[d.getMonth()]}${withYear ? " " + d.getFullYear() : ""}` : "";
   }
   function datesLine(deal) {
+    if (deal.datesText) return deal.datesText;
     const parts = [];
     const by = parseDate(deal.bookBy);
     const from = parseDate(deal.travelFrom);
@@ -120,8 +132,10 @@
   }
   function isLive(deal) {
     const by = parseDate(deal.bookBy);
-    if (!by) return true;
+    const from = parseDate(deal.bookFrom);
     const today = new Date(); today.setHours(0, 0, 0, 0);
+    if (from && from > today) return false;
+    if (!by) return true;
     return by >= today;
   }
   function waLink(text) {
@@ -159,9 +173,11 @@
           ${deal.website ? `<a href="${esc(deal.website)}" target="_blank" rel="noopener">Hotel website</a>` : ""}
           ${deal.reviews ? `<a class="rating-link" data-rating-for="${esc(deal.id)}" href="${esc(deal.reviews)}" target="_blank" rel="noopener"${deal.rating ? ` aria-label="Rated ${esc(deal.rating)} out of 5 on Google from ${esc(deal.ratingCount || "")} reviews"` : ""}>${ratingHtml(deal.rating, deal.ratingCount)}</a>` : ""}
         </p>` : ""}
-        ${deal.note ? `<p class="postcard-note">${esc(deal.note)}</p>` : ""}
-        ${perks ? `<div class="postcard-block"><p class="postcard-label">Perks</p><ul class="postcard-details">${perks}</ul></div>` : ""}
-        ${terms ? `<div class="postcard-block postcard-terms"><p class="postcard-label">Terms</p><ul>${terms}</ul></div>` : ""}
+        <div class="postcard-scroll" tabindex="0" aria-label="Details for ${esc(deal.hotel)}">
+          ${deal.note ? `<p class="postcard-note">${esc(deal.note)}</p>` : ""}
+          ${perks ? `<div class="postcard-block"><p class="postcard-label">Perks</p><ul class="postcard-details">${perks}</ul></div>` : ""}
+          ${terms ? `<div class="postcard-block postcard-terms"><p class="postcard-label">Terms</p><ul>${terms}</ul></div>` : ""}
+        </div>
         <div class="postcard-meta">
           <p class="postcard-dates">${esc(datesLine(deal))}</p>
           ${deal.priceFrom ? `<p class="postcard-price">from<strong>${esc(money(deal))}<span class="postcard-per"> a night</span></strong>${deal.priceNote ? `<span class="postcard-pricenote">${esc(deal.priceNote)}</span>` : ""}</p>` : ""}
@@ -222,6 +238,7 @@
     $("#deals-empty").hidden = shown.length > 0;
     hookImages(grid);
     decorateRatings(grid);
+    markScrollable(grid);
     grid.scrollLeft = 0;
     requestAnimationFrame(updateArrows);
   }
@@ -390,7 +407,7 @@
     const note = $("#hc-note"); note.hidden = !h.note; note.textContent = h.note || "";
     const deal = DEALS.find((d) => { const a = norm(d.hotel), b = norm(h.name); return a && b && (a.includes(b) || b.includes(a)); });
     const dealEl = $("#hc-deal");
-    if (deal) { dealEl.hidden = false; dealEl.innerHTML = `On the deal board right now: <strong>${esc(deal.perk)}</strong>. <a href="#deals">See the deal</a>`; }
+    if (deal) { dealEl.hidden = false; dealEl.innerHTML = `On the deal board right now: <strong>${esc(deal.perk)}</strong>.`; }
     else dealEl.hidden = true;
     $("#hc-perks").innerHTML = hotelPerks(h).map((p) => `<li>${esc(p.text)}${p.via ? `<span class="via">${esc(p.via)}</span>` : ""}</li>`).join("");
     const terms = [].concat(h.terms || [], ...progs.map((p) => p.terms || []), COMMON_TERMS);

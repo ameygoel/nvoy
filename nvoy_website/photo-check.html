@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Nvoy photo check</title>
+<style>
+  :root { --navy:#042C50; --paper:#FFFDF9; --sand:#F2E5CC; --sand-deep:#E2D0AE; --coral:#F2644A; --green:#2E7D4F; --ink:#1d2a3a; --ink-soft:#5b6b7c; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Figtree, system-ui, sans-serif; background: var(--paper); color: var(--ink); }
+  header { background: var(--navy); color:#fff; padding: 18px 24px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; }
+  header h1 { margin:0; font-size:20px; font-weight:600; }
+  header p { margin:0; font-size:14px; opacity:.85; }
+  .summary { display:flex; gap:10px; flex-wrap:wrap; }
+  .pill { padding:6px 12px; border-radius:999px; font-size:14px; font-weight:600; background:rgba(255,255,255,.12); }
+  .pill.ok { background: var(--green); } .pill.bad { background: var(--coral); } .pill.wait { background:#8a6d1f; }
+  main { padding: 20px 24px 60px; }
+  .broken { background:#fff; border:1px solid var(--sand-deep); border-radius:10px; padding:14px 16px; margin-bottom:20px; font-size:14px; }
+  .broken h2 { margin:0 0 8px; font-size:15px; }
+  .broken code { display:block; white-space:pre-wrap; font-size:13px; color: var(--ink-soft); }
+  .broken button { margin-top:8px; padding:6px 12px; border:1px solid var(--navy); background:#fff; color:var(--navy); border-radius:6px; cursor:pointer; font: inherit; font-size:13px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:14px; }
+  .card { background:#fff; border:1px solid var(--sand-deep); border-radius:10px; overflow:hidden; }
+  .card.bad { border-color: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
+  .card.wait { opacity:.7; }
+  .ph { aspect-ratio: 4/3; background: var(--sand); display:flex; align-items:center; justify-content:center; color: var(--ink-soft); font-size:13px; position:relative; }
+  .ph img { width:100%; height:100%; object-fit:cover; display:block; }
+  .tag { position:absolute; left:8px; top:8px; padding:3px 8px; border-radius:6px; font-size:12px; font-weight:600; color:#fff; background: var(--green); }
+  .card.bad .tag { background: var(--coral); } .card.wait .tag { background:#8a6d1f; } .card.none .tag { background: var(--ink-soft); }
+  .meta { padding:10px 12px; font-size:13px; }
+  .meta b { display:block; font-size:14px; color: var(--navy); }
+  .meta span { color: var(--ink-soft); }
+  .meta a { color: var(--navy); word-break: break-all; font-size:12px; }
+  .filters { margin: 0 0 16px; display:flex; gap:8px; flex-wrap:wrap; }
+  .filters button { padding:6px 12px; border:1px solid var(--sand-deep); background:#fff; border-radius:999px; cursor:pointer; font: inherit; font-size:13px; }
+  .filters button.on { background: var(--navy); color:#fff; border-color: var(--navy); }
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Nvoy photo check</h1><p>Loads every deal photo in <em>your</em> browser and flags the ones that fail. Not linked from the site.</p></div>
+  <div class="summary" id="summary"><span class="pill wait">Loading…</span></div>
+</header>
+<main>
+  <div class="broken" id="broken" hidden>
+    <h2>Broken or missing photos</h2>
+    <code id="broken-list"></code>
+    <button type="button" id="copy">Copy list</button>
+  </div>
+  <div class="filters">
+    <button type="button" class="on" data-f="all">All</button>
+    <button type="button" data-f="bad">Broken</button>
+    <button type="button" data-f="none">No photo</button>
+    <button type="button" data-f="ok">Loaded</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+<script>
+(async () => {
+  const res = await fetch("deals.json?nocache=" + Date.now());
+  const data = await res.json();
+  const deals = data.deals.filter((d) => d && typeof d === "object" && d.id);
+  const grid = document.getElementById("grid");
+  const state = {};
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  deals.forEach((d) => {
+    const card = document.createElement("div");
+    card.className = "card " + (d.image ? "wait" : "none");
+    card.dataset.id = d.id;
+    const src = d.image || "";
+    card.innerHTML = `
+      <div class="ph">${src ? `<img alt="">` : "No photo (illustration shown on site)"}<span class="tag">${src ? "Loading" : "No photo"}</span></div>
+      <div class="meta"><b>${esc(d.hotel)}</b><span>${esc(d.city)}, ${esc(d.country)} · ${esc(d.imageSource || "")}</span>${src ? `<br><a href="${esc(src)}" target="_blank" rel="noopener">${esc(src)}</a>` : ""}</div>`;
+    grid.appendChild(card);
+    if (!src) { state[d.id] = "none"; return; }
+    state[d.id] = "wait";
+    const img = card.querySelector("img");
+    const tag = card.querySelector(".tag");
+    img.addEventListener("load", () => {
+      const tiny = img.naturalWidth < 600;
+      state[d.id] = tiny ? "bad" : "ok";
+      card.className = "card " + (tiny ? "bad" : "ok");
+      tag.textContent = tiny ? `Loaded but small (${img.naturalWidth}px)` : `OK ${img.naturalWidth}×${img.naturalHeight}`;
+      update();
+    });
+    img.addEventListener("error", () => { state[d.id] = "bad"; card.className = "card bad"; tag.textContent = "Failed to load"; update(); });
+    img.src = src;
+  });
+  function update() {
+    const n = (k) => Object.values(state).filter((v) => v === k).length;
+    document.getElementById("summary").innerHTML =
+      `<span class="pill ok">${n("ok")} loaded</span><span class="pill bad">${n("bad")} broken</span><span class="pill">${n("none")} no photo</span>` +
+      (n("wait") ? `<span class="pill wait">${n("wait")} loading</span>` : "");
+    const bad = deals.filter((d) => state[d.id] === "bad" || state[d.id] === "none");
+    const box = document.getElementById("broken");
+    box.hidden = !bad.length || n("wait") > 0;
+    document.getElementById("broken-list").textContent = bad.map((d) => `${d.id} — ${d.hotel} (${state[d.id] === "none" ? "no photo" : "failed"})`).join("\n");
+  }
+  update();
+  document.getElementById("copy").addEventListener("click", () => navigator.clipboard.writeText(document.getElementById("broken-list").textContent));
+  document.querySelectorAll(".filters button").forEach((b) => b.addEventListener("click", () => {
+    document.querySelectorAll(".filters button").forEach((x) => x.classList.toggle("on", x === b));
+    const f = b.dataset.f;
+    document.querySelectorAll(".card").forEach((c) => { c.style.display = f === "all" || state[c.dataset.id] === f ? "" : "none"; });
+  }));
+})();
+</script>
+</body>
+</html>

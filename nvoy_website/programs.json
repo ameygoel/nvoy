@@ -543,7 +543,8 @@
       "note": "Nvoy's own partner relationships with 5,000+ hotels, including many independents and boutique properties that have no chain programme.",
       "terms": [
         "Inclusions are agreed hotel by hotel; I confirm the exact list for your dates before booking."
-      ]
+      ],
+      "show": false
     }
   ],
   "commonTerms": [

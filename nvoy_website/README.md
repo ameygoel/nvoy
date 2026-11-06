@@ -39,12 +39,16 @@ Open `deals.json` (on GitHub: click the file, then the pencil icon). Each deal l
 
 - **To add a deal**: copy one block, paste it after the previous one (mind the comma between blocks), change the values. `id` must be unique.
 - **To remove a deal**: delete its block, or just set `bookBy` to a past date. Expired deals hide themselves.
+- **Card height**: every card is the same height (`--card-h` in style.css, 940px). A deal with a long note or many terms scrolls inside the card; the photo, dates line and button stay put, and a soft fade shows when there is more below.
+- **To check every deal photo**: open `photo-check.html` on the live site (it is not linked anywhere). It loads each photo in your browser and lists the ones that fail or are too small.
+- **To queue a deal that isn't bookable yet**: add `bookFrom` (YYYY-MM-DD). The card stays hidden until that date and appears on its own.
 - **Perks and terms** are two separate lists on the card: `perks` is what the guest gets, `terms` the conditions (minimum nights, lead time, prepayment, blackout dates).
 - **Photos**: put a JPG in `assets/img/deals/` and point `image` at it, or paste a full `https://` URL. If the photo is missing, the site draws a sunset illustration in the style named by `art` (`island`, `coast`, `city`, `mountain`, `desert`, `jungle`).
 - **Region** becomes the filter chips above the board and **city** feeds the city dropdown (which only lists cities inside the chosen region). Use the same spelling across deals. All eight regions are always shown as chips; a region with no open deal is greyed out. Regions: North America, Central America & Caribbean, South America, Europe, Middle East, Africa, Asia, Australia & Pacific. `destination` is optional display text (e.g. "Kaanapali Beach, Maui") shown instead of the city on the card.
 - **Dates** are `YYYY-MM-DD`. `priceFrom` is text, so `"1,150"` works. `currency` can be USD, EUR, GBP, INR, AED, THB, SGD.
 - **Links under the hotel name**: `website` (the official page) and the Google rating, which links to the hotel's own Google page (`reviews`, built from its `placeId`).
 - **Google star ratings**: `rating`, `ratingCount` and `ratingDate` hold the Google rating as looked up on that date, shown as "★ 4.6 (2,310) on Google". Google's terms prefer ratings to be fetched live rather than stored, so refresh these every month or two (search the hotel on Google Maps and copy the number), or paste a Google Maps Platform API key into `googlePlacesApiKey` in `config.json` and the live rating replaces the stored one automatically. Key setup: Google Cloud Console → create a project → enable "Places API (New)" → Credentials → API key → restrict it to your website's domain.
+- `datesText` (optional) replaces the automatic "Book by… Travel…" line on the card when an offer has no published dates; `bookBy` still decides when the card hides.
 - `source` is a private note on where the offer came from (a Fora HQ post, a partner mailing). It is not shown on the site.
 - Deals marked `"sample": true` show a small "Sample" tag on the card; none are on the board at the moment.
 
@@ -52,13 +56,17 @@ Commit the change and the live site updates within about a minute. If your brows
 
 If the JSON is invalid (a missing comma is the usual culprit), the board shows "The deal board couldn't load". Paste the file into https://jsonlint.com to find the line.
 
+## Domain
+
+The site lives at https://nvoytravel.com. The `CNAME` file in this folder tells GitHub Pages that; keep it in every upload or the custom domain switches off. DNS at the registrar: four A records on `@` pointing at GitHub's Pages addresses (185.199.108.153, .109.153, .110.153, .111.153) and a CNAME on `www` pointing at `ameygoel.github.io`.
+
 ## Deal board layout
 
 The board opens as one row that scrolls sideways (swipe on phones, arrows or shift-scroll on desktop) so it takes little vertical space. The Scroll / Grid switch next to the city dropdown expands it into the full grid; the visitor's choice is remembered in their browser.
 
 ## Explore perks by hotel
 
-`hotels.json` drives the dropdown. Each hotel names the programme(s) it belongs to (`programs`, using ids from `programs.json`); the card merges their perks, one per type, and lists the common terms plus each programme's own terms. For a hotel with a special arrangement, set `perks` (replaces the programme perks) or `extraPerks` (adds to them) and `terms`. A hotel whose name matches a deal on the board gets a "See the deal" link automatically.
+`hotels.json` drives the dropdown. Each hotel names the programme(s) it belongs to (`programs`, using ids from `programs.json`); the card merges their perks, one per type, and lists the common terms plus each programme's own terms. For a hotel with a special arrangement, set `perks` (replaces the programme perks) or `extraPerks` (adds to them) and `terms`. A hotel whose name matches a deal on the board shows a one-line note about that deal.
 
 ## Partner programme logos
 

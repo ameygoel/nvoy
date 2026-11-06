@@ -8,9 +8,583 @@
     "Optional: bookBy and travelFrom/travelTo (YYYY-MM-DD), priceFrom (text), currency, priceNote, image (path or URL), art (beach | island | city | mountain | desert | jungle | coast, used when there is no image), note (one line), source (where the offer came from; not shown).",
     "website: the hotel's official page. rating / ratingCount / ratingDate: the Google rating as looked up on ratingDate, shown next to the hotel name and linked to the hotel's Google page (reviews + placeId). Refresh these every month or two. With a Places API key in config.json the live rating replaces the stored one automatically.",
     "Deals with a bookBy date in the past are hidden automatically, so you can leave them in the file until you tidy up.",
-    "Images: a path in assets/img/deals/ or a full https:// URL. The current URLs point at the hotels' own websites; swap them for files from the brand partner image libraries when you have time."
+    "Images: a path in assets/img/deals/ or a full https:// URL. The current URLs point at the hotels' own websites; swap them for files from the brand partner image libraries when you have time.",
+    "datesText (optional): replaces the automatic 'Book by… Travel…' line on the card, e.g. when an offer has no published end date. bookBy still controls when the card hides."
   ],
   "deals": [
+    {
+      "id": "w-koh-samui",
+      "hotel": "W Koh Samui",
+      "city": "Koh Samui",
+      "destination": "Maenam, Koh Samui",
+      "country": "Thailand",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Breakfast for two, daily, at The Kitchen Table",
+        "$100 hotel credit per room, per stay (Marriott Luminous)",
+        "Room upgrade, early check-in and late check-out, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Travel 27 March to 22 December 2026, 1 March to 30 June 2027, or 1 September to 23 December 2027; not valid 23 December 2026 to 28 February 2027 or 1 July to 31 August 2027",
+        "Book by 22 December 2027",
+        "Not combinable with other promotions, vouchers or loyalty offers; not for groups of 10 rooms or more",
+        "Subject to availability"
+      ],
+      "bookBy": "2027-12-22",
+      "travelFrom": "2026-03-27",
+      "travelTo": "2027-12-23",
+      "art": "beach",
+      "note": "Pool villas on the quiet north coast between Maenam and Bo Phut; the sunset bar over the water is the reason people pick it.",
+      "website": "https://www.marriott.com/en-us/hotels/usmwh-w-koh-samui/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/usmwh-welcome-6562:Wide-Hor?wid=1336&fit=constrain",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=W+Koh+Samui&query_place_id=ChIJa7vY1p7wVDARzXOFnsNEikI",
+      "rating": 4.6,
+      "ratingCount": 1355,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJa7vY1p7wVDARzXOFnsNEikI",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026 (Marriott Luminous)"
+    },
+    {
+      "id": "fairmont-ambassador-seoul",
+      "hotel": "Fairmont Ambassador Seoul",
+      "city": "Seoul",
+      "country": "South Korea",
+      "region": "Asia",
+      "perk": "3rd night free",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Accor Preferred benefits apply: breakfast for two daily, hotel credit, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Book by 31 December 2026",
+        "Stays from 1 October 2026 to 31 March 2027",
+        "Accor Preferred rates only; subject to availability"
+      ],
+      "bookBy": "2026-12-31",
+      "travelFrom": "2026-10-01",
+      "travelTo": "2027-03-31",
+      "art": "city",
+      "note": "Yeouido riverside tower next to The Hyundai Seoul; breakfast at Spectrum comes with a Han River view.",
+      "website": "https://www.fairmont.com/en/hotels/seoul/fairmont-ambassador-seoul.html",
+      "image": "https://m.ahstatic.com/is/image/accorhotels/aja_p_5689-05:8by10?fmt=jpg&op_usm=1.75%2C0.3%2C2%2C0&resMode=sharp2&iccEmbed=true&icc=sRGB&dpr=on%2C1.5&wid=943&hei=1178&qlt=80",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Fairmont+Ambassador+Seoul&query_place_id=ChIJBcNO692ffDUR3keIXE6V49w",
+      "rating": 4.6,
+      "ratingCount": 1370,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJBcNO692ffDUR3keIXE6V49w",
+      "source": "HERA / Accor Preferred Promotions Q4 2026 mailing, 29 Sep 2026"
+    },
+    {
+      "id": "fairmont-kea-lani-maui",
+      "hotel": "Fairmont Kea Lani, Maui",
+      "city": "Maui",
+      "destination": "Wailea, Maui",
+      "country": "USA",
+      "region": "North America",
+      "perk": "4th night free",
+      "perks": [
+        "Fourth night free on every stay of 4 nights (stay 4, pay 3)",
+        "Accor Preferred benefits apply: breakfast for two daily, hotel credit, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 4 nights",
+        "Book by 15 December 2026",
+        "Stays until 19 December 2026",
+        "Accor Preferred rates only; subject to availability"
+      ],
+      "bookBy": "2026-12-15",
+      "travelTo": "2026-12-19",
+      "art": "beach",
+      "note": "Hawaii's only all-suite and villa resort, on Polo Beach in Wailea. Every room is a suite.",
+      "website": "https://www.fairmont-kea-lani.com/",
+      "image": "https://imgrp.news.hera-accor.com/1894/2026/09_SEPTEMBRE/ACCOR_PREFERRED_092026_V2/04.jpg",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Fairmont+Kea+Lani+Maui&query_place_id=ChIJDesmCSbbVHkRg7nl0yyHLhI",
+      "rating": 4.7,
+      "ratingCount": 3276,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJDesmCSbbVHkRg7nl0yyHLhI",
+      "source": "HERA / Accor Preferred Promotions Q4 2026 mailing, 29 Sep 2026"
+    },
+    {
+      "id": "sofitel-barcelona-skipper",
+      "hotel": "Sofitel Barcelona Skipper",
+      "city": "Barcelona",
+      "country": "Spain",
+      "region": "Europe",
+      "perk": "4th night free",
+      "perks": [
+        "Fourth night free on every stay of 4 nights (stay 4, pay 3)",
+        "Accor Preferred benefits apply: breakfast for two daily, hotel credit, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 4 nights",
+        "Book by 2 February 2027",
+        "Stays until 31 January 2027",
+        "Accor Preferred rates only; subject to availability"
+      ],
+      "bookBy": "2027-02-02",
+      "travelTo": "2027-01-31",
+      "art": "beach",
+      "note": "Seafront in Barceloneta, ten minutes from the centre, with a rooftop pool and a proper tapas bar.",
+      "website": "https://sofitel.accor.com/en/hotels/7341.html",
+      "image": "https://imgrp.news.hera-accor.com/1894/2026/09_SEPTEMBRE/ACCOR_PREFERRED_092026_V2/02.jpg",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Sofitel+Barcelona+Skipper&query_place_id=ChIJ-5jLkW-jpBIRTotmXXy34L4",
+      "rating": 4.6,
+      "ratingCount": 1306,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJ-5jLkW-jpBIRTotmXXy34L4",
+      "source": "HERA / Accor Preferred Promotions Q4 2026 mailing, 29 Sep 2026"
+    },
+    {
+      "id": "sofitel-new-york",
+      "hotel": "Sofitel New York",
+      "city": "New York",
+      "country": "USA",
+      "region": "North America",
+      "perk": "5th night free",
+      "perks": [
+        "Fifth night free on every stay of 5 nights (stay 5, pay 4)",
+        "Accor Preferred benefits apply: breakfast for two daily, hotel credit, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 5 nights",
+        "Book by 30 November 2026",
+        "Stays until 30 November 2026",
+        "Accor Preferred rates only; subject to availability"
+      ],
+      "bookBy": "2026-11-30",
+      "travelTo": "2026-11-30",
+      "art": "city",
+      "note": "Sofitel's newly renovated Midtown flagship on West 44th, a short walk to Bryant Park and the theatres.",
+      "website": "https://www.sofitel-new-york.com/",
+      "image": "https://s3.amazonaws.com/static-webstudio-accorhotels-usa-1.wp-ha.fastbooking.com/wp-content/uploads/sites/6/2025/11/17172939/1025-AJS-Sofitel-NYC_000048.jpg",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Sofitel+New+York&query_place_id=ChIJ5Zpl7_9YwokRFePhP7971nc",
+      "rating": 4.2,
+      "ratingCount": 2870,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJ5Zpl7_9YwokRFePhP7971nc",
+      "source": "HERA / Accor Preferred Promotions Q4 2026 mailing, 29 Sep 2026"
+    },
+    {
+      "id": "impression-moxche-by-secrets",
+      "hotel": "Impression Moxché by Secrets",
+      "city": "Playa del Carmen",
+      "destination": "Playa del Carmen, Riviera Maya",
+      "country": "Mexico",
+      "region": "Central America & Caribbean",
+      "perk": "15% off all-inclusive",
+      "perks": [
+        "15% off the all-inclusive rate",
+        "Hyatt Privé benefits apply: resort credit and room upgrade subject to availability"
+      ],
+      "terms": [
+        "Book and complete the stay by 31 December 2026",
+        "Hyatt Privé rates only; subject to availability"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2026-12-31",
+      "art": "beach",
+      "note": "Adults-only, all-inclusive and AAA Five Diamond, with butler service and rooftop pools on the Riviera Maya.",
+      "website": "https://www.hyattinclusivecollection.com/en/resorts-hotels/impression-by-secrets/mexico/moxche/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Impression+Moxch%C3%A9+by+Secrets&query_place_id=ChIJNT8y05FdTo8RX0q_LeRKVp4",
+      "rating": 4.3,
+      "ratingCount": 409,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJNT8y05FdTo8RX0q_LeRKVp4",
+      "source": "Hyatt Privé advisor mailing, 24 Sep 2026 (curated offers)",
+      "image": "https://media.timeout.com/images/106116681/750/422/image.jpg",
+      "imageSource": "Hyatt press photo (via Time Out)"
+    },
+    {
+      "id": "park-hyatt-niseko-hanazono",
+      "hotel": "Park Hyatt Niseko Hanazono",
+      "city": "Niseko",
+      "destination": "Niseko, Hokkaido",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "Dinner every night",
+      "perks": [
+        "Signature welcome amenity on arrival",
+        "Dinner experience each night of the stay",
+        "Hyatt Privé benefits apply: breakfast for two daily, $100 hotel credit per stay, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Book by 28 November 2026",
+        "Stays completed by 30 November 2026",
+        "Hyatt Privé rates only; subject to availability"
+      ],
+      "bookBy": "2026-11-28",
+      "travelTo": "2026-11-30",
+      "art": "mountain",
+      "note": "Ski-in, ski-out at the foot of Hanazono, with onsen and eight restaurants. This is the pre-season window before the powder crowds.",
+      "website": "https://www.hyatt.com/park-hyatt/en-US/ctsph-park-hyatt-niseko-hanazono",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Park+Hyatt+Niseko+Hanazono&query_place_id=ChIJv5iZI1-6Cl8R9XWIzeL28QE",
+      "rating": 4.5,
+      "ratingCount": 761,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJv5iZI1-6Cl8R9XWIzeL28QE",
+      "source": "Hyatt Privé advisor mailing, 24 Sep 2026 (curated offers)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1337027.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "park-hyatt-milan",
+      "hotel": "Park Hyatt Milan",
+      "city": "Milan",
+      "country": "Italy",
+      "region": "Europe",
+      "perk": "Airport transfer included",
+      "perks": [
+        "Private one-way airport transfer per stay",
+        "Round-trip airport transfer when booking a Brera Suite or higher",
+        "Hyatt Privé benefits apply: breakfast for two daily, $100 hotel credit per stay, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Eligible room types confirmed at enquiry",
+        "Book and complete the stay by 31 December 2026",
+        "Hyatt Privé rates only; subject to availability"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2026-12-31",
+      "art": "city",
+      "note": "Steps from the Duomo and the Galleria, freshly back from a €20 million makeover.",
+      "website": "https://www.hyatt.com/park-hyatt/en-US/milph-park-hyatt-milan",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Park+Hyatt+Milan&query_place_id=ChIJ9UXYzq3GhkcRdOypx8zxtS0",
+      "rating": 4.7,
+      "ratingCount": 1717,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJ9UXYzq3GhkcRdOypx8zxtS0",
+      "source": "Hyatt Privé advisor mailing, 22 Jul 2026 (curated offers)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1377494.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "park-hyatt-guangzhou",
+      "hotel": "Park Hyatt Guangzhou",
+      "city": "Guangzhou",
+      "country": "China",
+      "region": "Asia",
+      "perk": "15% off suites + $100 credit",
+      "perks": [
+        "15% off Premium and Specialty Suites",
+        "Additional US$100 hotel credit per stay",
+        "Hyatt Privé benefits apply: breakfast for two daily, $100 hotel credit per stay, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Premium and Specialty Suites only",
+        "Minimum stay of 2 nights",
+        "Book by 30 December 2026",
+        "Stays from 1 September to 30 December 2026",
+        "Hyatt Privé rates only; subject to availability"
+      ],
+      "bookBy": "2026-12-30",
+      "travelFrom": "2026-09-01",
+      "travelTo": "2026-12-30",
+      "art": "city",
+      "note": "Floors 53 to 70 of a Zhujiang New Town tower; the suites look straight down the skyline to Canton Tower.",
+      "website": "https://www.hyatt.com/park-hyatt/en-US/guaph-park-hyatt-guangzhou",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Park+Hyatt+Guangzhou&query_place_id=ChIJDQIV-RH_AjQRGbprjvgyHDM",
+      "rating": 4.5,
+      "ratingCount": 247,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJDQIV-RH_AjQRGbprjvgyHDM",
+      "source": "Hyatt Privé advisor mailing, 22 Jul 2026 (curated offers)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1520942.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "park-hyatt-paris-vendome",
+      "hotel": "Park Hyatt Paris-Vendôme",
+      "city": "Paris",
+      "country": "France",
+      "region": "Europe",
+      "perk": "Up to €300 hotel credit",
+      "perks": [
+        "Up to €300 hotel credit per room, per stay, depending on room category and length of stay",
+        "Up to 15% off suites",
+        "Hyatt Privé benefits apply: breakfast for two daily, with room upgrade and late check-out subject to availability"
+      ],
+      "terms": [
+        "Credit amount and suite discount depend on room category and length of stay; confirmed at enquiry",
+        "Booking and travel windows confirmed at enquiry; offer current as of 1 November 2026",
+        "Hyatt Privé rates only"
+      ],
+      "bookBy": "2026-12-31",
+      "art": "city",
+      "note": "Rue de la Paix, between Place Vendôme and the Opéra. Three restaurants, one of them Michelin-starred.",
+      "website": "https://www.hyatt.com/park-hyatt/en-US/parph-park-hyatt-paris-vendome",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Park+Hyatt+Paris-Vend%C3%B4me&query_place_id=ChIJ5-zMpTFu5kcRlbu1UHIhv74",
+      "rating": 4.6,
+      "ratingCount": 1742,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJ5-zMpTFu5kcRlbu1UHIhv74",
+      "source": "Fora Forum, Supplier Deals & Promos, 1 Nov 2026 (Anson Tan)",
+      "datesText": "Booking and travel dates confirmed at enquiry.",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1421436.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "hotel-sevilla-merida",
+      "hotel": "Hotel Sevilla",
+      "city": "Mérida",
+      "country": "Mexico",
+      "region": "Central America & Caribbean",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 3 nights (stay 3, pay 2)"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "city",
+      "note": "A 16th-century mansion in the old town, one block from the main square, with a courtyard pool and Yucatecan kitchen.",
+      "website": "https://www.designhotels.com/hotels/mexico/merida/hotel-sevilla/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Hotel+Sevilla+M%C3%A9rida&query_place_id=ChIJt4Gp8mFxVo8R4JYqJOnm0nc",
+      "rating": 4.3,
+      "ratingCount": 42,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJt4Gp8mFxVo8R4JYqJOnm0nc",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "destination": "Mérida, Yucatán",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1576197.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "shelborne-miami-beach",
+      "hotel": "The Shelborne by Proper",
+      "city": "Miami Beach",
+      "country": "USA",
+      "region": "North America",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 3 nights (stay 3, pay 2)"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "beach",
+      "note": "Freshly renovated Art Deco landmark on Collins Avenue, right on the sand.",
+      "website": "https://shelborne.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Shelborne+by+Proper+Miami+Beach&query_place_id=ChIJyVYiVDG12YgR6b2MKbM5x7g",
+      "rating": 4.6,
+      "ratingCount": 310,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJyVYiVDG12YgR6b2MKbM5x7g",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "image": "https://shelborne.com/wp-content/uploads/2025/12/gallery_10-min.jpg"
+    },
+    {
+      "id": "hotel-skeppsholmen",
+      "hotel": "Hotel Skeppsholmen",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "region": "Europe",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 5 nights (stay 5, pay 4)"
+      ],
+      "terms": [
+        "Minimum stay of 5 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "coast",
+      "note": "Two 1699 naval buildings on their own island, a ferry hop from the old town; breakfast is the famous part.",
+      "website": "https://www.hotelskeppsholmen.se/en/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Hotel+Skeppsholmen+Stockholm&query_place_id=ChIJtenOqRxxX0YRpiZ0bJ1z7vg",
+      "rating": 4.4,
+      "ratingCount": 1047,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJtenOqRxxX0YRpiZ0bJ1z7vg",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "image": "https://nobis-2.s3.eu-central-1.amazonaws.com/Hotel-Skeppsholmen/Hotel/_1200x630_crop_center-center_82_none/HotelSkeppsholmen_Entrance_Summer_BeatriceGraalheim_3_2025-03-10-154339_acfs.jpg?v=1776068379"
+    },
+    {
+      "id": "hotel-escondido",
+      "hotel": "Hotel Escondido",
+      "city": "Puerto Escondido",
+      "country": "Mexico",
+      "region": "Central America & Caribbean",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 3 nights (stay 3, pay 2)"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "beach",
+      "note": "Sixteen palapa cabins with private plunge pools on an empty Oaxacan beach, 45 minutes from town.",
+      "website": "https://hotelescondido.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Hotel+Escondido+Puerto+Escondido&query_place_id=ChIJD4hLpKlEuIUR3FERqG7kfjo",
+      "rating": 4.3,
+      "ratingCount": 302,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJD4hLpKlEuIUR3FERqG7kfjo",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "destination": "Puerto Escondido, Oaxaca",
+      "image": "https://hotelescondido.com/dist/img/hotel-escondido/bg/banner.jpg"
+    },
+    {
+      "id": "zum-loewen-duderstadt",
+      "hotel": "Zum Löwen Design Hotel Resort & Spa",
+      "city": "Duderstadt",
+      "country": "Germany",
+      "region": "Europe",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 3 nights (stay 3, pay 2)"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "mountain",
+      "note": "Half-timbered hotel in a medieval Lower Saxony town, with a proper spa and pool behind the old facade.",
+      "website": "https://www.designhotels.com/hotels/germany/duderstadt/zum-loewen-design-hotel-resort-spa/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Zum+L%C3%B6wen+Design+Hotel+Resort+%26+Spa+Duderstadt&query_place_id=ChIJD4YnUMbepEcRoBrGMlsrwKg",
+      "rating": 4.5,
+      "ratingCount": 1008,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJD4YnUMbepEcRoBrGMlsrwKg",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1444691.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "blique-by-nobis",
+      "hotel": "Blique by Nobis",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "region": "Europe",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 3 nights (stay 3, pay 2)"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "city",
+      "note": "Sigurd Lewerentz warehouse in Vasastan with a rooftop bar; the gallery district is on the doorstep.",
+      "website": "https://www.bliquebynobis.se/en",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Blique+by+Nobis+Stockholm&query_place_id=ChIJuxzKCMydX0YRhyyLKRBmlPc",
+      "rating": 4.3,
+      "ratingCount": 1314,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJuxzKCMydX0YRhyyLKRBmlPc",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "image": "https://nobis-2.s3.eu-central-1.amazonaws.com/Blique-by-Nobis/Hotel/_1200x630_crop_center-center_82_none/Blique_Origo_1_Beatrice-Graalheim_22.jpg?v=1776068190"
+    },
+    {
+      "id": "nobis-hotel-copenhagen",
+      "hotel": "Nobis Hotel Copenhagen",
+      "city": "Copenhagen",
+      "country": "Denmark",
+      "region": "Europe",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 5 nights (stay 5, pay 4)"
+      ],
+      "terms": [
+        "Minimum stay of 5 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "city",
+      "note": "A 1903 conservatory building beside Tivoli, two minutes from the central station.",
+      "website": "https://www.nobishotel.dk/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Nobis+Hotel+Copenhagen+Copenhagen&query_place_id=ChIJfXY1EhNTUkYR9JTN38WMUZk",
+      "rating": 4.5,
+      "ratingCount": 466,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJfXY1EhNTUkYR9JTN38WMUZk",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "image": "https://nobis-2.s3.eu-central-1.amazonaws.com/Nobis%20Hotel%20Copenhagen/Hotel/_1200x630_crop_center-center_82_none/NobisCopenhagen_Exterior_Facade_Kristine%20Boel_1.jpg?v=1776068057"
+    },
+    {
+      "id": "habita-mexico-city",
+      "hotel": "Habita",
+      "city": "Mexico City",
+      "country": "Mexico",
+      "region": "Central America & Caribbean",
+      "perk": "Last night free",
+      "perks": [
+        "Last night free on a stay of 3 nights (stay 3, pay 2)",
+        "Also 40% off on stays of 7 nights or more under the Work and Wander rate (open-ended)"
+      ],
+      "terms": [
+        "Minimum stay of 3 nights",
+        "Stays until 15 November 2026",
+        "Subject to availability; hotel-specific conditions may apply"
+      ],
+      "bookBy": "2026-11-15",
+      "travelTo": "2026-11-15",
+      "art": "city",
+      "note": "Frosted-glass box on Presidente Masaryk in Polanco; rooftop pool and bar with city views.",
+      "website": "https://www.hotelhabita.com/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Habita+Mexico+City&query_place_id=ChIJl0NWp6r40YURva0P89-nzCU",
+      "rating": 4.3,
+      "ratingCount": 1330,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJl0NWp6r40YURva0P89-nzCU",
+      "source": "Design Hotels partner mailing, 22 Oct 2026 (A Night on Us)",
+      "destination": "Polanco, Mexico City",
+      "image": "https://www.hotelhabita.com/dist/img/habita-hotel/bg/banner.jpg"
+    },
+    {
+      "id": "elizabeth-unique-venice",
+      "hotel": "Elizabeth Unique Venice",
+      "city": "Venice",
+      "country": "Italy",
+      "region": "Europe",
+      "perk": "50% off",
+      "perks": [
+        "50% off the nightly rate with the hotel's debut offer"
+      ],
+      "terms": [
+        "Limited-time opening offer; booking window, stay dates and rate conditions confirmed at enquiry",
+        "Subject to availability"
+      ],
+      "bookBy": "2026-12-31",
+      "art": "coast",
+      "note": "New in Cannaregio: a 15th-century palazzo on the canal with rooms by Cristina Celestino, away from the San Marco crowds.",
+      "website": "https://www.designhotels.com/hotels/italy/venice/veneto/elizabeth-unique-venice/",
+      "image": "https://www.designhotels.com/media/bdygc0gl/t-generic-01-elizabeth-unique-venice-italy.jpg?rxy=0.5776709409737355,0.5596258199462854&height=1280&v=1dd3abead007af0",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Elizabeth+Unique+Venice&query_place_id=ChIJ67nggaaxfkcR9QKdWKhIFUo",
+      "rating": 4.7,
+      "ratingCount": 35,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJ67nggaaxfkcR9QKdWKhIFUo",
+      "source": "Design Hotels partner mailing, 2 Nov 2026 (New hotels)",
+      "datesText": "Booking and travel dates confirmed at enquiry."
+    },
     {
       "id": "westin-maui",
       "hotel": "The Westin Maui Resort & Spa, Kaanapali",
@@ -20,15 +594,16 @@
       "region": "North America",
       "perk": "4th night free",
       "perks": [
-        "4th night free",
-        "$400 resort credit",
+        "Fourth night free on every stay of 4 nights or more",
+        "$400 resort credit per room, per stay",
         "Breakfast for two, daily",
-        "$100 hotel credit and room upgrade when available, through Marriott Luminous"
+        "$100 hotel credit per room, per stay (Marriott Luminous)",
+        "Room upgrade on arrival, subject to availability"
       ],
       "terms": [
-        "Minimum 4 nights",
+        "Minimum stay of 4 nights",
         "Book and travel by 31 March 2027",
-        "Upgrade and late check-out depend on availability at check-in"
+        "Upgrade and late check-out subject to availability at check-in"
       ],
       "bookBy": "2027-03-31",
       "travelTo": "2027-03-31",
@@ -52,15 +627,15 @@
       "region": "North America",
       "perk": "4th night free",
       "perks": [
-        "4th night complimentary",
+        "Fourth night free on every stay of 4 consecutive nights",
         "Breakfast for two, daily",
-        "$100 hotel credit",
-        "Room upgrade and late check-out, when available (Marriott STARS)"
+        "$100 hotel credit per room, per stay (Marriott STARS)",
+        "Room upgrade and late check-out, subject to availability"
       ],
       "terms": [
-        "Stay 3 consecutive nights to receive the 4th free",
+        "Minimum stay of 4 consecutive nights (3 paid, 1 free)",
         "Book by 27 December 2026",
-        "Travel until 31 December 2026"
+        "Travel by 31 December 2026"
       ],
       "bookBy": "2026-12-27",
       "travelTo": "2026-12-31",
@@ -85,12 +660,13 @@
       "perk": "Save 25%",
       "perks": [
         "25% off the nightly rate",
-        "$100 dining credit",
-        "10% off spa treatments",
-        "Breakfast for two and upgrade when available, through Marriott Luminous"
+        "$100 dining credit per room, per stay",
+        "10% off spa treatments during the stay",
+        "Breakfast for two, daily (Marriott Luminous)",
+        "Room upgrade on arrival, subject to availability"
       ],
       "terms": [
-        "Minimum 4 nights",
+        "Minimum stay of 4 nights",
         "Book and travel by 18 December 2026"
       ],
       "bookBy": "2026-12-18",
@@ -115,12 +691,12 @@
       "region": "North America",
       "perk": "Up to $300 resort credit",
       "perks": [
-        "Up to $300 resort credit for dining, golf or retail",
-        "Partner perks arranged through Fora Reserve"
+        "Up to $300 resort credit per room, per stay, for dining, golf or retail",
+        "Nvoy partner perks confirmed at booking"
       ],
       "terms": [
-        "Minimum 3 nights",
-        "Select stays through 31 December 2026",
+        "Minimum stay of 3 nights",
+        "Valid on selected stays through 31 December 2026",
         "Book by 30 December 2026"
       ],
       "bookBy": "2026-12-30",
@@ -145,13 +721,13 @@
       "region": "North America",
       "perk": "Save up to 30%",
       "perks": [
-        "15 to 30% off per night",
+        "15% to 30% off the nightly rate, depending on length of stay",
         "Breakfast for two, daily",
-        "$100 hotel credit",
-        "Room upgrade when available, through Marriott Luminous"
+        "$100 hotel credit per room, per stay (Marriott Luminous)",
+        "Room upgrade on arrival, subject to availability"
       ],
       "terms": [
-        "Minimum 3 nights",
+        "Minimum stay of 3 nights",
         "Book and travel by 31 December 2026"
       ],
       "bookBy": "2026-12-31",
@@ -176,13 +752,13 @@
       "region": "North America",
       "perk": "Save up to 30%",
       "perks": [
-        "Up to 30% off",
+        "Up to 30% off the nightly rate, depending on length of stay",
         "Breakfast for two, daily",
-        "$100 hotel credit and welcome amenity",
-        "Early check-in, late check-out and upgrade, when available (Marriott Luminous)"
+        "$100 hotel credit per room, per stay, plus a welcome amenity (Marriott Luminous)",
+        "Early check-in, late check-out and room upgrade, subject to availability"
       ],
       "terms": [
-        "Stay 3 to 5+ nights; the longer the stay, the bigger the saving",
+        "Minimum stay of 3 nights; the discount increases on stays of 5 nights or more",
         "Book and travel by 30 April 2027"
       ],
       "bookBy": "2027-04-30",
@@ -206,14 +782,14 @@
       "region": "North America",
       "perk": "25% off luxury rates",
       "perks": [
-        "25% off the hotel's luxury rates",
+        "25% off the hotel's Luxury (flexible) rates",
         "Breakfast for two, daily",
-        "$100 hotel credit",
-        "Upgrade and late check-out when available, through Hilton Impresario"
+        "$100 hotel credit per room, per stay (Hilton Impresario)",
+        "Room upgrade and late check-out, subject to availability"
       ],
       "terms": [
         "Book and travel by 31 March 2027",
-        "Luxury (flexible) rates only"
+        "Applies to Luxury (flexible) rates only"
       ],
       "bookBy": "2027-03-31",
       "travelTo": "2027-03-31",
@@ -237,12 +813,12 @@
       "region": "Central America & Caribbean",
       "perk": "Up to 20% off",
       "perks": [
-        "Up to 20% off the nightly rate"
+        "Up to 20% off the nightly rate on stays of 7 nights or more"
       ],
       "terms": [
-        "Minimum 7 nights",
+        "Minimum stay of 7 nights",
         "Book at least 60 days before arrival",
-        "Book by 1 December 2026, travel until 20 December 2026",
+        "Book by 1 December 2026; travel by 20 December 2026",
         "New reservations only; blackout dates apply"
       ],
       "bookBy": "2026-12-01",
@@ -255,7 +831,9 @@
       "rating": 4.5,
       "ratingCount": 2843,
       "ratingDate": "2026-11-01",
-      "placeId": "ChIJ4QplCQY4hY4RUGR4EZmeGfo"
+      "placeId": "ChIJ4QplCQY4hY4RUGR4EZmeGfo",
+      "image": "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,h_900,q_80,f_auto,g_auto/Imagery/Property%20Photography/Hilton%20Full%20Service/A/AUATTHH/K1LSRoom.jpg",
+      "imageSource": "official site"
     },
     {
       "id": "retreat-costa-rica",
@@ -266,12 +844,12 @@
       "region": "Central America & Caribbean",
       "perk": "10% off, 25% off wellness",
       "perks": [
-        "10% off Breakfast Included and Retreat Experience rates",
-        "25% off wellness programmes"
+        "10% off the Breakfast Included and Retreat Experience rates",
+        "25% off wellness programmes booked with the stay"
       ],
       "terms": [
-        "Book early",
-        "Book and travel by 30 November 2026"
+        "Book and travel by 30 November 2026",
+        "Subject to availability"
       ],
       "bookBy": "2026-11-30",
       "travelTo": "2026-11-30",
@@ -294,13 +872,13 @@
       "region": "Europe",
       "perk": "4th night free",
       "perks": [
-        "Equivalent of the 4th night free (25% off each night)",
+        "Equivalent of the fourth night free (25% off each night) on stays of 4 consecutive nights",
         "Breakfast for two, daily",
-        "$100 hotel credit",
-        "Upgrade and late check-out when available, through Marriott STARS"
+        "$100 hotel credit per room, per stay (Marriott STARS)",
+        "Room upgrade and late check-out, subject to availability"
       ],
       "terms": [
-        "Minimum 4 consecutive nights",
+        "Minimum stay of 4 consecutive nights",
         "Book and travel by 31 December 2026"
       ],
       "bookBy": "2026-12-31",
@@ -324,13 +902,13 @@
       "region": "Europe",
       "perk": "Save 20%",
       "perks": [
-        "20% off with the Early Purchase offer",
-        "Access to Thermes Marins Monte-Carlo"
+        "20% off the nightly rate with the Early Purchase offer",
+        "Access to the Thermes Marins Monte-Carlo spa and pool during the stay"
       ],
       "terms": [
         "Book at least 45 days before arrival",
         "Book by 14 February 2027",
-        "Travel until 31 March 2027"
+        "Travel by 31 March 2027"
       ],
       "bookBy": "2027-02-14",
       "travelTo": "2027-03-31",
@@ -353,16 +931,16 @@
       "region": "Europe",
       "perk": "Dinner for two included",
       "perks": [
-        "Three-course dinner for two at Le Terrazze, with a glass of wine each",
-        "Daily à la carte breakfast",
-        "Welcome Prosecco and chocolate truffles",
+        "Three-course dinner for two at Le Terrazze rooftop restaurant, with a glass of wine each (once per stay)",
+        "À la carte breakfast for two, daily",
+        "Welcome Prosecco and chocolate truffles in the room on arrival",
         "Personal in-room check-in",
-        "Farewell gift"
+        "Farewell gift on departure"
       ],
       "terms": [
-        "Minimum 2 nights",
+        "Minimum stay of 2 nights",
         "Book and travel by 28 February 2027",
-        "Blackout 21 December 2026 to 7 January 2027"
+        "Not valid 21 December 2026 to 7 January 2027"
       ],
       "bookBy": "2027-02-28",
       "travelTo": "2027-02-28",
@@ -386,19 +964,19 @@
       "region": "Europe",
       "perk": "Stay 3, pay 2",
       "perks": [
-        "Third night free",
-        "Two golf courses and a 3,200 m² spa on site"
+        "Third night free on every stay of 3 nights (stay 3, pay 2)"
       ],
       "terms": [
-        "Premier Suites and Villas only, 3-night minimum",
-        "50% prepayment; free cancellation up to 14 days before arrival",
+        "Valid on Premier Suites and Villas only",
+        "Minimum stay of 3 nights",
+        "50% prepayment at booking; free cancellation up to 14 days before arrival",
         "Book and travel by 10 November 2026"
       ],
       "bookBy": "2026-11-10",
       "travelTo": "2026-11-10",
       "image": "https://www.terre-blanche.com/images/90/terre-blanche-hotel-spa-golf-resort-luxewebp-fe.webp?w=1200&mode=max&format=webp&webp.lossless=false&webp.quality=80",
       "art": "mountain",
-      "note": "Last call: this closes on 10 November.",
+      "note": "Last call: this closes on 10 November. Provençal estate with two golf courses and a 3,200 m² spa.",
       "source": "Fora HQ Deals & Promos, 1 Aug 2026",
       "website": "https://www.terre-blanche.com/",
       "reviews": "https://www.google.com/maps/search/?api=1&query=Terre+Blanche&query_place_id=ChIJ826qBeEfzBIRoyHxdIg-1go",
@@ -416,12 +994,12 @@
       "region": "Europe",
       "perk": "Save 25%",
       "perks": [
-        "25% off accommodation with the autumn special"
+        "25% off accommodation with the Autumn Special rate"
       ],
       "terms": [
-        "Full, non-refundable prepayment at booking",
+        "Full, non-refundable prepayment required at booking",
         "Book by 7 November 2026",
-        "Travel until 13 December 2026"
+        "Travel by 13 December 2026"
       ],
       "bookBy": "2026-11-07",
       "travelTo": "2026-12-13",
@@ -445,12 +1023,12 @@
       "region": "Europe",
       "perk": "Connecting room at half price",
       "perks": [
-        "Connecting room at 50% off the nightly rate when you book a suite",
+        "Connecting room at 50% off the nightly rate when booked with a suite",
         "Breakfast and partner perks confirmed per booking"
       ],
       "terms": [
-        "Suite booking required",
-        "Stays 1 September 2026 to 31 May 2027",
+        "A suite booking is required",
+        "Stays from 1 September 2026 to 31 May 2027",
         "Book by 31 May 2027"
       ],
       "bookBy": "2027-05-31",
@@ -475,14 +1053,14 @@
       "region": "Europe",
       "perk": "15% off, breakfast included",
       "perks": [
-        "15% off the flexible rate",
-        "Breakfast included",
-        "Access to the new Unlimited Club: pool, sauna, gym and Codage treatments"
+        "15% off the flexible rate with the Winter Offer",
+        "Breakfast included, daily",
+        "Access to the Unlimited Club during the stay: pool, sauna, gym and Codage treatments"
       ],
       "terms": [
-        "Winter Offer rate",
+        "Booked under the hotel's Winter Offer rate",
         "Book by 30 March 2027",
-        "Stays 1 November 2026 to 31 March 2027"
+        "Stays from 1 November 2026 to 31 March 2027"
       ],
       "bookBy": "2027-03-30",
       "travelFrom": "2026-11-01",
@@ -495,7 +1073,9 @@
       "rating": 4.0,
       "ratingCount": 957,
       "ratingDate": "2026-11-01",
-      "placeId": "ChIJc8zx1tpv5kcR4XnN_LMREjQ"
+      "placeId": "ChIJc8zx1tpv5kcR4XnN_LMREjQ",
+      "image": "https://www.designhotels.com/media/v0iescyv/lamaisonchampselysees-paris-france-t-jpg.jpg?height=1280&v=1d8b3d2001d8bb0",
+      "imageSource": "official site"
     },
     {
       "id": "shangri-la-rasa-sentosa",
@@ -506,17 +1086,17 @@
       "region": "Asia",
       "perk": "Stay 3, pay 2",
       "perks": [
-        "Third night free",
-        "S$50 voucher for The Palawan @ Sentosa dining and attractions",
-        "Breakfast for two including in-room dining",
-        "US$100 hotel credit per stay",
-        "Room upgrade to the next category and early check-in or late check-out, when available (Luxury Circle)"
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "S$50 dining and attractions voucher per stay for The Palawan @ Sentosa",
+        "Breakfast for two, daily, including in-room dining",
+        "US$100 hotel credit per room, per stay (Luxury Circle)",
+        "Room upgrade to the next category, with early check-in or late check-out, subject to availability"
       ],
       "terms": [
-        "Minimum 3 nights",
+        "Minimum stay of 3 nights",
         "Book by 14 December 2026",
-        "Stays 10 August to 17 December 2026",
-        "Voucher has a minimum spend"
+        "Stays from 10 August to 17 December 2026",
+        "The voucher carries a minimum spend"
       ],
       "bookBy": "2026-12-14",
       "travelTo": "2026-12-17",
@@ -528,7 +1108,9 @@
       "rating": 4.5,
       "ratingCount": 7456,
       "ratingDate": "2026-11-01",
-      "placeId": "ChIJ7aFemPAb2jERQTmgdV0wbLM"
+      "placeId": "ChIJ7aFemPAb2jERQTmgdV0wbLM",
+      "image": "assets/img/deals/shangri-la-rasa-sentosa.jpg",
+      "imageSource": "Shangri-La Singapore newsletter (hotel photo)"
     },
     {
       "id": "shangri-la-singapore-sweet-voyages",
@@ -539,15 +1121,15 @@
       "region": "Asia",
       "perk": "US$150 credit + transfer",
       "perks": [
-        "US$150 hotel credit",
-        "Complimentary one-way transfer to or from the cruise centre",
-        "Combinable with Stay 3, Pay 2",
-        "Breakfast for two, room upgrade and early check-in or late check-out when available (Luxury Circle)"
+        "US$150 hotel credit per room, per stay",
+        "Complimentary one-way transfer between the hotel and the cruise centre",
+        "Can be combined with the Stay 3, Pay 2 offer",
+        "Breakfast for two, daily, with room upgrade and early check-in or late check-out, subject to availability (Luxury Circle)"
       ],
       "terms": [
-        "Valley Wing rooms and suites; excludes the Singapore Suite and the Shangri-La Suite",
-        "Pre- or post-cruise stays",
-        "Book by 31 December 2026, stays until 30 April 2027",
+        "Valley Wing rooms and suites only; excludes the Singapore Suite and the Shangri-La Suite",
+        "Valid for pre- or post-cruise stays",
+        "Book by 31 December 2026; stays until 30 April 2027",
         "Blackout dates apply"
       ],
       "bookBy": "2026-12-31",
@@ -559,8 +1141,8 @@
       "website": "https://www.shangri-la.com/singapore/shangrila/",
       "reviews": "https://www.google.com/maps/search/?api=1&query=Shangri-La+Singapore&query_place_id=ChIJXU9FcvQZ2jERiz8HeaqV70E",
       "rating": 4.6,
-      "ratingCount": 13261,
-      "ratingDate": "2026-11-01",
+      "ratingCount": 13264,
+      "ratingDate": "2026-11-04",
       "placeId": "ChIJXU9FcvQZ2jERiz8HeaqV70E"
     },
     {
@@ -571,12 +1153,11 @@
       "region": "Europe",
       "perk": "15% off",
       "perks": [
-        "15% off the nightly rate",
-        "Design Hotels member"
+        "15% off the nightly rate"
       ],
       "terms": [
-        "Minimum 2 nights",
-        "Rate name: Winter Savings by Design",
+        "Minimum stay of 2 nights",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -601,12 +1182,11 @@
       "region": "Europe",
       "perk": "10% off",
       "perks": [
-        "10% off the nightly rate",
-        "Design Hotels member"
+        "10% off the nightly rate"
       ],
       "terms": [
-        "Minimum 2 nights",
-        "Rate name: Winter Savings by Design",
+        "Minimum stay of 2 nights",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -631,11 +1211,10 @@
       "region": "Europe",
       "perk": "20% off",
       "perks": [
-        "20% off the nightly rate",
-        "Design Hotels member"
+        "20% off the nightly rate"
       ],
       "terms": [
-        "Rate name: Winter Savings by Design",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -660,11 +1239,10 @@
       "region": "Europe",
       "perk": "15% off",
       "perks": [
-        "15% off the nightly rate",
-        "Design Hotels member"
+        "15% off the nightly rate"
       ],
       "terms": [
-        "Rate name: Winter Savings by Design",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -690,11 +1268,10 @@
       "region": "Asia",
       "perk": "20% off",
       "perks": [
-        "20% off the nightly rate",
-        "Design Hotels member"
+        "20% off the nightly rate"
       ],
       "terms": [
-        "Rate name: Winter Savings by Design",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -719,11 +1296,10 @@
       "region": "Europe",
       "perk": "20% off",
       "perks": [
-        "20% off the nightly rate",
-        "Design Hotels member"
+        "20% off the nightly rate"
       ],
       "terms": [
-        "Rate name: Winter Savings by Design",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -737,7 +1313,9 @@
       "ratingCount": 144,
       "ratingDate": "2026-11-01",
       "placeId": "ChIJH7ZbvkpgLxMRPrFaaURtbc8",
-      "source": "Design Hotels partner mailing, 27 Oct 2026 (Winter Savings)"
+      "source": "Design Hotels partner mailing, 27 Oct 2026 (Winter Savings)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1451762.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
     },
     {
       "id": "timber-cove-resort",
@@ -748,11 +1326,10 @@
       "region": "North America",
       "perk": "15% off",
       "perks": [
-        "15% off the nightly rate",
-        "Design Hotels member"
+        "15% off the nightly rate"
       ],
       "terms": [
-        "Rate name: Winter Savings by Design",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -778,11 +1355,10 @@
       "region": "Asia",
       "perk": "15% off",
       "perks": [
-        "15% off the nightly rate",
-        "Design Hotels member"
+        "15% off the nightly rate"
       ],
       "terms": [
-        "Rate name: Winter Savings by Design",
+        "Booked under the Winter Savings by Design rate",
         "Stays until 28 February 2027",
         "Book by 28 February 2027"
       ],
@@ -796,7 +1372,9 @@
       "ratingCount": 715,
       "ratingDate": "2026-11-01",
       "placeId": "ChIJ3bCP_lkABDQR6ALFTGJOMLw",
-      "source": "Design Hotels partner mailing, 27 Oct 2026 (Winter Savings)"
+      "source": "Design Hotels partner mailing, 27 Oct 2026 (Winter Savings)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1099498.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
     },
     {
       "id": "noa-hotel-shenzhen",
@@ -807,16 +1385,15 @@
       "perk": "Weekend: up to 10% off",
       "perks": [
         "Up to 10% off the nightly rate",
-        "Complimentary breakfast",
-        "Room upgrade, when available",
-        "Late check-out, when available",
-        "Welcome drink"
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, subject to availability",
+        "Late check-out, subject to availability",
+        "Welcome drink on arrival"
       ],
       "terms": [
-        "Stays from Thursday to Monday",
-        "Rate name: Weekend Escapes by Design",
-        "Upgrade and late check-out subject to availability",
-        "Open-ended offer; dates confirmed at booking"
+        "Valid on stays that include a Thursday to Monday",
+        "Booked under the Weekend Escapes by Design rate",
+        "No published end date; availability confirmed at booking"
       ],
       "bookBy": "2027-03-31",
       "art": "city",
@@ -827,7 +1404,9 @@
       "ratingCount": 34,
       "ratingDate": "2026-11-01",
       "placeId": "ChIJixpzzQz1AzQRG0OM603Tpc8",
-      "source": "Design Hotels partner mailing, 29 Oct 2026 (Weekend Escapes)"
+      "source": "Design Hotels partner mailing, 29 Oct 2026 (Weekend Escapes)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1557928.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
     },
     {
       "id": "la-purificadora-puebla",
@@ -838,16 +1417,15 @@
       "perk": "Weekend: up to 10% off",
       "perks": [
         "Up to 10% off the nightly rate",
-        "Complimentary breakfast",
-        "Room upgrade, when available",
-        "Late check-out, when available",
-        "Welcome drink"
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, subject to availability",
+        "Late check-out, subject to availability",
+        "Welcome drink on arrival"
       ],
       "terms": [
-        "Stays from Thursday to Monday",
-        "Rate name: Weekend Escapes by Design",
-        "Upgrade and late check-out subject to availability",
-        "Open-ended offer; dates confirmed at booking"
+        "Valid on stays that include a Thursday to Monday",
+        "Booked under the Weekend Escapes by Design rate",
+        "No published end date; availability confirmed at booking"
       ],
       "bookBy": "2027-03-31",
       "image": "https://www.lapurificadora.com/dist/img/la-purificadora/bg/banner.jpg",
@@ -871,16 +1449,15 @@
       "perk": "Weekend: up to 10% off",
       "perks": [
         "Up to 10% off the nightly rate",
-        "Complimentary breakfast",
-        "Room upgrade, when available",
-        "Late check-out, when available",
-        "Welcome drink"
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, subject to availability",
+        "Late check-out, subject to availability",
+        "Welcome drink on arrival"
       ],
       "terms": [
-        "Stays from Thursday to Monday",
-        "Rate name: Weekend Escapes by Design",
-        "Upgrade and late check-out subject to availability",
-        "Open-ended offer; dates confirmed at booking"
+        "Valid on stays that include a Thursday to Monday",
+        "Booked under the Weekend Escapes by Design rate",
+        "No published end date; availability confirmed at booking"
       ],
       "bookBy": "2027-03-31",
       "image": "https://www.seegut-zeppelin.de/fileadmin/_processed_/5/f/csm_Seegut25-50-Edit_4788112664.jpeg",
@@ -903,16 +1480,16 @@
       "perk": "Weekend: up to 10% off",
       "perks": [
         "Up to 10% off the nightly rate",
-        "Complimentary breakfast",
-        "Room upgrade, when available",
-        "Late check-out, when available",
-        "Welcome drink"
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, subject to availability",
+        "Late check-out, subject to availability",
+        "Welcome drink on arrival",
+        "Also 30% off on stays of 7 nights or more under the Work and Wander rate"
       ],
       "terms": [
-        "Stays from Thursday to Monday",
-        "Rate name: Weekend Escapes by Design",
-        "Upgrade and late check-out subject to availability",
-        "Open-ended offer; dates confirmed at booking"
+        "Valid on stays that include a Thursday to Monday",
+        "Booked under the Weekend Escapes by Design rate",
+        "No published end date; availability confirmed at booking"
       ],
       "bookBy": "2027-03-31",
       "art": "city",
@@ -923,7 +1500,9 @@
       "ratingCount": 1344,
       "ratingDate": "2026-11-01",
       "placeId": "ChIJGxFXF3C3yhQR2ZAmZ7WsHA0",
-      "source": "Design Hotels partner mailing, 29 Oct 2026 (Weekend Escapes)"
+      "source": "Design Hotels partner mailing, 29 Oct 2026 (Weekend Escapes)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1400139.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
     },
     {
       "id": "sir-devonshire-square",
@@ -935,16 +1514,15 @@
       "perk": "Weekend: up to 10% off",
       "perks": [
         "Up to 10% off the nightly rate",
-        "Complimentary breakfast",
-        "Room upgrade, when available",
-        "Late check-out, when available",
-        "Welcome drink"
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, subject to availability",
+        "Late check-out, subject to availability",
+        "Welcome drink on arrival"
       ],
       "terms": [
-        "Stays from Thursday to Monday",
-        "Rate name: Weekend Escapes by Design",
-        "Upgrade and late check-out subject to availability",
-        "Open-ended offer; dates confirmed at booking"
+        "Valid on stays that include a Thursday to Monday",
+        "Booked under the Weekend Escapes by Design rate",
+        "No published end date; availability confirmed at booking"
       ],
       "bookBy": "2027-03-31",
       "image": "https://www.sirhotels.com/media/images/mm1147_Sir_Devonshir.2e16d0ba.fill-2040x1005.format-jpeg_wDUtXY8.jpg",
@@ -968,16 +1546,15 @@
       "perk": "Weekend: up to 10% off",
       "perks": [
         "Up to 10% off the nightly rate",
-        "Complimentary breakfast",
-        "Room upgrade, when available",
-        "Late check-out, when available",
-        "Welcome drink"
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, subject to availability",
+        "Late check-out, subject to availability",
+        "Welcome drink on arrival"
       ],
       "terms": [
-        "Stays from Thursday to Monday",
-        "Rate name: Weekend Escapes by Design",
-        "Upgrade and late check-out subject to availability",
-        "Open-ended offer; dates confirmed at booking"
+        "Valid on stays that include a Thursday to Monday",
+        "Booked under the Weekend Escapes by Design rate",
+        "No published end date; availability confirmed at booking"
       ],
       "bookBy": "2027-03-31",
       "art": "jungle",
@@ -988,7 +1565,1347 @@
       "ratingCount": 1103,
       "ratingDate": "2026-11-01",
       "placeId": "ChIJH96IUcRpOzIRuh9hinGQ1yM",
-      "source": "Design Hotels partner mailing, 29 Oct 2026 (Weekend Escapes)"
+      "source": "Design Hotels partner mailing, 29 Oct 2026 (Weekend Escapes)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1404695.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "public-house-bangkok",
+      "hotel": "Public House Bangkok",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "region": "Asia",
+      "perk": "30% off, 7+ nights",
+      "perks": [
+        "30% off the nightly rate on stays of 7 nights or more",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 7 nights",
+        "Booked under the Work and Wander rate",
+        "No published end date; availability confirmed at booking"
+      ],
+      "bookBy": "2027-03-31",
+      "datesText": "Open until withdrawn. Minimum 7 nights; dates confirmed at enquiry.",
+      "art": "city",
+      "note": "Sukhumvit 31 lifestyle hotel with a rooftop pool, co-working floor and live music most nights; the breakfast gets rave reviews.",
+      "website": "https://www.designhotels.com/hotels/thailand/bangkok/public-house-bangkok/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Public+House+Bangkok+Bangkok&query_place_id=ChIJ3e9gknmf4jARXRpcVNJZ2uw",
+      "rating": 4.8,
+      "ratingCount": 1039,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJ3e9gknmf4jARXRpcVNJZ2uw",
+      "source": "Design Hotels partner mailing, 24 Aug 2026 (Work and Wander)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1448591.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "inhabit-queens-gardens",
+      "hotel": "Inhabit Queen's Gardens",
+      "city": "London",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "perk": "30% off, 7+ nights",
+      "perks": [
+        "30% off the nightly rate on stays of 7 nights or more",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 7 nights",
+        "Booked under the Work and Wander rate",
+        "No published end date; availability confirmed at booking"
+      ],
+      "bookBy": "2027-03-31",
+      "datesText": "Open until withdrawn. Minimum 7 nights; dates confirmed at enquiry.",
+      "art": "city",
+      "note": "Wellness-minded, Japandi-style townhouse hotel in Bayswater, eight minutes' walk from Paddington and Hyde Park.",
+      "website": "https://www.designhotels.com/hotels/united-kingdom/london/inhabit-queen-s-gardens/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Inhabit+Queen%27s+Gardens+London&query_place_id=ChIJKTDeR1MFdkgR4lAJ1qNkHWw",
+      "rating": 3.9,
+      "ratingCount": 693,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJKTDeR1MFdkgR4lAJ1qNkHWw",
+      "source": "Design Hotels partner mailing, 24 Aug 2026 (Work and Wander)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1308756.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "olea-all-suite-zakynthos",
+      "hotel": "Olea All Suite Hotel",
+      "city": "Zakynthos",
+      "country": "Greece",
+      "region": "Europe",
+      "perk": "30% off, 7+ nights",
+      "perks": [
+        "30% off the nightly rate on stays of 7 nights or more",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 7 nights",
+        "Booked under the Work and Wander rate",
+        "No published end date; availability confirmed at booking"
+      ],
+      "bookBy": "2027-03-31",
+      "datesText": "Open until withdrawn. Minimum 7 nights; dates confirmed at enquiry.",
+      "art": "coast",
+      "note": "Hillside all-suite resort above Tsilivi with a 4,000 m² lagoon pool, a quiet spa and sunset suites worth asking for.",
+      "website": "https://www.designhotels.com/hotels/greece/zakynthos/olea-all-suite-hotel-spa/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Olea+All+Suite+Hotel+Zakynthos&query_place_id=ChIJuxaRU9RHZxMRZkUDpnmpfGc",
+      "rating": 4.7,
+      "ratingCount": 527,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJuxaRU9RHZxMRZkUDpnmpfGc",
+      "source": "Design Hotels partner mailing, 24 Aug 2026 (Work and Wander)",
+      "destination": "Tsilivi, Zakynthos",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1647152.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "louis-hotel-munich",
+      "hotel": "LOUIS Hotel",
+      "city": "Munich",
+      "country": "Germany",
+      "region": "Europe",
+      "perk": "30% off, 7+ nights",
+      "perks": [
+        "30% off the nightly rate on stays of 7 nights or more",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 7 nights",
+        "Booked under the Work and Wander rate",
+        "No published end date; availability confirmed at booking"
+      ],
+      "bookBy": "2027-03-31",
+      "datesText": "Open until withdrawn. Minimum 7 nights; dates confirmed at enquiry.",
+      "art": "city",
+      "note": "Right on the Viktualienmarkt, a short walk from Marienplatz; ask for a room on the market side.",
+      "website": "https://www.designhotels.com/hotels/germany/munich/louis-hotel/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=LOUIS+Hotel+Munich&query_place_id=ChIJF-xkv4p1nkcRW57u5Bw0jgY",
+      "rating": 4.4,
+      "ratingCount": 625,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJF-xkv4p1nkcRW57u5Bw0jgY",
+      "source": "Design Hotels partner mailing, 24 Aug 2026 (Work and Wander)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1068056.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "rooms-tbilisi",
+      "hotel": "Rooms Tbilisi",
+      "city": "Tbilisi",
+      "country": "Georgia",
+      "region": "Europe",
+      "perk": "30% off, 7+ nights",
+      "perks": [
+        "30% off the nightly rate on stays of 7 nights or more",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 7 nights",
+        "Booked under the Work and Wander rate",
+        "No published end date; availability confirmed at booking"
+      ],
+      "bookBy": "2027-03-31",
+      "datesText": "Open until withdrawn. Minimum 7 nights; dates confirmed at enquiry.",
+      "art": "city",
+      "note": "A former print factory in Vera, now the city's social hub, with a courtyard restaurant locals actually use.",
+      "website": "https://www.designhotels.com/hotels/georgia/tbilisi/rooms-tbilisi/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Rooms+Tbilisi+Tbilisi&query_place_id=ChIJo2predoMREARXlfPLMzA2cU",
+      "rating": 4.6,
+      "ratingCount": 2913,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJo2predoMREARXlfPLMzA2cU",
+      "source": "Design Hotels partner mailing, 24 Aug 2026 (Work and Wander)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1305755.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "hotel-granada-atlanta",
+      "hotel": "Hotel Granada",
+      "city": "Atlanta",
+      "country": "USA",
+      "region": "North America",
+      "perk": "30% off, 7+ nights",
+      "perks": [
+        "30% off the nightly rate on stays of 7 nights or more",
+        "Breakfast and partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 7 nights",
+        "Booked under the Work and Wander rate",
+        "No published end date; availability confirmed at booking"
+      ],
+      "bookBy": "2027-03-31",
+      "datesText": "Open until withdrawn. Minimum 7 nights; dates confirmed at enquiry.",
+      "art": "city",
+      "note": "1920s Spanish Revival building in Midtown with a leafy courtyard and a speakeasy downstairs; a MARTA stop is a block away.",
+      "website": "https://www.designhotels.com/hotels/usa/georgia/atlanta/hotel-granada/",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Hotel+Granada+Atlanta&query_place_id=ChIJRfD1pPAF9YgRNRt9FGYrPeM",
+      "rating": 4.2,
+      "ratingCount": 267,
+      "ratingDate": "2026-11-03",
+      "placeId": "ChIJRfD1pPAF9YgRNRt9FGYrPeM",
+      "source": "Design Hotels partner mailing, 24 Aug 2026 (Work and Wander)",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1528733.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing"
+    },
+    {
+      "id": "anantara-siam-bangkok",
+      "hotel": "Anantara Siam Bangkok Hotel",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Valid in the Deluxe Room, Siam Room, Kasara Executive Room and Siam Suite",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights in a participating room category",
+        "Book by 30 June 2027 for stays until 30 June 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-06-30",
+      "travelTo": "2027-06-30",
+      "art": "city",
+      "note": "Rajdamri landmark a few steps from the BTS, with the newly renovated pool and the lobby tea service people keep coming back for.",
+      "website": "https://www.anantara.com/en/siam-bangkok",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1694401.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Anantara+Siam+Bangkok+Hotel&query_place_id=ChIJVwz7GcWe4jARatGDB6rxqcE",
+      "rating": 4.6,
+      "ratingCount": 6114,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJVwz7GcWe4jARatGDB6rxqcE",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "le-meridien-phuket-beach",
+      "hotel": "Le Méridien Phuket Beach Resort",
+      "city": "Phuket",
+      "destination": "Karon, Phuket",
+      "country": "Thailand",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book 29 September 2026 to 28 October 2027 for travel 6 May to 31 October 2027",
+        "Not combinable with other promotions, vouchers or loyalty offers; not for groups of 10 rooms or more",
+        "Subject to availability; the rate is reconfirmed once the booking is made"
+      ],
+      "bookBy": "2027-10-28",
+      "travelFrom": "2027-05-06",
+      "travelTo": "2027-10-31",
+      "art": "beach",
+      "note": "Tucked into its own cove between Patong and Karon; the beach is the reason regulars come back a tenth time.",
+      "website": "https://www.marriott.com/en-us/hotels/hktmd-le-meridien-phuket-beach-resort/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/md-hktmd-aerial-2-37853:Wide-Hor?wid=1336&fit=constrain",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Le+M%C3%A9ridien+Phuket+Beach+Resort&query_place_id=ChIJBdlG3jklUDARZvYfhnfUf4o",
+      "rating": 4.6,
+      "ratingCount": 3573,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJBdlG3jklUDARZvYfhnfUf4o",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "jumeirah-bali",
+      "hotel": "Jumeirah Bali",
+      "city": "Bali",
+      "destination": "Uluwatu, Bali",
+      "country": "Indonesia",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free for every two consecutive paid nights (stay 3, pay 2; stay 6, pay 4)",
+        "Daily buffet breakfast for two guests per villa",
+        "One 90-minute massage for two guests per villa, per stay",
+        "Early check-in and late check-out, subject to availability",
+        "Return airport transfers when booking the Two Bedroom Ocean Villa with Private Pool; a set dinner for two at Segaran on stays of 6 nights"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights, booked under the Nvoy partner rate",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "Subject to availability; transfers and the Segaran dinner apply only as stated"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "coast",
+      "note": "All-villa, all-private-pool resort on the Uluwatu clifftops; book an Akasa sunset table the day you arrive.",
+      "website": "https://www.jumeirah.com/en/stay/bali/jumeirah-bali",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1598026.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Jumeirah+Bali&query_place_id=ChIJu6GSRhVF0i0RKBrXRBiTKsU",
+      "rating": 4.6,
+      "ratingCount": 1262,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJu6GSRhVF0i0RKBrXRBiTKsU",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "st-regis-bali",
+      "hotel": "The St. Regis Bali Resort",
+      "city": "Bali",
+      "destination": "Nusa Dua, Bali",
+      "country": "Indonesia",
+      "region": "Asia",
+      "perk": "4th night free in villas",
+      "perks": [
+        "Fourth night free on every 4-night villa stay",
+        "Valid in the Gardenia Villa, One and Two Bedroom Lagoon Villas, Strand Beachfront Villa and Grand Astor Presidential Suite",
+        "24-hour St. Regis Butler service: unlimited coffee and tea, packing and unpacking, and two garments pressed per person, per day",
+        "Minibar with food and soft drinks replenished daily, fresh tropical fruit daily, and pass-around refreshments by the pool",
+        "Daily Champagne sabrage at The St. Regis Bar, the daily wellness programme, resort bicycles, and unlimited Children's Club with daily kids' activities",
+        "Grand Astor Presidential Suite adds airport VIP service, a dedicated butler and a daily in-room afternoon tea for two",
+        "Combinable with Marriott STARS perks: breakfast for two daily, $100 hotel credit per room, per stay, room upgrade and early check-in or late check-out, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights in a participating villa",
+        "Book by 22 December 2027 for travel until 22 December 2027",
+        "Not valid 23 December 2026 to 10 January 2027, 4 to 12 February 2027, 6 to 12 March 2027, 25 to 28 March 2027, 30 April to 7 May 2027, 1 July to 31 August 2027, or 1 to 5 October 2027",
+        "The free night is valued at the lowest nightly rate of the stay and deducted at check-out",
+        "Subject to availability"
+      ],
+      "bookBy": "2027-12-22",
+      "travelFrom": "2026-08-19",
+      "travelTo": "2027-12-22",
+      "art": "beach",
+      "note": "One of Bali's rare calm white-sand beaches, plus the saltwater lagoon the villas open onto; ask for a Lagoon Villa.",
+      "website": "https://www.marriott.com/en-us/hotels/dpsxr-the-st-regis-bali-resort/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/xr-dpsxr-pristine-white-sand-beach-34320:Wide-Hor?wid=1336&fit=constrain",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+St.+Regis+Bali+Resort&query_place_id=ChIJlxcgYM1c0i0RIbLfYRwiJDo",
+      "rating": 4.8,
+      "ratingCount": 2822,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJlxcgYM1c0i0RIbLfYRwiJDo",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "buahan-banyan-tree-escape",
+      "hotel": "Buahan, a Banyan Tree Escape",
+      "city": "Bali",
+      "destination": "Payangan, Ubud highlands",
+      "country": "Indonesia",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2), across all bale categories",
+        "Daily breakfast for two guests per bale at Open Kitchen",
+        "$100 resort credit per stay, rising to $200 on stays of 3 nights or more and $300 on stays of 7 nights or more",
+        "Room upgrade on arrival, early check-in and late check-out, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights; adults only",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "New bookings only; not combinable with other offers",
+        "The resort credit cannot be applied to the room rate and has no cash value if unused"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "jungle",
+      "note": "Sixteen open-air bales with no walls or doors, set in the hills above Ubud between two rivers; the quietest stay on this board.",
+      "website": "https://www.banyantree.com/escape/indonesia/buahan-a-banyan-tree-escape",
+      "image": "https://www.banyantree.com/assets/2025-10/BTE%20-%20homepage%20-%20hero%20banner_0.jpg",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Buahan%2C+a+Banyan+Tree+Escape&query_place_id=ChIJ08JGd_0h0i0RAT-4TS4ZTuA",
+      "rating": 4.9,
+      "ratingCount": 464,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJ08JGd_0h0i0RAT-4TS4ZTuA",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "ritz-carlton-millenia-singapore",
+      "hotel": "The Ritz-Carlton, Millenia Singapore",
+      "city": "Singapore",
+      "destination": "Marina Bay, Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "perk": "25% off, 4+ nights",
+      "perks": [
+        "25% off the Best Flexible Rate on stays of 4 nights or more",
+        "One-category room upgrade in eligible rooms (Deluxe Kallang to Elevated Kallang, Elevated Kallang to Deluxe Marina, Grand Kallang to Grand Marina, Club Kallang to Club Marina, Club Deluxe Suite to Club Premier Suite)",
+        "Buffet breakfast at Colony free for children aged 5 and under; a rollaway bed free for children aged 12 and under, subject to availability",
+        "Combinable with the Nvoy partner perks for this hotel, confirmed at booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 30 June 2027 for stays until 30 June 2027",
+        "If the stay is shortened, the nightly rate reverts to the prevailing Flexible Rate",
+        "Blackout dates and other restrictions may apply; subject to availability"
+      ],
+      "bookBy": "2027-06-30",
+      "travelTo": "2027-06-30",
+      "art": "city",
+      "note": "The octagonal bathroom windows over Marina Bay are the signature here; ask for a Marina-facing room and watch the Gardens light show from the tub.",
+      "website": "https://www.ritzcarlton.com/en/hotels/sinrz-the-ritz-carlton-millenia-singapore/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/rz-sinrz-lobby-5514-24167:Wide-Hor?wid=1336&fit=constrain",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Ritz-Carlton%2C+Millenia+Singapore&query_place_id=ChIJOek7q6kZ2jERX8_FX0BTcq4",
+      "rating": 4.6,
+      "ratingCount": 6444,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJOek7q6kZ2jERX8_FX0BTcq4",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "shangri-la-singapore-stay-3-pay-2",
+      "hotel": "Shangri-La Singapore",
+      "city": "Singapore",
+      "destination": "Orange Grove Road, Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 consecutive nights (stay 3, pay 2)",
+        "Buffet breakfast for two, daily",
+        "US$100 hotel credit per room, per stay, for dining, in-room dining, the minibar, Chi, The Spa and buds",
+        "Room upgrade on arrival, early check-in and late check-out, subject to availability",
+        "Can be combined with the Sweet Voyages cruise offer on this board"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights in the Tower, Garden or Valley Wing; excludes Tower Wing Deluxe Rooms, Themed Family Suites, Grand Suite, Garden Wing One Bedroom and Premier Balcony Suites, Singapore Suites and the Shangri-La Suite",
+        "Book by 31 December 2026 for stays until 31 December 2027",
+        "Not valid 8 to 10 October 2026, 25 to 27 December 2026, 31 December 2026 to 1 January 2027, 5 to 8 February 2027, 9 to 13 May 2027, 27 to 30 May 2027, 30 September to 2 October 2027, 7 to 9 October 2027, 24 to 26 December 2027 or 31 December 2027",
+        "Applies to the room rate only; not combinable with other discounts unless stated. Date changes made outside the booking window lose the discount",
+        "The hotel credit cannot be applied to the room rate, airport transfers, excursions or retail; unused perks have no cash value"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2027-12-31",
+      "art": "city",
+      "note": "Fifteen acres of gardens off Orchard Road; the Garden Wing balconies and the Valley Wing's own lounge and breakfast room are the rooms to ask for.",
+      "website": "https://www.shangri-la.com/singapore/shangrila/",
+      "image": "https://sitecore-cd-imgr.shangri-la.com/MediaFiles/3/B/4/{3B498D18-7391-4B48-B1E6-75FBF503D595}20220607_SLS_About_Your_Shangri-La_Story.jpg?w=1200&h=900&mode=crop&scale=both",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Shangri-La+Singapore&query_place_id=ChIJXU9FcvQZ2jERiz8HeaqV70E",
+      "rating": 4.6,
+      "ratingCount": 13264,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJXU9FcvQZ2jERiz8HeaqV70E",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "capitol-kempinski-singapore",
+      "hotel": "The Capitol Kempinski Hotel Singapore",
+      "city": "Singapore",
+      "destination": "Civic District, Singapore",
+      "country": "Singapore",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 consecutive nights (stay 3, pay 2), repeating on every third night",
+        "Room upgrade to the next category at the time of booking, subject to availability",
+        "Bubbly buffet breakfast for two, daily, at 15 Stamford",
+        "US$100 dining credit per stay at 15 Stamford, The Bar at 15 Stamford and the Lobby Lounge",
+        "Early check-in and late check-out, subject to availability; non-alcoholic minibar (once per stay in rooms, daily in suites); Executive Lounge access 6 to 8 pm for suite bookings"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights on the Best Flexible Rate",
+        "Book 2 November 2026 to 30 June 2027 for stays until 30 September 2027",
+        "Not valid 1 to 2 January 2027, 8 to 9 January 2027 or 6 to 8 February 2027",
+        "The dining credit is non-transferable and not combinable with other offers; subject to availability"
+      ],
+      "bookBy": "2027-06-30",
+      "travelFrom": "2026-11-02",
+      "travelTo": "2027-09-30",
+      "art": "city",
+      "note": "155 rooms inside the restored Capitol Building and Stamford House, an underpass from City Hall MRT; the Heritage rooms with the veranda are the ones to ask for.",
+      "website": "https://www.kempinski.com/en/the-capitol-singapore",
+      "image": "https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,fit=scale-down/ki-cms-prod/images/2/7/9/9/279972-1-eng-GB/2209eb52bf89-74208946_4K.jpg",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Capitol+Kempinski+Hotel+Singapore&query_place_id=ChIJh37xnIQZ2jERL_64VnzUrQI",
+      "rating": 4.5,
+      "ratingCount": 1230,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJh37xnIQZ2jERL_64VnzUrQI",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "conrad-dubai",
+      "hotel": "Conrad Dubai",
+      "city": "Dubai",
+      "destination": "Sheikh Zayed Road, Dubai",
+      "country": "United Arab Emirates",
+      "region": "Middle East",
+      "perk": "Stay 4, pay 3",
+      "perks": [
+        "Fourth night free on every stay of 4 nights (stay 4, pay 3), part of Hilton's Luxury Exclusive Offers",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 30 December 2027 for stays until 30 December 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-30",
+      "travelTo": "2027-12-30",
+      "art": "city",
+      "note": "On Sheikh Zayed Road by the World Trade Centre metro, with a pool deck that feels more resort than city hotel; the DIFC and Downtown are ten minutes away.",
+      "website": "https://www.hilton.com/en/hotels/dxbcdci-conrad-dubai/",
+      "image": "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,h_675,q_80,f_auto,g_auto/Imagery/Property%20Photography/Conrad/D/DXBCDCI/Conrad%20Dubai%20Pool%20Oasis.jpg",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Conrad+Dubai&query_place_id=ChIJS-V5iO5CXz4RBNn7K8JMwBg",
+      "rating": 4.7,
+      "ratingCount": 24284,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJS-V5iO5CXz4RBNn7K8JMwBg",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "atlantis-the-royal-dubai",
+      "hotel": "Atlantis The Royal",
+      "city": "Dubai",
+      "destination": "Palm Jumeirah, Dubai",
+      "country": "United Arab Emirates",
+      "region": "Middle East",
+      "perk": "Up to 20% off, 3+ nights",
+      "perks": [
+        "Up to 20% off stays of 3 nights or more, across all rooms and suites",
+        "Up to 20% off the Bed and Breakfast and Dinner packages too",
+        "Child rates apply up to age 13",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "Refundable rates follow the hotel's regular cancellation policy; subject to availability"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "beach",
+      "note": "The stacked-blocks landmark at the tip of the Palm, with the sky pool on the 22nd floor and Aquaventure next door; Palm-view rooms get the fountain show.",
+      "website": "https://www.atlantis.com/dubai/atlantis-the-royal",
+      "image": "https://dam.kerzner.com/i/kerzner/ATR-Resort-Building-Exterior",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Atlantis+The+Royal&query_place_id=ChIJyTL-aggVXz4R4cAwRc0Ydsw",
+      "rating": 4.7,
+      "ratingCount": 7861,
+      "ratingDate": "2026-11-04",
+      "placeId": "ChIJyTL-aggVXz4R4cAwRc0Ydsw",
+      "source": "Fora Portal deals page, forwarded 4 Nov 2026"
+    },
+    {
+      "id": "four-seasons-osaka",
+      "hotel": "Four Seasons Hotel Osaka",
+      "city": "Osaka",
+      "destination": "Dojima, Osaka",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Full breakfast for two, daily, in a hotel restaurant or through in-room dining",
+        "$100 hotel credit per stay in guest rooms; $200 per stay in suites (Four Seasons Preferred Partner)",
+        "One-category room upgrade on arrival, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "The hotel credit covers incidental charges only and is applied at check-out; it cannot be used on the room rate, taxes or service charges",
+        "The upgrade excludes Specialty Suites; subject to availability, not valid with other offers or for groups"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "city",
+      "note": "The city's newest landmark, in Dojima near Umeda; the tatami-floored GENSUI rooms and the top-floor omakase counter are the reasons to go.",
+      "website": "https://www.fourseasons.com/osaka/",
+      "image": "https://www.fourseasons.com/alt/img-opt/~75.430.178,3121-0,0000-2666,6667-2000,0000/publish/content/dam/fourseasons/images/web/OSK/OSK_030_original.jpg",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Four+Seasons+Hotel+Osaka&query_place_id=ChIJueXXyXznAGARAkI6vy8XhEE",
+      "rating": 4.5,
+      "ratingCount": 653,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJueXXyXznAGARAkI6vy8XhEE",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "four-seasons-tokyo-marunouchi",
+      "hotel": "Four Seasons Hotel Tokyo at Marunouchi",
+      "city": "Tokyo",
+      "destination": "Marunouchi, Tokyo",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Full breakfast for two, daily, in a hotel restaurant or through in-room dining",
+        "$100 hotel credit per stay in guest rooms; $200 per stay in suites (Four Seasons Preferred Partner)",
+        "One-category room upgrade on arrival, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "The hotel credit covers incidental charges only and is applied at check-out; it cannot be used on the room rate, taxes or service charges",
+        "The upgrade excludes Specialty Suites; subject to availability, not valid with other offers or for groups"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "city",
+      "note": "Under sixty rooms beside Tokyo Station, so the team walks you to your Shinkansen platform; the Eki Rooms look straight at the red-brick station façade.",
+      "website": "https://www.fourseasons.com/tokyo/",
+      "image": "https://www.fourseasons.com/alt/img-opt/~75.430.347,9155-0,0000-6229,3333-4672,0000/publish/content/dam/fourseasons/images/web/MAR/MAR_3152_original.jpg",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Four+Seasons+Hotel+Tokyo+at+Marunouchi&query_place_id=ChIJo8OKQ_uLGGARyqJtyEFXiRA",
+      "rating": 4.3,
+      "ratingCount": 926,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJo8OKQ_uLGGARyqJtyEFXiRA",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "prince-kyoto-takaragaike",
+      "hotel": "The Prince Kyoto Takaragaike, Autograph Collection",
+      "city": "Kyoto",
+      "destination": "Takaragaike, Kyoto",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Valid in Club Floor rooms and suites, with Club Lounge access included in those categories",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights in a Club Floor room or suite",
+        "Book 13 August 2026 to 28 July 2027 for stays until 30 July 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-07-28",
+      "travelTo": "2027-07-30",
+      "art": "mountain",
+      "note": "Togo Murano's circular 1986 hotel in the wooded north of the city, directly across from Kokusaikaikan subway station, twenty minutes from Kyoto Station; big rooms by Japanese standards.",
+      "website": "https://www.marriott.com/en-us/hotels/ukyak-the-prince-kyoto-takaragaike-autograph-collection/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/ukyak-garden-9919:Wide-Hor?wid=1336&fit=constrain",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Prince+Kyoto+Takaragaike%2C+Autograph+Collection&query_place_id=ChIJxTp2h9IJAWAR1uMygx8G-qw",
+      "rating": 4.2,
+      "ratingCount": 3145,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJxTp2h9IJAWAR1uMygx8G-qw",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "w-osaka",
+      "hotel": "W Osaka",
+      "city": "Osaka",
+      "destination": "Shinsaibashi, Osaka",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "Suites: stay 3, pay 2",
+      "perks": [
+        "Third night free on suite stays of 3 nights or more (Urban Suite, W Suite, Supreme Suite or Penthouse); the discount is already in the rate",
+        "$100 hotel credit per stay (not valid at the W Store, the minibar or Sushi Ukiyo)",
+        "Breakfast for two, daily",
+        "Room upgrade on arrival, early check-in and late check-out, subject to availability; welcome amenity",
+        "Book 30 days or more ahead in any room up to the Urban Suite and the upgrade to the next category is confirmed at booking, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights in a suite for the free night",
+        "Book by 30 August 2027 for stays until 30 August 2027",
+        "Not valid 25 to 26 December 2026, 1 to 3 January 2027, 26 to 28 March 2027, 1 to 3 April 2027, 1 to 5 May 2027 or 13 to 15 August 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-08-30",
+      "travelTo": "2027-08-30",
+      "art": "city",
+      "note": "Tadao Ando's black tower on Midosuji, a short walk from Dotonbori and Shinsaibashi; the suites' sky-bar corners and the WET deck are the draw.",
+      "website": "https://www.marriott.com/en-us/hotels/osaow-w-osaka/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/wh-osaow-exterior-twilight-37011:Wide-Hor?wid=1336&fit=constrain",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=W+Osaka&query_place_id=ChIJ14tB6IPnAGARHVPDh9i9jCU",
+      "rating": 4.3,
+      "ratingCount": 2098,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJ14tB6IPnAGARHVPDh9i9jCU",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "prince-sakura-tower-tokyo",
+      "hotel": "The Prince Sakura Tower Tokyo, Autograph Collection",
+      "city": "Tokyo",
+      "destination": "Takanawa, Tokyo",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "5,000 bonus points a night",
+      "perks": [
+        "5,000 Marriott Bonvoy bonus points for every night of the stay",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Standard rooms only",
+        "Book by 30 December 2027 for stays until 30 December 2027",
+        "Marriott Bonvoy membership required to receive the points (free to join); subject to availability"
+      ],
+      "bookBy": "2027-12-30",
+      "travelTo": "2027-12-30",
+      "art": "city",
+      "note": "Set in a 20,000 m² Japanese garden with 210 cherry trees, a few minutes from Shinagawa Station; the Executive Lounge here is one of the best in the city.",
+      "website": "https://www.marriott.com/en-us/hotels/tyoak-the-prince-sakura-tower-tokyo-autograph-collection/overview/",
+      "image": "https://cache.marriott.com/content/dam/marriott-renditions/TYOAK/tyoak-exterior-8957-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Prince+Sakura+Tower+Tokyo%2C+Autograph+Collection&query_place_id=ChIJWdC8rWGMGGARqiHKHgnKtYM",
+      "rating": 4.5,
+      "ratingCount": 2600,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJWdC8rWGMGGARqiHKHgnKtYM",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "fairmont-tokyo",
+      "hotel": "Fairmont Tokyo",
+      "city": "Tokyo",
+      "destination": "Shibaura, Tokyo",
+      "country": "Japan",
+      "region": "Asia",
+      "perk": "Stay 4, pay 3",
+      "perks": [
+        "Fourth night free on every stay of 4 nights (stay 4, pay 3)",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book 21 March to 31 May 2027 for travel 21 March to 31 May 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookFrom": "2027-03-21",
+      "bookBy": "2027-05-31",
+      "travelFrom": "2027-03-21",
+      "travelTo": "2027-05-31",
+      "art": "city",
+      "note": "Fairmont's first hotel in Japan, on the upper floors of Blue Front Shibaura with Tokyo Tower on one side and the bay on the other; the 35th-floor infinity pool is the signature.",
+      "website": "https://www.fairmont.com/tokyo",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1501851.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Fairmont+Tokyo&query_place_id=ChIJkSlGdwCLGGARqWidkNS00MQ",
+      "rating": 4.6,
+      "ratingCount": 553,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJkSlGdwCLGGARqWidkNS00MQ",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026"
+    },
+    {
+      "id": "ritz-carlton-maui-kapalua",
+      "hotel": "The Ritz-Carlton Maui, Kapalua",
+      "city": "Maui",
+      "destination": "Kapalua, Maui",
+      "country": "USA",
+      "region": "North America",
+      "perk": "30% off + $500 credit",
+      "perks": [
+        "30% off the nightly rate on stays of 4 nights or more",
+        "$500 hotel credit per stay ($100 Marriott STARS credit plus a one-time $400 credit)",
+        "Buffet breakfast for two, daily, at Ulana Terrace",
+        "Room upgrade on arrival, early check-in and 4 pm late check-out, subject to availability; welcome amenity from the General Manager"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 31 December 2026 for stays until 1 September 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2026-12-31",
+      "travelTo": "2027-09-01",
+      "art": "coast",
+      "note": "Fifty-four acres above D.T. Fleming Beach on Maui's quiet northwest tip, next to the Kapalua golf courses and the Honolua Bay snorkelling.",
+      "website": "https://www.ritzcarlton.com/en/hotels/jhmrz-the-ritz-carlton-maui-kapalua/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/rz-jhmrz-dt-fleming-beach-kap25020-69371:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.5,
+      "ratingCount": 3095,
+      "placeId": "ChIJ8Vu0vLfVqn4RQQDK9iKIUXw",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Ritz-Carlton+Maui%2C+Kapalua&query_place_id=ChIJ8Vu0vLfVqn4RQQDK9iKIUXw"
+    },
+    {
+      "id": "conrad-hong-kong",
+      "hotel": "Conrad Hong Kong",
+      "city": "Hong Kong",
+      "destination": "Admiralty, Hong Kong",
+      "country": "Hong Kong",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2), part of Hilton's Luxury Exclusive Offers",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 3 March 2030 for stays until 3 March 2030",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2030-03-03",
+      "travelTo": "2030-03-03",
+      "art": "city",
+      "note": "On the upper floors of Pacific Place in Admiralty, with the Peak behind and the harbour in front; ask for a harbour-view room on the 55th floor or above.",
+      "website": "https://www.hilton.com/en/hotels/hkghcci-conrad-hong-kong/",
+      "image": "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,h_675,q_80,f_auto,g_auto/Imagery/Property%20Photography/Conrad/H/HKGHCCI/Exterior_Night_2011_resized.jpg",
+      "rating": 4.4,
+      "ratingCount": 3005,
+      "placeId": "ChIJDVW9tmcABDQRQt1WbTAv6UA",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Conrad+Hong+Kong&query_place_id=ChIJDVW9tmcABDQRQt1WbTAv6UA"
+    },
+    {
+      "id": "plaza-doha-lxr",
+      "hotel": "The Plaza Doha, LXR Hotels & Resorts",
+      "city": "Doha",
+      "country": "Qatar",
+      "region": "Middle East",
+      "perk": "Stay 4, pay 3",
+      "perks": [
+        "Fourth night free on every stay of 4 nights (stay 4, pay 3), part of Hilton's Luxury Exclusive Offers",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 3 December 2027 for stays until 31 December 2029",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-03",
+      "travelTo": "2029-12-31",
+      "art": "desert",
+      "note": "Doha's grandest address, a Beaux-Arts palace on C Ring Road with Sarabeth's for breakfast and a playroom families rave about; a good stopover between Qatar Airways flights.",
+      "website": "https://www.hilton.com/en/hotels/dohtpol-the-plaza-doha/",
+      "image": "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,h_675,q_80,f_auto,g_auto/Imagery/Imagery/LXR/D/DOHTPOL/ThePlazaDoha_Pool1.jpg",
+      "rating": 4.8,
+      "ratingCount": 2961,
+      "placeId": "ChIJnd_nTmXFRT4RmTgEglv_GPA",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Plaza+Doha%2C+LXR+Hotels+%26+Resorts&query_place_id=ChIJnd_nTmXFRT4RmTgEglv_GPA"
+    },
+    {
+      "id": "jw-marriott-desert-springs",
+      "hotel": "JW Marriott Desert Springs Resort & Spa",
+      "city": "Palm Desert",
+      "destination": "Palm Desert, California",
+      "country": "USA",
+      "region": "North America",
+      "perk": "Suites: stay 4, pay 3",
+      "perks": [
+        "Fourth night free on suite stays of 4 nights (stay 3 nights in a select suite, get the fourth free)",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights in a participating suite",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "desert",
+      "note": "The Coachella Valley classic: 450 acres of lagoons you cross by boat to dinner, two golf courses and one of the biggest spas in the desert.",
+      "website": "https://www.marriott.com/en-us/hotels/ctdca-jw-marriott-desert-springs-resort-and-spa/overview/",
+      "image": "https://cache.marriott.com/content/dam/marriott-renditions/CTDCA/ctdca-exterior-0073-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*",
+      "rating": 4.5,
+      "ratingCount": 6148,
+      "placeId": "ChIJhR2MRUj82oARTC5ru7idjlg",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=JW+Marriott+Desert+Springs+Resort+%26+Spa&query_place_id=ChIJhR2MRUj82oARTC5ru7idjlg"
+    },
+    {
+      "id": "jw-marriott-cancun",
+      "hotel": "JW Marriott Cancun Resort & Spa",
+      "city": "Cancún",
+      "destination": "Hotel Zone, Cancún",
+      "country": "Mexico",
+      "region": "Central America & Caribbean",
+      "perk": "Up to 25% off, 3+ nights",
+      "perks": [
+        "Up to 25% off the nightly rate on stays of 3 nights or more",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 to 5 nights, depending on arrival date",
+        "Book by 30 June 2027 for stays until 30 June 2027",
+        "Not for groups of 10 rooms or more; not combinable with other promotions; taxes additional",
+        "Subject to availability"
+      ],
+      "bookBy": "2027-06-30",
+      "travelTo": "2027-06-30",
+      "art": "beach",
+      "note": "Mid-Hotel Zone on the Caribbean side, sharing its beach and restaurants with the Marriott next door; Gustino's Italian is the dinner to book.",
+      "website": "https://www.marriott.com/en-us/hotels/cunjw-jw-marriott-cancun-resort-and-spa/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/cunjw-aerial-view-7360:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.6,
+      "ratingCount": 3971,
+      "placeId": "ChIJ26Pc60coTI8RKMZMyVyZYt8",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=JW+Marriott+Cancun+Resort+%26+Spa&query_place_id=ChIJ26Pc60coTI8RKMZMyVyZYt8"
+    },
+    {
+      "id": "tasman-hobart",
+      "hotel": "The Tasman, a Luxury Collection Hotel, Hobart",
+      "city": "Hobart",
+      "destination": "Hobart, Tasmania",
+      "country": "Australia",
+      "region": "Australia & Pacific",
+      "perk": "25% off, 4+ nights",
+      "perks": [
+        "25% off the stay when you book 4 nights or more",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "coast",
+      "note": "Three buildings from 1847 to Art Deco knitted together on the waterfront, a short walk to Salamanca and the MONA ferry; Peppina downstairs is one of Hobart's best tables.",
+      "website": "https://www.marriott.com/en-us/hotels/hbalc-the-tasman-a-luxury-collection-hotel-hobart/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/lc-hbalc-aurora-suite-terrace-6-38106:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.7,
+      "ratingCount": 612,
+      "placeId": "ChIJG-KU_cJ1bqoR-bOmBFlKPQQ",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Tasman%2C+a+Luxury+Collection+Hotel%2C+Hobart&query_place_id=ChIJG-KU_cJ1bqoR-bOmBFlKPQQ"
+    },
+    {
+      "id": "westin-cape-coral",
+      "hotel": "The Westin Cape Coral Resort at Marina Village",
+      "city": "Cape Coral",
+      "destination": "Cape Coral, Florida",
+      "country": "USA",
+      "region": "North America",
+      "perk": "25% off, 4+ nights",
+      "perks": [
+        "25% off the nightly rate on stays of 4 nights or more",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights in participating room types",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "New bookings only; subject to availability"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "coast",
+      "note": "Suites with kitchens on the Caloosahatchee near Fort Myers, with a marina out front and a ferry to the Gulf beaches; good for a family week.",
+      "website": "https://www.marriott.com/en-us/hotels/rswwi-the-westin-cape-coral-resort-at-marina-village/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/wi-rswwi-exterior-at-sunset93257-54433:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.5,
+      "ratingCount": 2516,
+      "placeId": "ChIJGz8GwVg424gRdFHC4MoMMhQ",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Westin+Cape+Coral+Resort+at+Marina+Village&query_place_id=ChIJGz8GwVg424gRdFHC4MoMMhQ"
+    },
+    {
+      "id": "ritz-carlton-perth",
+      "hotel": "The Ritz-Carlton, Perth",
+      "city": "Perth",
+      "destination": "Elizabeth Quay, Perth",
+      "country": "Australia",
+      "region": "Australia & Pacific",
+      "perk": "Stay 4, pay 3",
+      "perks": [
+        "One night free on every 4 nights booked (stay 4, pay 3; stay 8, pay 6)",
+        "Studio and Suite bookings include access to The Ritz-Carlton Club lounge",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 31 July 2027 for stays until 31 July 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-07-31",
+      "travelTo": "2027-07-31",
+      "art": "city",
+      "note": "On Elizabeth Quay with the Swan River below; the Club lounge, the infinity pool and Hearth's wood-fired Western Australian menu make the Studio category worth the step up.",
+      "website": "https://www.ritzcarlton.com/en/hotels/perrz-the-ritz-carlton-perth/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/rz-perrz-swan-river---sunrise-14207:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.3,
+      "ratingCount": 1653,
+      "placeId": "ChIJjRreKSq7MioRlQ7yiBiiDgQ",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Ritz-Carlton%2C+Perth&query_place_id=ChIJjRreKSq7MioRlQ7yiBiiDgQ"
+    },
+    {
+      "id": "westin-seoul-parnas",
+      "hotel": "The Westin Seoul Parnas",
+      "city": "Seoul",
+      "destination": "Gangnam, Seoul",
+      "country": "South Korea",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2), on the best available rate",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 30 December 2027 for stays until 30 December 2027",
+        "Not valid 24 to 25 December 2026, 31 December 2026 to 1 January 2027, 24 to 26 December 2027 or 31 December 2027",
+        "Free cancellation until 6 pm the day before check-in; subject to availability"
+      ],
+      "bookBy": "2027-12-30",
+      "travelTo": "2027-12-30",
+      "art": "city",
+      "note": "The old Grand InterContinental Parnas reborn as a Westin, connected to COEX mall and Samseong station, across from Bongeunsa temple; the pool is a proper lap pool.",
+      "website": "https://www.marriott.com/en-us/hotels/selwg-the-westin-seoul-parnas/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/wi-selwg-exterior-28008:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.3,
+      "ratingCount": 341,
+      "placeId": "ChIJDU-o62ukfDUR5wCiotfmeqA",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Westin+Seoul+Parnas&query_place_id=ChIJDU-o62ukfDUR5wCiotfmeqA"
+    },
+    {
+      "id": "madrid-edition",
+      "hotel": "The Madrid EDITION",
+      "city": "Madrid",
+      "country": "Spain",
+      "region": "Europe",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 consecutive nights (stay 3, pay 2)",
+        "20% off all spa treatments and Natura Bissé products",
+        "15% off selected products at the Limited EDITION shop",
+        "Round-trip airport transfers for Suite and Penthouse bookings",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "city",
+      "note": "A stone's throw from Puerta del Sol, with a rooftop pool over the old town and Enrique Olvera's Jerónimo restaurant downstairs; ask for a Plaza Celenque-facing room.",
+      "website": "https://www.editionhotels.com/madrid/",
+      "image": "https://www.editionhotels.com/wp-content/uploads/2022/06/220503_EDT_Madrid2_16-1-scaled.jpg",
+      "rating": 4.4,
+      "ratingCount": 1435,
+      "placeId": "ChIJCxdsfjUpQg0RrsGeIGEirWw",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Madrid+EDITION&query_place_id=ChIJCxdsfjUpQg0RrsGeIGEirWw"
+    },
+    {
+      "id": "four-seasons-mauritius-anahita",
+      "hotel": "Four Seasons Resort Mauritius at Anahita",
+      "city": "Mauritius",
+      "destination": "Beau Champ, east coast",
+      "country": "Mauritius",
+      "region": "Africa",
+      "perk": "Villas: stay 5, pay 4",
+      "perks": [
+        "Fifth night free on every 5-night stay in a one-bedroom villa (stay 5, pay 4)",
+        "Full breakfast for two, daily, in a resort restaurant or through in-room dining",
+        "$200 resort credit per villa, per stay (Four Seasons Preferred Partner)",
+        "One-category upgrade on arrival, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 5 consecutive nights in a one-bedroom villa",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "The hotel credit covers incidental charges only and is applied at check-out; it cannot be used on the room rate, taxes or service charges",
+        "Subject to availability; not valid with other offers or for groups"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "island",
+      "note": "Every room is a villa with its own plunge pool on the lagoon-side east coast, with a boat to the resort's private beach on Île aux Cerfs and the Ernie Els golf course next door.",
+      "website": "https://www.fourseasons.com/mauritius/",
+      "image": "https://www.fourseasons.com/alt/img-opt/~75.701.159,4793-0,0000-2728,8889-1535,0000/publish/content/dam/fourseasons/images/web/MAS/MAS_1458_original.jpg",
+      "rating": 4.6,
+      "ratingCount": 1258,
+      "placeId": "ChIJcX1ZMGjwfCERVcBh7THSenk",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Four+Seasons+Resort+Mauritius+at+Anahita&query_place_id=ChIJcX1ZMGjwfCERVcBh7THSenk"
+    },
+    {
+      "id": "four-seasons-seychelles-desroches",
+      "hotel": "Four Seasons Resort Seychelles at Desroches Island",
+      "city": "Seychelles",
+      "destination": "Desroches Island, Outer Islands",
+      "country": "Seychelles",
+      "region": "Africa",
+      "perk": "20% off, 3+ nights",
+      "perks": [
+        "20% off the bed-and-breakfast rate on stays of 3 nights or more",
+        "Full breakfast for two, daily",
+        "$100 resort credit per stay in guest rooms; $200 in suites and villas (Four Seasons Preferred Partner)"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 10 January 2028 for stays until 10 January 2028",
+        "Flights to Desroches Island are not included in the rate",
+        "The hotel credit covers incidental charges only and is applied at check-out; it cannot be used on the room rate, taxes or service charges",
+        "Subject to availability; not valid with other offers or for groups"
+      ],
+      "bookBy": "2028-01-10",
+      "travelTo": "2028-01-10",
+      "art": "island",
+      "note": "A private coral island a 35-minute flight from Mahé, with fourteen kilometres of empty beach, giant tortoises and no mobile signal; the most switched-off stay on this board.",
+      "website": "https://www.fourseasons.com/seychellesdesroches/",
+      "image": "https://static.prod.r53.tablethotels.com/media/hotels/slideshow_images_staged/large/1701243.jpg",
+      "imageSource": "MICHELIN Guide / Tablet listing",
+      "rating": 4.7,
+      "ratingCount": 216,
+      "placeId": "ChIJRXZ8pDJf5CIRS8sAvKf5RNg",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Four+Seasons+Resort+Seychelles+at+Desroches+Island&query_place_id=ChIJRXZ8pDJf5CIRS8sAvKf5RNg"
+    },
+    {
+      "id": "legacy-mekong-can-tho",
+      "hotel": "Legacy Mekong, Can Tho, Autograph Collection",
+      "city": "Can Tho",
+      "destination": "Con Au islet, Mekong Delta",
+      "country": "Vietnam",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "Third night free on every stay of 3 nights (stay 3, pay 2)",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 30 June 2027 for stays until 30 June 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-06-30",
+      "travelTo": "2027-06-30",
+      "art": "jungle",
+      "note": "On its own islet in the river, reached by the hotel's speedboat from Can Tho, with the floating markets a dawn boat ride away; Marriott's 700th hotel in Asia Pacific.",
+      "website": "https://www.marriott.com/en-us/hotels/vcalm-legacy-mekong-can-tho-autograph-collection/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/ak-vcalm-landscape-19599:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.6,
+      "ratingCount": 908,
+      "placeId": "ChIJz5ZJLrlioDERN3DW2fLVMzU",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Legacy+Mekong%2C+Can+Tho%2C+Autograph+Collection&query_place_id=ChIJz5ZJLrlioDERN3DW2fLVMzU"
+    },
+    {
+      "id": "zannier-bai-san-ho",
+      "hotel": "Zannier Hotels Bãi San Hô",
+      "city": "Phu Yen",
+      "destination": "Song Cau, Phu Yen coast",
+      "country": "Vietnam",
+      "region": "Asia",
+      "perk": "Stay 3, pay 2",
+      "perks": [
+        "One night free for every 3 consecutive nights booked (stay 3, pay 2; stay 6, pay 4)",
+        "Breakfast daily, non-alcoholic minibar and Wi-Fi included, with tax and service charge in the rate",
+        "30 minutes of stand-up paddle boarding or water biking per person, per stay (ages 6 and over), and a mocktail or soft drink per person, per stay"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights in any villa except the Grand Bay Pool Villas",
+        "Book by 31 October 2027 for stays 1 November 2026 to 31 October 2027; the whole stay must fall inside the window",
+        "Not valid 23 December 2026 to 10 January 2027 or 5 to 13 February 2027",
+        "New bookings only; applies to the room rate, not extra-person charges; the free night cannot be taken as a late check-out",
+        "Water sports depend on the weather; a bicycle village tour is offered instead"
+      ],
+      "bookBy": "2027-10-31",
+      "travelFrom": "2026-11-01",
+      "travelTo": "2027-10-31",
+      "art": "beach",
+      "note": "Thatched villas on a kilometre of private bay between Quy Nhon and Tuy Hoa, with rice paddies behind and the sea in front; the closest Vietnam gets to a secret.",
+      "website": "https://www.zannierhotels.com/en/bai-san-ho/",
+      "image": "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2024/04/05/8a2aa883bf84495dab246ade9c9b12d3_best-beachfront-hotels-vietnam13.jpg",
+      "imageSource": "MICHELIN Guide article",
+      "rating": 4.7,
+      "ratingCount": 616,
+      "placeId": "ChIJ50E1stZ1bzERG-Q5aQzvXVE",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Zannier+Hotels+B%C3%A3i+San+H%C3%B4&query_place_id=ChIJ50E1stZ1bzERG-Q5aQzvXVE"
+    },
+    {
+      "id": "st-regis-maldives-vommuli",
+      "hotel": "The St. Regis Maldives Vommuli Resort",
+      "city": "Maldives",
+      "destination": "Dhaalu Atoll, Maldives",
+      "country": "Maldives",
+      "region": "Asia",
+      "perk": "25% off, 4+ nights",
+      "perks": [
+        "25% off the best available rate on stays of 4 nights or more",
+        "Breakfast daily at ALBA",
+        "Resort credit per villa, per stay, for the spa and dining at ALBA, Orientale, Cargo and The Whale Bar (Marriott STARS; excludes alcohol)",
+        "St. Regis Butler service throughout the stay, with a welcome amenity and note from the General Manager",
+        "Non-motorised water sports and snorkelling equipment included",
+        "Villa upgrade, early check-in and late check-out, subject to availability"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights; shortening the stay may change the price",
+        "Book by 10 December 2027 for stays until 10 December 2027",
+        "Not valid 15 December 2026 to 15 January 2027",
+        "The discount is applied at booking and no further discounts apply; the credit must be used on the original stay"
+      ],
+      "bookBy": "2027-12-10",
+      "travelTo": "2027-12-10",
+      "art": "island",
+      "note": "Forty minutes by seaplane from Malé, with the whale-shaped bar, a house reef you can snorkel from your deck and the butlers people name in their reviews; the one for a big anniversary.",
+      "website": "https://www.marriott.com/en-us/hotels/mlexr-the-st-regis-maldives-vommuli-resort/overview/",
+      "image": "https://cache.marriott.com/is/image/marriotts7prod/xr-mlexr-ocean-horizon-31480:Wide-Hor?wid=1336&fit=constrain",
+      "rating": 4.8,
+      "ratingCount": 652,
+      "placeId": "ChIJMYgTuO-oRzsRyQvlsT_ME-c",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+St.+Regis+Maldives+Vommuli+Resort&query_place_id=ChIJMYgTuO-oRzsRyQvlsT_ME-c"
+    },
+    {
+      "id": "taj-exotica-maldives",
+      "hotel": "Taj Exotica Resort & Spa, Maldives",
+      "city": "Maldives",
+      "destination": "South Malé Atoll, Maldives",
+      "country": "Maldives",
+      "region": "Asia",
+      "perk": "$100 credit a day, 3+ nights",
+      "perks": [
+        "$100 resort credit per room, per day, on stays of 3 nights or more",
+        "Breakfast daily at 24 Degrees, and evening tea with local snacks from 4 to 5 pm",
+        "Return speedboat airport transfers included (shared, up to 90 minutes' wait)",
+        "One sunset cruise per stay, weather permitting",
+        "Non-motorised water sports, snorkelling fins and masks, Wi-Fi for up to four devices and the gym included"
+      ],
+      "terms": [
+        "Minimum stay of 3 consecutive nights",
+        "Book by 10 January 2028 for stays until 10 January 2028",
+        "The resort credit follows the resort's credit factsheet; water-sports lessons are extra",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2028-01-10",
+      "travelTo": "2028-01-10",
+      "art": "island",
+      "note": "A 15-minute speedboat from the airport, so no seaplane and no lost half-day; a calm lagoon island with Taj's Indian-leaning kitchens, which matters for a lot of Nvoy's families.",
+      "website": "https://www.tajhotels.com/en-in/hotels/taj-exotica-maldives",
+      "image": "https://cdn.sanity.io/images/ocl5w36p/ihcl_prod/843323e7bb006d3fd5c175c77babd668f61ebbb1-3840x1860.jpg?w=1600&auto=format",
+      "rating": 4.6,
+      "ratingCount": 1079,
+      "placeId": "ChIJz5eYtll8PzsRuqMYMfx500c",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Taj+Exotica+Resort+%26+Spa%2C+Maldives&query_place_id=ChIJz5eYtll8PzsRuqMYMfx500c"
+    },
+    {
+      "id": "jw-marriott-maldives",
+      "hotel": "JW Marriott Maldives Resort & Spa",
+      "city": "Maldives",
+      "destination": "Shaviyani Atoll, Maldives",
+      "country": "Maldives",
+      "region": "Asia",
+      "perk": "25% off, 4+ nights",
+      "perks": [
+        "25% off the nightly rate on stays of 4 nights or more",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 31 December 2027 for stays until 31 December 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-31",
+      "travelTo": "2027-12-31",
+      "art": "island",
+      "note": "Vagaru island in the far north, reached by seaplane, with every villa on its own pool, a proper kids' club and dolphins most evenings; the family pick of the Maldives set.",
+      "website": "https://www.marriott.com/en-us/hotels/mlejs-jw-marriott-maldives-resort-and-spa/overview/",
+      "image": "https://cache.marriott.com/content/dam/marriott-renditions/MLEJS/mlejs-view-9540-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*",
+      "rating": 4.7,
+      "ratingCount": 216,
+      "placeId": "ChIJ1WtExFl_PzsRNqofKEsWB6w",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=JW+Marriott+Maldives+Resort+%26+Spa&query_place_id=ChIJ1WtExFl_PzsRNqofKEsWB6w"
+    },
+    {
+      "id": "w-maldives",
+      "hotel": "W Maldives",
+      "city": "Maldives",
+      "destination": "Fesdu Island, North Ari Atoll",
+      "country": "Maldives",
+      "region": "Asia",
+      "perk": "25% off, 4+ nights",
+      "perks": [
+        "25% off the nightly rate on stays of 4 nights or more",
+        "Breakfast for two, daily",
+        "$100 hotel credit per room, per stay (Marriott Luminous)",
+        "Room upgrade on arrival, early check-in and late check-out, subject to availability; local welcome amenity and a note from the General Manager"
+      ],
+      "terms": [
+        "Minimum stay of 4 consecutive nights",
+        "Book by 24 December 2027 for stays until 24 December 2027",
+        "Not valid 25 December 2026 to 7 January 2027",
+        "Subject to availability; not combinable with other promotions"
+      ],
+      "bookBy": "2027-12-24",
+      "travelTo": "2027-12-24",
+      "art": "island",
+      "note": "A small island with one of the best house reefs in the Maldives, turtles and reef sharks off the villa steps, and freshly renovated rooms; the couples' pick.",
+      "website": "https://www.marriott.com/en-us/hotels/mlewh-w-maldives/overview/",
+      "image": "https://cache.marriott.com/content/dam/marriott-renditions/MLEWH/mlewh-exterior-7681-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*",
+      "rating": 4.8,
+      "ratingCount": 723,
+      "placeId": "ChIJKROeR4fkQDsRrkTzCQpbbwk",
+      "ratingDate": "2026-11-06",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=W+Maldives&query_place_id=ChIJKROeR4fkQDsRrkTzCQpbbwk"
+    },
+    {
+      "id": "rosewood-sao-paulo",
+      "hotel": "Rosewood São Paulo",
+      "city": "São Paulo",
+      "destination": "Cidade Matarazzo, São Paulo",
+      "country": "Brazil",
+      "region": "South America",
+      "perk": "30% off, book by 10 Nov",
+      "perks": [
+        "30% off the best available rate, with no minimum stay (Rosewood Beyond, for Rosewood Elite partners only; not offered to the public)",
+        "Nvoy partner perks confirmed per booking"
+      ],
+      "terms": [
+        "Book between 3 and 10 November 2026 for travel 1 January to 30 June 2027",
+        "Subject to availability; blackout dates and exclusions apply"
+      ],
+      "bookBy": "2026-11-10",
+      "travelFrom": "2027-01-01",
+      "travelTo": "2027-06-30",
+      "art": "city",
+      "note": "Jean Nouvel's tower and Philippe Starck's interiors inside the restored Matarazzo maternity hospital by Avenida Paulista, with 450 works of Brazilian art and a Guerlain spa; a short window, so ask this week.",
+      "website": "https://www.rosewoodhotels.com/en/sao-paulo",
+      "image": "https://images.rosewoodhotels.com/is/image/rwhg/rosewood-sao-paulo-exterior",
+      "imageSource": "official site",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Rosewood+S%C3%A3o+Paulo&query_place_id=ChIJsbAShclZzpQRiiYQjjaTjIA",
+      "rating": 4.7,
+      "ratingCount": 2892,
+      "ratingDate": "2026-11-06",
+      "placeId": "ChIJsbAShclZzpQRiiYQjjaTjIA",
+      "source": "Fora Portal deals page, forwarded 6 Nov 2026 (Rosewood Elite)"
     }
   ]
 }
